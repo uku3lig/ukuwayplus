@@ -1,0 +1,12 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "dev.abodactyl.cce.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "NametagMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

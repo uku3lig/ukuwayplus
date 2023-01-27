@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "cce",
+  "version": "${version}",
+  "name": "ClubChunkExpanded",
+  "description": "",
+  "authors": [
+    "abodactyl"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/cce/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "dev.abodactyl.cce.CCEClient"
+    ]
+  },
+  "mixins": [
+    "ClubChunkExpanded.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.13",
+    "fabric": "*",
+    "minecraft": "1.19.3"
+  }
+}
