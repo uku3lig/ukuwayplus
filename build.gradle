@@ -18,6 +18,8 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
+
+    implementation include("org.java-websocket:Java-WebSocket:1.5.3")
     implementation include('com.github.Vatuu:discord-rpc:1.6.2')
     modImplementation include("net.kyori:adventure-platform-fabric:5.3.1")
 }

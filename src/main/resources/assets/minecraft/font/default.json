@@ -2,36 +2,36 @@
   "providers": [
     {
       "type": "bitmap",
-      "file": "rank/mod_player.png",
-      "ascent": 7,
-      "height": 7,
+      "file": "cce:rank/player.png",
+      "ascent": 9,
+      "height": 10,
       "chars": [
         "\uE001"
       ]
     },
     {
       "type": "bitmap",
-      "file": "rank/mod_vip.png",
-      "ascent": 7,
-      "height": 7,
+      "file": "cce:rank/mod.png",
+      "ascent": 9,
+      "height": 10,
       "chars": [
         "\uE002"
       ]
     },
     {
       "type": "bitmap",
-      "file": "rank/mod_staff.png",
-      "ascent": 7,
-      "height": 7,
+      "file": "cce:rank/admin.png",
+      "ascent": 9,
+      "height": 10,
       "chars": [
         "\uE003"
       ]
     },
     {
       "type": "bitmap",
-      "file": "rank/non_mod_player.png",
-      "ascent": 7,
-      "height": 7,
+      "file": "cce:rank/not.png",
+      "ascent": 9,
+      "height": 10,
       "chars": [
         "\uE004"
       ]
