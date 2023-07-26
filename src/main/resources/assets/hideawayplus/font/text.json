@@ -1,0 +1,37 @@
+{
+  "providers": [
+    {
+      "type": "bitmap",
+      "file": "hideawayplus:alphabet_smallcaps.png",
+      "chars": [
+        "ABCDEFGHIJKLM",
+        "NOPQRSTUVWXYZ"
+      ],
+      "height": 7,
+      "ascent": 7
+    },
+    {
+      "type": "bitmap",
+      "file": "hideawayplus:punc_smallcaps.png",
+      "chars": [
+        ".!?+: "
+      ],
+      "height": 7,
+      "ascent": 7
+    },
+    {
+      "type": "bitmap",
+      "file": "hideawayplus:icon.png",
+      "chars": [ "\uE001" ],
+      "height": 8,
+      "ascent": 7
+    },
+    {
+      "type": "bitmap",
+      "file": "hideawayplus:wordmark.png",
+      "chars": [ "\uE002" ],
+      "height": 64,
+      "ascent": 8
+    }
+  ]
+}

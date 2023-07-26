@@ -1,27 +1,27 @@
 {
   "schemaVersion": 1,
-  "id": "cce",
+  "id": "hideawayplus",
   "version": "${version}",
-  "name": "ClubChunkExpanded",
+  "name": "Hideaway+",
   "description": "",
   "authors": [
-    "abodactyl"
+    "skyelander"
   ],
   "contact": {},
   "license": "MIT",
-  "icon": "assets/cce/icon.png",
+  "icon": "assets/hideawayplus/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
-      "dev.abodactyl.cce.CCEClient"
+      "plus.hideaway.mod.HideawayPlus"
     ]
   },
   "mixins": [
-    "ClubChunkExpanded.mixins.json"
+    "HideawayPlus.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.13",
+    "fabricloader": ">=0.14.21",
     "fabric": "*",
-    "minecraft": "1.19.3"
+    "minecraft": "1.19.4"
   }
 }
