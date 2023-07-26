@@ -1,2 +1,2 @@
-# ClubChunk Expanded
+# Hideaway+
 ### The best mod since sliced bread. Except maybe Optifine.
