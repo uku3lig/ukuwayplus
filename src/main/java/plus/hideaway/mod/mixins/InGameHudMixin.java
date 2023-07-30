@@ -28,49 +28,30 @@ public class InGameHudMixin {
 
     @Inject(at = @At("HEAD"), method = "render")
     public void onRender(MatrixStack matrices, float tickDelta, CallbackInfo ci) {
-//        // Connection Indicator
-//        if (HideawayPlus.ws().connected()) {
+//
+//        DISABLED FOR NOW - PERFORMANCE ISSUES
+//
+//        for (Map.Entry<Text, Integer> entry : activeToasts.entrySet()) {
+//            if (entry.getValue() >= 300) {
+//                activeToasts.remove(entry.getKey());
+//            } else activeToasts.replace(entry.getKey(), entry.getValue() + 1);
+//        }
+//
+//        for (Text t : HideawayPlus.toastStack()) {
+//            HideawayPlus.toastStack().remove(t);
+//            activeToasts.put(t, 0);
+//        }
+//
+//        int yCounter = 10;
+//        for (Text activeToast : activeToasts.keySet()) {
 //            DrawableHelper.drawTextWithShadow(
-//                    matrices,
-//                    MinecraftClient.getInstance().textRenderer,
-//                    Text.literal("CONNECTED").setStyle(Style.EMPTY.withFont(new Identifier("hideawayplus:text"))),
-//                    10, 10, 0x55ff55
-//            );
-//        } else if (HideawayPlus.ws().willReconnect()) {
-//            DrawableHelper.drawTextWithShadow(
-//                    matrices,
-//                    MinecraftClient.getInstance().textRenderer,
-//                    Text.literal("RECONNECTING...").setStyle(Style.EMPTY.withFont(new Identifier("hideawayplus:text"))),
-//                    10, 10, 0xFFFF55
-//            );
-//        } else DrawableHelper.drawTextWithShadow(
 //                matrices,
 //                MinecraftClient.getInstance().textRenderer,
-//                Text.literal("DISCONNECTED").setStyle(Style.EMPTY.withFont(new Identifier("hideawayplus:text"))),
-//                10, 10, 0xff5555
-//        );
-
-        for (Map.Entry<Text, Integer> entry : activeToasts.entrySet()) {
-            if (entry.getValue() == 300) {
-                activeToasts.remove(entry.getKey());
-            } else activeToasts.replace(entry.getKey(), entry.getValue() + 1);
-        }
-
-        for (Text t : HideawayPlus.toastStack()) {
-            HideawayPlus.toastStack().remove(t);
-            activeToasts.put(t, 0);
-        }
-
-        int yCounter = 10;
-        for (Text activeToast : activeToasts.keySet()) {
-            DrawableHelper.drawTextWithShadow(
-                matrices,
-                MinecraftClient.getInstance().textRenderer,
-                activeToast,
-                10, yCounter, 0xff5555
-            );
-
-            yCounter += 13;
-        }
+//                activeToast,
+//                10, yCounter, 0xff5555
+//            );
+//
+//            yCounter += 13;
+//        }
     }
 }
