@@ -51,9 +51,9 @@ public class Settings {
             try {
                 var content = Files.readString(path);
                 var obj = JsonParser.parseString(content).getAsJsonObject();
-                HideawayPlus.settings().rpc = obj.get("rpc").getAsBoolean();
-                HideawayPlus.settings().ws = obj.get("ws").getAsBoolean();
-                HideawayPlus.settings().stats = obj.get("stats").getAsBoolean();
+                HideawayPlus.settings().rpc = obj.has("rpc") && obj.get("rpc").getAsBoolean();
+                HideawayPlus.settings().ws = obj.has("ws") && obj.get("ws").getAsBoolean();
+                HideawayPlus.settings().stats = obj.has("stats") && obj.get("stats").getAsBoolean();
             } catch (IOException e) {
                 HideawayPlus.logger().error("Unable to create config file: " + e.getMessage());
                 e.printStackTrace();

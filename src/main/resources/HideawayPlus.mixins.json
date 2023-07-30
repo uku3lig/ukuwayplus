@@ -3,19 +3,20 @@
   "minVersion": "0.8",
   "package": "plus.hideaway.mod.mixins",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [
-    "accessors.GameMenuScreenAccessor",
-    "accessors.ScreenAccessor",
-
-    "DisplayNameMixin",
-    "GameMenuScreenMixin",
-    "GUIMixin",
-    "InGameHudMixin",
-    "MinecraftClientMixin",
-    "ScreenHandlerMixin",
-    "TickMixin"
-  ],
   "injectors": {
     "defaultRequire": 1
-  }
+  },
+  "client": [
+    "AdvancementScreenMixin",
+    "DisplayNameMixin",
+    "GameMenuScreenMixin",
+    "InGameHudMixin",
+    "MinecraftClientMixin",
+    "PlayerMixin",
+    "PlayerInventoryMixin",
+    "ScreenHandlerMixin",
+    "TickMixin",
+    "accessors.GameMenuScreenAccessor",
+    "accessors.ScreenAccessor"
+  ]
 }

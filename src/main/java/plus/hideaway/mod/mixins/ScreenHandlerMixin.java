@@ -12,6 +12,6 @@ import plus.hideaway.mod.HideawayPlus;
 public class ScreenHandlerMixin {
     @Inject(at = @At("HEAD"), method = "onClosed")
     public void close(PlayerEntity player, CallbackInfo ci) {
-        HideawayPlus.setGUI(null);
+        // whoops there's nothing here anymore
     }
 }

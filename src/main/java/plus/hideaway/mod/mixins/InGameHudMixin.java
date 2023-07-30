@@ -13,30 +13,55 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import plus.hideaway.mod.HideawayPlus;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 @Mixin(InGameHud.class)
 public class InGameHudMixin {
+
+    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+    private final List<Text> activeToasts = new ArrayList<>();
+
     @Inject(at = @At("HEAD"), method = "render")
     public void onRender(MatrixStack matrices, float tickDelta, CallbackInfo ci) {
-        // Connection Indicator
-        if (HideawayPlus.ws().connected()) {
+//        // Connection Indicator
+//        if (HideawayPlus.ws().connected()) {
+//            DrawableHelper.drawTextWithShadow(
+//                    matrices,
+//                    MinecraftClient.getInstance().textRenderer,
+//                    Text.literal("CONNECTED").setStyle(Style.EMPTY.withFont(new Identifier("hideawayplus:text"))),
+//                    10, 10, 0x55ff55
+//            );
+//        } else if (HideawayPlus.ws().willReconnect()) {
+//            DrawableHelper.drawTextWithShadow(
+//                    matrices,
+//                    MinecraftClient.getInstance().textRenderer,
+//                    Text.literal("RECONNECTING...").setStyle(Style.EMPTY.withFont(new Identifier("hideawayplus:text"))),
+//                    10, 10, 0xFFFF55
+//            );
+//        } else DrawableHelper.drawTextWithShadow(
+//                matrices,
+//                MinecraftClient.getInstance().textRenderer,
+//                Text.literal("DISCONNECTED").setStyle(Style.EMPTY.withFont(new Identifier("hideawayplus:text"))),
+//                10, 10, 0xff5555
+//        );
+        for (Text t : HideawayPlus.toastStack()) {
+            HideawayPlus.toastStack().remove(t);
+            activeToasts.add(t);
+        }
+        int yCounter = 10;
+        for (Text activeToast : activeToasts) {
             DrawableHelper.drawTextWithShadow(
-                    matrices,
-                    MinecraftClient.getInstance().textRenderer,
-                    Text.literal("CONNECTED").setStyle(Style.EMPTY.withFont(new Identifier("hideawayplus:text"))),
-                    10, 10, 0x55ff55
-            );
-        } else if (HideawayPlus.ws().willReconnect()) {
-            DrawableHelper.drawTextWithShadow(
-                    matrices,
-                    MinecraftClient.getInstance().textRenderer,
-                    Text.literal("RECONNECTING...").setStyle(Style.EMPTY.withFont(new Identifier("hideawayplus:text"))),
-                    10, 10, 0xFFFF55
-            );
-        } else DrawableHelper.drawTextWithShadow(
                 matrices,
                 MinecraftClient.getInstance().textRenderer,
-                Text.literal("DISCONNECTED").setStyle(Style.EMPTY.withFont(new Identifier("hideawayplus:text"))),
-                10, 10, 0xff5555
-        );
+                activeToast,
+                10, yCounter, 0xff5555
+            );
+
+            yCounter += 13;
+        }
     }
 }

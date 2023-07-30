@@ -62,14 +62,15 @@ public class MenuScreen extends GameOptionsScreen {
                         "option.hideawayplus.ws",
                         SimpleOption.constantTooltip(
                                 MutableText.of(TextContent.EMPTY)
+                                        .append(Text.literal("Coming soon!").setStyle(Style.EMPTY.withColor(Formatting.DARK_GRAY).withItalic(true)))
                                         .append(Text.literal("Connects you to our WebSocket network."))
                                         .append(Text.literal("\n\n"))
                                         .append(Text.literal("Our WebSocket network provides services like chat channels, live outage updates and more.").setStyle(Style.EMPTY.withColor(Formatting.DARK_GRAY)))
                                         .append(Text.literal("\n\n"))
-                                        .append(Text.literal("Impact: ").setStyle(Style.EMPTY.withColor(Formatting.DARK_GRAY)))
-                                        .append(Text.literal("HIGH").setStyle(Style.EMPTY.withColor(Formatting.RED).withBold(true).withFont(new Identifier("hideawayplus:text"))))
-                                        .append(Text.literal("\n\n"))
-                                        .append(Text.literal("Many core services may not function without this feature.").setStyle(Style.EMPTY.withColor(Formatting.DARK_GRAY)))
+                                                // .append(Text.literal("Impact: ").setStyle(Style.EMPTY.withColor(Formatting.DARK_GRAY)))
+                                                // .append(Text.literal("HIGH").setStyle(Style.EMPTY.withColor(Formatting.RED).withBold(true).withFont(new Identifier("hideawayplus:text"))))
+                                                // .append(Text.literal("\n\n"))
+                                                // .append(Text.literal("Many core services may not function without this feature.").setStyle(Style.EMPTY.withColor(Formatting.DARK_GRAY)))
                         ),
                         HideawayPlus.settings().ws,
                         (value) -> {
@@ -94,7 +95,7 @@ public class MenuScreen extends GameOptionsScreen {
                         (value) -> {
                             HideawayPlus.settings().stats = value;
                         }
-                ),
+                )
         };
     }
 

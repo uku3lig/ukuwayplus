@@ -13,7 +13,7 @@ import plus.hideaway.mod.feat.settings.Settings;
 public class MinecraftClientMixin {
     @Inject(at = @At("HEAD"), method = "close")
     public void close(CallbackInfo ci) {
-        HideawayPlus.ws().end();
-        Settings.write(true);
+        // HideawayPlus.ws().end();
+        Settings.write();
     }
 }
