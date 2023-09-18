@@ -1,5 +1,5 @@
 > [!IMPORTANT]
-> Hideaway+ has ceased service, all code exists as an archive. If you would like the Github or Twitter handles please contact @imskylerwhiteyo on Discord or @servantofsappho on Twitter.
+> **Hideaway+ has ceased service, all code exists as an archive.** If you would like the Github or Twitter handles please contact @imskylerwhiteyo on Discord or @servantofsappho on Twitter.
 > Feel free to use this code in your project - credit is appreciated but not mandated. I look forward to seeing all the Hideaway code projects that come in future! ❤️ - Skye
 
 ## 🍍 Hideaway+ - a QOL mod for Hideaway
