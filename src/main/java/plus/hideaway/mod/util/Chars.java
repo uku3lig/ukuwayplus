@@ -11,4 +11,9 @@ public class Chars {
                 new Identifier("hideawayplus:text")
         )).formatted(Formatting.WHITE);
     }
+    public static Text disc() {
+        return Text.literal("\uE003 ").setStyle(Style.EMPTY.withFont(
+                new Identifier("hideawayplus:text")
+        )).formatted(Formatting.WHITE);
+    }
 }

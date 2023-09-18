@@ -1,10 +1,10 @@
 {
     "categories.hplus": "Hideaway+",
     "categories.hplus.menu": "Open Hideaway+ Menu",
-    "categories.hplus.debug": "Debug",
-    "categories.hplus.zoom": "Zoom",
+    "categories.hplus.editor": "Open Editor",
+    "categories.hplus.debug": "Debug (Unused)",
 
     "option.hideawayplus.rpc": "Use Discord Presence",
     "option.hideawayplus.ws": "Use WebSockets",
-    "option.hideawayplus.stats": "Track Game Stats"
+    "option.hideawayplus.jukebox": "Use Jukebox"
 }

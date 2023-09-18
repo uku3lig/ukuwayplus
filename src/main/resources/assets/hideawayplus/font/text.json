@@ -32,6 +32,13 @@
       "chars": [ "\uE002" ],
       "height": 64,
       "ascent": 8
+    },
+    {
+      "type": "bitmap",
+      "file": "hideawayplus:disc.png",
+      "chars": [ "\uE003" ],
+      "height": 8,
+      "ascent": 7
     }
   ]
 }

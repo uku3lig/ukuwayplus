@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import plus.hideaway.mod.HideawayPlus;
+import plus.hideaway.mod.util.Chars;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +29,19 @@ public class InGameHudMixin {
 
     @Inject(at = @At("HEAD"), method = "render")
     public void onRender(MatrixStack matrices, float tickDelta, CallbackInfo ci) {
+        if (HideawayPlus.config().jukebox()) {
+            if (HideawayPlus.jukebox().currentTrack != null) {
+                DrawableHelper.drawTextWithShadow(
+                        matrices,
+                        MinecraftClient.getInstance().textRenderer,
+                        Text.empty()
+                            .append(Chars.disc())
+                            .append(Text.literal("Now playing: " + HideawayPlus.jukebox().currentTrack.name)),
+                        10, 10, 0xffffff
+                );
+            }
+        }
+
 //
 //        DISABLED FOR NOW - PERFORMANCE ISSUES
 //

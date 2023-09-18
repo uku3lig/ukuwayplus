@@ -1,6 +1,6 @@
 plugins {
-    id 'fabric-loom' version '1.1-SNAPSHOT'
-    id 'maven-publish'
+    id "fabric-loom" version "1.1-SNAPSHOT"
+    id "maven-publish"
 }
 
 version = project.mod_version
@@ -8,7 +8,9 @@ group = project.maven_group
 
 repositories {
     mavenCentral()
-    maven { url 'https://jitpack.io' }
+    maven { url "https://jitpack.io" }
+    maven { url "https://maven.shedaniel.me/" }
+    maven { url 'https://maven.wispforest.io' }
 }
 
 dependencies {
@@ -16,11 +18,10 @@ dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    annotationProcessor modImplementation(include("io.wispforest:owo-lib:${project.owo_version}"))
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-    implementation include('com.github.jagrosh:DiscordIPC:-SNAPSHOT')
     implementation include('org.json:json:20220320')
-    implementation include("org.java-websocket:Java-WebSocket:1.5.3")
+    implementation include("com.github.jagrosh:DiscordIPC:-SNAPSHOT")
 }
 
 processResources {

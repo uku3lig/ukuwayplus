@@ -12,10 +12,10 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import plus.hideaway.mod.HideawayPlus;
 import plus.hideaway.mod.Prompt;
-import plus.hideaway.mod.feat.ws.ModUserCache;
 import plus.hideaway.mod.util.Chars;
 import plus.hideaway.mod.util.DisplayNameUtil;
 
+// TODO: This entire system lmao
 @Mixin(PlayerListHud.class)
 public class DisplayNameMixin {
     @Inject(at = @At("RETURN"), method = "getPlayerName", cancellable = true)
@@ -23,7 +23,7 @@ public class DisplayNameMixin {
         Text name = cir.getReturnValue();
         if (HideawayPlus.connected()){
             String result = DisplayNameUtil.ignFromDisplayName(name.getString());
-            if (ModUserCache.containsUser(entry.getProfile().getId().toString()) || DisplayNameUtil.clientUsername().equals(result)) {
+            if (DisplayNameUtil.clientUsername().equals(result)) {
                 MutableText newName = MutableText.of(TextContent.EMPTY);
                 newName.append(name).append(" ").append(Chars.badge());
                 cir.setReturnValue(newName);

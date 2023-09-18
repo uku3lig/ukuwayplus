@@ -10,16 +10,13 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.GridWidget;
 import net.minecraft.client.gui.widget.SimplePositioningWidget;
 import net.minecraft.text.Text;
-import net.minecraft.util.Util;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import plus.hideaway.mod.HideawayPlus;
-import plus.hideaway.mod.feat.menu.MenuScreen;
+import plus.hideaway.mod.Prompt;
 import plus.hideaway.mod.mixins.accessors.GameMenuScreenAccessor;
 import plus.hideaway.mod.mixins.accessors.ScreenAccessor;
-
-import java.util.function.Supplier;
 
 @Mixin(GameMenuScreen.class)
 public class GameMenuScreenMixin {
@@ -65,7 +62,8 @@ public class GameMenuScreenMixin {
             // literally the only thing I added :sob:
             adder.add(ButtonWidget.builder(Text.literal("Hideaway+ Settings"), button -> {
                 button.active = false;
-                MinecraftClient.getInstance().setScreen(new MenuScreen(((GameMenuScreen) (Object) this)));
+                // HideawayPlus.config().show();
+                Prompt.trace("I hate cloth config (maybe?)");
             }).width(204).build(), 2);
         }
 

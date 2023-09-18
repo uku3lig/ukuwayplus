@@ -6,8 +6,7 @@ import com.jagrosh.discordipc.entities.RichPresence;
 import org.json.JSONObject;
 import plus.hideaway.mod.HideawayPlus;
 import plus.hideaway.mod.feat.location.Location;
-import plus.hideaway.mod.feat.settings.Settings;
-import plus.hideaway.mod.util.BossbarUtil;
+import plus.hideaway.mod.util.HUDUtil;
 
 import java.time.Instant;
 import java.time.ZoneOffset;
@@ -54,10 +53,10 @@ public class DiscordManager {
             Location loc = HideawayPlus.location();
             RichPresence.Builder builder = new RichPresence.Builder();
             builder.setState(loc.description)
-                    .setDetails(loc.name.contains("<player>") ? loc.name.replace("<player>", Objects.requireNonNull(BossbarUtil.getCurrentRoomName())) : loc.name)
+                    .setDetails(loc.name.contains("<player>") ? loc.name.replace("<player>", Objects.requireNonNull(HUDUtil.getCurrentRoomName())) : loc.name)
                     .setStartTimestamp(Instant.ofEpochSecond(start.toEpochMilli()).atOffset(ZoneOffset.UTC))
-                    .setLargeImage(loc.largeIcon.key(), loc.name)
-                    .setSmallImage(loc.smallIcon.key(), "Try Hideaway+ today!");
+                    .setLargeImage(loc.largeIcon.key(), "Hideaway+ v" + HideawayPlus.version())
+                    .setSmallImage(loc.smallIcon.key(), "Nothing to see here...");
             client.sendRichPresence(builder.build());
         } else start();
     }
