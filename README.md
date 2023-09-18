@@ -4,6 +4,9 @@
 
 ## 🍍 Hideaway+ - a QOL mod for Hideaway
 
+### Disclaimer
+Much of the code is messy, and unfinished. I was developing many complex systems at once which I hadn't fully planned out, and you can see many pieces of debugging code from testing that haven't been removed.
+
 ### Navigating the repository
 My code is an absolute mess, so here are some pointers:
 - `src/main/java` - all code for the mod
