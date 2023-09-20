@@ -1,23 +1,25 @@
 {
   "schemaVersion": 1,
-  "id": "hideawayplus",
+  "id": "hideaway_continued",
   "version": "${version}",
-  "name": "Hideaway+",
+  "name": "Hideaway: Continued",
   "description": "",
   "authors": [
-    "skyelander"
+    "skyelander",
+    "ella",
+    "OliviaTheVampire"
   ],
   "contact": {},
   "license": "MIT",
-  "icon": "assets/hideawayplus/icon.png",
+  "icon": "assets/hideaway_continued/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
-      "plus.hideaway.mod.HideawayPlus"
+      "continued.hideaway.mod.HideawayContinued"
     ]
   },
   "mixins": [
-    "HideawayPlus.mixins.json"
+    "HideawayContinued.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.14.22",

@@ -1,10 +1,10 @@
 {
-    "categories.hplus": "Hideaway+",
-    "categories.hplus.menu": "Open Hideaway+ Menu",
-    "categories.hplus.editor": "Open Editor",
-    "categories.hplus.debug": "Debug (Unused)",
+    "categories.hc": "Hideaway: Continued",
+    "categories.hc.menu": "Open Hideaway: Continued Menu",
+    "categories.hc.editor": "Open Editor",
+    "categories.hc.debug": "Debug (Unused)",
 
-    "option.hideawayplus.rpc": "Use Discord Presence",
-    "option.hideawayplus.ws": "Use WebSockets",
-    "option.hideawayplus.jukebox": "Use Jukebox"
+    "option.hideaway_continued.rpc": "Use Discord Presence",
+    "option.hideaway_continued.ws": "Use WebSockets",
+    "option.hideaway_continued.jukebox": "Use Jukebox"
 }
