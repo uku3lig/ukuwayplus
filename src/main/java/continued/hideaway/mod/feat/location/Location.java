@@ -261,8 +261,8 @@ public enum Location {
             }
         }
         else if (HideawayContinued.player().isSpectator()) HideawayContinued.setLocation(WARDROBE);
-        else if (((BossHealthOverlayAccessor)HideawayContinued.client().gui.getBossOverlay()).getBossBarName().contains("\uE612 | Editor Mode is")) HideawayContinued.setLocation(HOTEL_ROOM_SELF);
-        else if (((BossHealthOverlayAccessor)HideawayContinued.client().gui.getBossOverlay()).getBossBarName().contains("\uE293 ") && ((BossHealthOverlayAccessor)HideawayContinued.client().gui.getBossOverlay()).getBossBarName().contains("'s Room")){
+        else if (((BossHealthOverlayAccessor)HideawayContinued.client().gui.getBossOverlay()).getBossBarName() != null && ((BossHealthOverlayAccessor)HideawayContinued.client().gui.getBossOverlay()).getBossBarName().contains("\uE612 | Editor Mode is")) HideawayContinued.setLocation(HOTEL_ROOM_SELF);
+        else if (((BossHealthOverlayAccessor)HideawayContinued.client().gui.getBossOverlay()).getBossBarName() != null && ((BossHealthOverlayAccessor)HideawayContinued.client().gui.getBossOverlay()).getBossBarName().contains("\uE293 ") && ((BossHealthOverlayAccessor)HideawayContinued.client().gui.getBossOverlay()).getBossBarName().contains("'s Room")){
             String visitingPlayerName = ((BossHealthOverlayAccessor)HideawayContinued.client().gui.getBossOverlay()).getBossBarName().split(" ")[0];
             visitingPlayerName = visitingPlayerName.replace("'s", "");
 
@@ -270,7 +270,7 @@ public enum Location {
             HideawayContinued.setLocation(HOTEL_ROOM_OTHER);
         }
 
-        else if (((BossHealthOverlayAccessor)HideawayContinued.client().gui.getBossOverlay()).getBossBarName().contains("\uE293 ")){
+        else if (((BossHealthOverlayAccessor)HideawayContinued.client().gui.getBossOverlay()).getBossBarName() != null && ((BossHealthOverlayAccessor)HideawayContinued.client().gui.getBossOverlay()).getBossBarName().contains("\uE293 ")){
 
             Location.HOTEL_ROOM_OTHER.name = "In a someone's room \uD83E\uDD37";
             HideawayContinued.setLocation(HOTEL_ROOM_OTHER);

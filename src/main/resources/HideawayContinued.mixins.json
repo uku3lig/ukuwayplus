@@ -18,8 +18,7 @@
     "ScreenHandlerMixin",
     "SoundEventMixin",
     "TickMixin",
-    "ext.GridLayoutAccessor"
-  ],
-  "mixins": [
+    "ext.GridLayoutAccessor",
+    "ItemStackMixin"
   ]
 }

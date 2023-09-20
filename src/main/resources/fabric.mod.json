@@ -12,6 +12,8 @@
   "contact": {},
   "license": "MIT",
   "icon": "assets/hideaway_continued/icon.png",
+  "accessWidener": "HideawayContinued.accesswidener",
+
   "environment": "*",
   "entrypoints": {
     "client": [
