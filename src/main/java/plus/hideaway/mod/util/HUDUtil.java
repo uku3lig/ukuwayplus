@@ -1,7 +1,7 @@
 package plus.hideaway.mod.util;
 
 import net.fabricmc.fabric.mixin.client.rendering.InGameHudMixin;
-import net.minecraft.entity.boss.BossBar;
+import net.minecraft.world.BossEvent;
 import plus.hideaway.mod.HideawayPlus;
 
 import java.util.regex.Matcher;
@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 public class HUDUtil {
     public static String getCurrentRoomName() {
         if (HideawayPlus.connected()) {
-            BossBar bar = HideawayPlus.client().getServer().getBossBarManager().getAll().stream().findFirst().get();
+            BossEvent bar = HideawayPlus.client().getSingleplayerServer().getCustomBossEvents().getEvents().stream().findFirst().get();
             String text = bar.getName().getString();
             Pattern pattern = Pattern.compile("\\w*'s Room", Pattern.CASE_INSENSITIVE);
             Matcher matcher = pattern.matcher(text);

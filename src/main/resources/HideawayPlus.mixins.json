@@ -12,12 +12,13 @@
     "GameMenuScreenMixin",
     "InGameHudMixin",
     "MinecraftClientMixin",
-    "PlayerMixin",
     "PlayerInventoryMixin",
+    "PlayerMixin",
     "ScreenHandlerMixin",
     "SoundEventMixin",
-    "TickMixin",
-    "accessors.GameMenuScreenAccessor",
-    "accessors.ScreenAccessor"
+    "TickMixin"
+  ],
+  "mixins": [
+    "GridLayoutAccessor"
   ]
 }

@@ -1,71 +1,71 @@
 package plus.hideaway.mod;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.text.*;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.*;
 import plus.hideaway.mod.util.Chars;
 
 public class Prompt {
 
     public static void info(String message) {
-        MinecraftClient.getInstance().player.sendMessage(
-            MutableText.of(TextContent.EMPTY)
-                .append(Text.literal("[").setStyle(Style.EMPTY.withColor(Formatting.GRAY)))
-                .append(Text.literal("Hideaway+").setStyle(Style.EMPTY.withColor(Formatting.GOLD)))
-                .append(Text.literal("] ").setStyle(Style.EMPTY.withColor(Formatting.GRAY)))
-                .append(Text.literal(message).setStyle(Style.EMPTY.withColor(Formatting.AQUA)))
+        Minecraft.getInstance().player.sendSystemMessage(
+            MutableComponent.create(ComponentContents.EMPTY)
+                .append(Component.literal("[").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)))
+                .append(Component.literal("Hideaway+").setStyle(Style.EMPTY.withColor(ChatFormatting.GOLD)))
+                .append(Component.literal("] ").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)))
+                .append(Component.literal(message).setStyle(Style.EMPTY.withColor(ChatFormatting.AQUA)))
         );
     }
 
     public static void error(String message) {
-        MinecraftClient.getInstance().player.sendMessage(
-            MutableText.of(TextContent.EMPTY)
-                .append(Text.literal("[").setStyle(Style.EMPTY.withColor(Formatting.GRAY)))
+        Minecraft.getInstance().player.sendSystemMessage(
+            MutableComponent.create(ComponentContents.EMPTY)
+                .append(Component.literal("[").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)))
                 .append(Chars.badge())
-                .append(Text.literal("] ").setStyle(Style.EMPTY.withColor(Formatting.GRAY)))
-                .append(Text.literal(message).setStyle(Style.EMPTY.withColor(Formatting.RED)))
+                .append(Component.literal("] ").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)))
+                .append(Component.literal(message).setStyle(Style.EMPTY.withColor(ChatFormatting.RED)))
         );
     }
 
     public static void trace(String message) {
         if (HideawayPlus.debug()) {
-            MinecraftClient.getInstance().player.sendMessage(
-                MutableText.of(TextContent.EMPTY)
-                    .append(Text.literal("[").setStyle(Style.EMPTY.withColor(Formatting.GRAY)))
+            Minecraft.getInstance().player.sendSystemMessage(
+                MutableComponent.create(ComponentContents.EMPTY)
+                    .append(Component.literal("[").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)))
                     .append(Chars.badge())
-                    .append(Text.literal(" Debug").setStyle(Style.EMPTY.withColor(Formatting.DARK_PURPLE)))
-                    .append(Text.literal("] ").setStyle(Style.EMPTY.withColor(Formatting.GRAY)))
-                    .append(Text.literal(message).setStyle(Style.EMPTY.withColor(Formatting.LIGHT_PURPLE)))
+                    .append(Component.literal(" Debug").setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_PURPLE)))
+                    .append(Component.literal("] ").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)))
+                    .append(Component.literal(message).setStyle(Style.EMPTY.withColor(ChatFormatting.LIGHT_PURPLE)))
             );
         }
     }
 
-    public static void trace(Text message) {
+    public static void trace(Component message) {
         if (HideawayPlus.debug()) {
-            MinecraftClient.getInstance().player.sendMessage(
-                    MutableText.of(TextContent.EMPTY)
-                            .append(Text.literal("[").setStyle(Style.EMPTY.withColor(Formatting.GRAY)))
+            Minecraft.getInstance().player.sendSystemMessage(
+                    MutableComponent.create(ComponentContents.EMPTY)
+                            .append(Component.literal("[").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)))
                             .append(Chars.badge())
-                            .append(Text.literal(" Debug").setStyle(Style.EMPTY.withColor(Formatting.DARK_PURPLE)))
-                            .append(Text.literal("] ").setStyle(Style.EMPTY.withColor(Formatting.GRAY)))
-                            .append(MutableText.of(message.getContent()))
+                            .append(Component.literal(" Debug").setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_PURPLE)))
+                            .append(Component.literal("] ").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)))
+                            .append(MutableComponent.create(message.getContents()))
             );
         }
     }
 
-    public static void traceWithClick(Text message, String hover) {
+    public static void traceWithClick(Component message, String hover) {
         if (HideawayPlus.debug()) {
-            MinecraftClient.getInstance().player.sendMessage(
-                    MutableText.of(TextContent.EMPTY)
-                            .append(Text.literal("[").setStyle(Style.EMPTY.withColor(Formatting.GRAY)))
+            Minecraft.getInstance().player.sendSystemMessage(
+                    MutableComponent.create(ComponentContents.EMPTY)
+                            .append(Component.literal("[").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)))
                             .append(Chars.badge())
-                            .append(Text.literal("Debug").setStyle(Style.EMPTY.withColor(Formatting.DARK_PURPLE)))
-                            .append(Text.literal("] ").setStyle(Style.EMPTY.withColor(Formatting.GRAY)))
-                            .append(MutableText.of(message.getContent()))
+                            .append(Component.literal("Debug").setStyle(Style.EMPTY.withColor(ChatFormatting.DARK_PURPLE)))
+                            .append(Component.literal("] ").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)))
+                            .append(MutableComponent.create(message.getContents()))
                             .setStyle(Style.EMPTY.withHoverEvent(
                                     new HoverEvent(
                                             HoverEvent.Action.SHOW_TEXT,
-                                            Text.literal(hover)
+                                            Component.literal(hover)
                                     )
                             ).withClickEvent(
                                 new ClickEvent(

@@ -1,25 +1,25 @@
 package plus.hideaway.mod.mixins;
 
-import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.Style;
-import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
+import net.minecraft.ChatFormatting;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.world.entity.player.Inventory;
+import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import plus.hideaway.mod.HideawayPlus;
 
-@Mixin(PlayerInventory.class)
+@Mixin(Inventory.class)
 public class PlayerInventoryMixin {
 
-    @Inject(at = @At("RETURN"), method = "addStack(Lnet/minecraft/item/ItemStack;)I")
+    @Inject(at = @At("RETURN"), method = "add(Lnet/minecraft/world/item/ItemStack;)Z")
     public void addItem(ItemStack stack, CallbackInfoReturnable<Integer> cir) {
         HideawayPlus.toastStack().add(
-                Text.empty().append(
-                        Text.literal("+ " + stack.getCount() + "x ").append(stack.getName())
-                                .setStyle(Style.EMPTY.withColor(Formatting.GREEN))
+                Component.empty().append(
+                        Component.literal("+ " + stack.getCount() + "x ").append(stack.getHoverName())
+                                .setStyle(Style.EMPTY.withColor(ChatFormatting.GREEN))
                 )
         );
     }

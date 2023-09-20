@@ -2,15 +2,17 @@ package plus.hideaway.mod.feat.ui;
 
 import io.wispforest.owo.config.Option;
 import io.wispforest.owo.ui.base.BaseOwoScreen;
+import io.wispforest.owo.ui.component.CheckboxComponent;
 import io.wispforest.owo.ui.component.Components;
 import io.wispforest.owo.ui.container.Containers;
 import io.wispforest.owo.ui.container.FlowLayout;
+import io.wispforest.owo.ui.container.ScrollContainer;
 import io.wispforest.owo.ui.core.*;
-import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
 import plus.hideaway.mod.HideawayPlus;
 
 import java.util.ArrayList;
+import net.minecraft.network.chat.Component;
 
 public class ConfigUI extends BaseOwoScreen<FlowLayout> {
 
@@ -26,7 +28,7 @@ public class ConfigUI extends BaseOwoScreen<FlowLayout> {
                 .horizontalAlignment(HorizontalAlignment.CENTER);
 
         FlowLayout content = Containers.verticalFlow(Sizing.content(), Sizing.content())
-                .child(Components.label(Text.literal("Play a song")));
+                .child(Components.label(Component.literal("Play a song")));
 
         var options = new ArrayList<ConfigOption<?>>();
 
@@ -70,7 +72,7 @@ public class ConfigUI extends BaseOwoScreen<FlowLayout> {
         container.child(valueLayout);
 
         if (option.value instanceof Boolean) {
-            final var valueBox = Components.checkbox(Text.of(option.name));
+            final var valueBox = Components.checkbox(Component.nullToEmpty(option.name));
             valueBox.onChanged(now -> HideawayPlus.config().optionForKey(option.key));
             valueLayout.child(valueBox.margins(Insets.horizontal(5)));
         } // all options are boolean for now
