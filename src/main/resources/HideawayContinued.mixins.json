@@ -8,6 +8,7 @@
   },
   "client": [
     "AdvancementScreenMixin",
+    "BossHealthOverlayMixin",
     "DisplayNameMixin",
     "GameMenuScreenMixin",
     "InGameHudMixin",
@@ -16,9 +17,8 @@
     "PlayerMixin",
     "ScreenHandlerMixin",
     "SoundEventMixin",
-    "TickMixin"
-  ],
-  "mixins": [
-    "GridLayoutAccessor"
+    "TickMixin",
+    "ext.GridLayoutAccessor",
+    "ItemStackMixin"
   ]
 }

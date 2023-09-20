@@ -1,12 +1,20 @@
 package continued.hideaway.mod.mixins;
 
 import continued.hideaway.mod.HideawayContinued;
+import continued.hideaway.mod.feat.ext.BossHealthOverlayAccessor;
 import continued.hideaway.mod.util.Chars;
+import continued.hideaway.mod.util.ParseItemName;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.BossHealthOverlay;
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.screens.inventory.ContainerScreen;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.inventory.ChestMenu;
+import net.minecraft.world.item.ItemStack;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -24,6 +32,10 @@ public abstract class InGameHudMixin {
     @Shadow public abstract Font getFont();
 
     @Shadow @Final private Minecraft minecraft;
+
+    @Shadow @Final private BossHealthOverlay bossOverlay;
+
+    @Shadow @Nullable private Component overlayMessageString;
 
     @Inject(at = @At("HEAD"), method = "render")
     public void onRender(GuiGraphics guiGraphics, float partialTick, CallbackInfo ci) {
@@ -58,6 +70,20 @@ public abstract class InGameHudMixin {
             guiGraphics.drawString(this.getFont(), string, (int)(textSize + 1), (int)textPos + 1, 0, true);
             guiGraphics.drawString(this.getFont(), string, (int)(textSize + 1), (int)textPos, 0, true);
             guiGraphics.drawString(this.getFont(), string, (int)(textSize + 1), (int)textPos, 8453920, true);
+        }
+    }
+
+    @Inject(at = @At("HEAD"), method = "tick()V")
+    public void tick(CallbackInfo ci) {
+        if (minecraft.screen instanceof ContainerScreen) {
+            ChestMenu screen = ((AbstractContainerScreen<ChestMenu>) minecraft.screen).getMenu();
+            for (int i = 0; i < screen.slots.size(); i++) {
+                ItemStack stack = screen.slots.get(i).getItem();
+                if (ParseItemName.getItemName(stack) != null) {
+                    String name = ParseItemName.getItemName(stack);
+                    System.out.println(name);
+                }
+            }
         }
     }
 }

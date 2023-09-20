@@ -2,6 +2,7 @@ package continued.hideaway.mod.mixins;
 
 import continued.hideaway.mod.HideawayContinued;
 import continued.hideaway.mod.Prompt;
+import continued.hideaway.mod.mixins.ext.GridLayoutAccessor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.layouts.GridLayout;
 import net.minecraft.client.gui.layouts.LayoutElement;
@@ -62,7 +63,7 @@ public abstract class GameMenuScreenMixin extends Screen {
             final List<LayoutElement> buttons = ((GridLayoutAccessor) gridLayout).getChildren();
             if (HideawayContinued.connected()) {
                 // literally the only thing I added :sob:
-                buttons.add(Button.builder(Component.literal("Hideaway+ Settings"), button -> {
+                buttons.add(Button.builder(Component.literal("Hideaway: Continued Settings"), button -> {
                     button.active = false;
 //                 HideawayPlus.config().show();
                     Prompt.trace("I hate cloth config (maybe?)");
