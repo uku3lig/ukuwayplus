@@ -2,6 +2,7 @@ package continued.hideaway.mod.feat.location;
 
 import continued.hideaway.mod.HideawayContinued;
 import continued.hideaway.mod.feat.discord.PresenceImage;
+import continued.hideaway.mod.feat.ext.BossHealthOverlayAccessor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.ServerScoreboard;
 import net.minecraft.world.BossEvent;
@@ -162,7 +163,7 @@ public enum Location {
     ),
     ;
 
-    public final String name;
+    public String name;
     public final String description;
     public final PresenceImage.Large largeIcon;
     public final PresenceImage.Small smallIcon;
@@ -186,7 +187,7 @@ public enum Location {
         if (!HideawayContinued.connected()) HideawayContinued.setLocation(UNKNOWN);
 
         // Location-based
-        else if (playerIsInRadius(new Vec3(13.5f, 7f, -115f), 5)) {
+        else if (playerIsInRadius(new Vec3(66.5f, 5f, -130.5f), 5)) {
             HideawayContinued.setLocation(WARDROBE_WHEEL);
         }
         else if (playerIsInRadius(new Vec3(-77.5f, 6f, -263.5f), 7)) {
@@ -260,6 +261,21 @@ public enum Location {
             }
         }
         else if (HideawayContinued.player().isSpectator()) HideawayContinued.setLocation(WARDROBE);
+        else if (((BossHealthOverlayAccessor)HideawayContinued.client().gui.getBossOverlay()).getBossBarName().contains("\uE612 | Editor Mode is")) HideawayContinued.setLocation(HOTEL_ROOM_SELF);
+        else if (((BossHealthOverlayAccessor)HideawayContinued.client().gui.getBossOverlay()).getBossBarName().contains("\uE293 ") && ((BossHealthOverlayAccessor)HideawayContinued.client().gui.getBossOverlay()).getBossBarName().contains("'s Room")){
+            String visitingPlayerName = ((BossHealthOverlayAccessor)HideawayContinued.client().gui.getBossOverlay()).getBossBarName().split(" ")[0];
+            visitingPlayerName = visitingPlayerName.replace("'s", "");
+
+            Location.HOTEL_ROOM_OTHER.name = "In " + visitingPlayerName + "'s room";
+            HideawayContinued.setLocation(HOTEL_ROOM_OTHER);
+        }
+
+        else if (((BossHealthOverlayAccessor)HideawayContinued.client().gui.getBossOverlay()).getBossBarName().contains("\uE293 ")){
+
+            Location.HOTEL_ROOM_OTHER.name = "In a someone's room \uD83E\uDD37";
+            HideawayContinued.setLocation(HOTEL_ROOM_OTHER);
+        }
+
         else HideawayContinued.setLocation(GENERIC);
     }
 
