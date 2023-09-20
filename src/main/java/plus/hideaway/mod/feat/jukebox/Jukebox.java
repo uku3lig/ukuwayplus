@@ -17,20 +17,10 @@ public class Jukebox {
     public Jukebox() {
         HideawayPlus.lifecycle().add(
             Task.of(() -> {
-                // Nested if statements are purely because it'll crash if one of them is null
-                if (!looping) {
-                    if (HideawayPlus.client() != null) {
-                        if (HideawayPlus.connected()) {
-                            // Java needs deconstructors 😭
-                            if (HideawayPlus.jukebox() != null) {
-                                if (currentTrack != null && currentPart != null) {
-                                    if (trackPointer >= currentPart.length) {
-                                        loop();
-                                    } else trackPointer++;
-                                }
-                            }
-                        }
-                    }
+                if (!looping && HideawayPlus.connected() & HideawayPlus.jukebox() != null
+                        && currentTrack != null && currentPart != null) {
+                    if (trackPointer >= currentPart.length) loop();
+                    else trackPointer++;
                 }
             }, 0)
         );
@@ -42,6 +32,7 @@ public class Jukebox {
         currentPart = track.parts.get(0);
         trackPointer = 0;
         partPointer = 0;
+        assert HideawayPlus.client().player != null;
         HideawayPlus.client().player.playNotifySound(
                 SoundEvent.createVariableRangeEvent(currentTrack.parts.get(partPointer).id), SoundSource.MASTER, 1, 1
         );
@@ -63,6 +54,7 @@ public class Jukebox {
             currentPart = currentTrack.parts.get(partPointer);
         }
         try {
+            assert HideawayPlus.client().player != null;
             HideawayPlus.client().player.playNotifySound(
                     SoundEvent.createVariableRangeEvent(currentTrack.parts.get(partPointer).id), SoundSource.MASTER, 1, 1
             );
