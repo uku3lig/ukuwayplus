@@ -12,16 +12,15 @@
   "contact": {},
   "license": "MIT",
   "icon": "assets/hideaway_continued/icon.png",
-  "accessWidener": "HideawayContinued.accesswidener",
-
   "environment": "*",
   "entrypoints": {
     "client": [
       "continued.hideaway.mod.HideawayContinued"
     ]
   },
+  "accessWidener": "hideaway_continued.accesswidener",
   "mixins": [
-    "HideawayContinued.mixins.json"
+    "hideaway_continued.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.14.22",

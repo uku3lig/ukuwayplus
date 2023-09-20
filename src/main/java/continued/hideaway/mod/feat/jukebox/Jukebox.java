@@ -17,7 +17,7 @@ public class Jukebox {
     public Jukebox() {
         HideawayContinued.lifecycle().add(
             Task.of(() -> {
-                if (!looping && HideawayPlus.connected() & HideawayPlus.jukebox() != null
+                if (!looping && HideawayContinued.connected() & HideawayContinued.jukebox() != null
                         && currentTrack != null && currentPart != null) {
                     if (trackPointer >= currentPart.length) loop();
                     else trackPointer++;
@@ -32,8 +32,8 @@ public class Jukebox {
         currentPart = track.parts.get(0);
         trackPointer = 0;
         partPointer = 0;
-        assert HideawayPlus.client().player != null;
-        HideawayPlus.client().player.playNotifySound(
+        assert HideawayContinued.client().player != null;
+        HideawayContinued.client().player.playNotifySound(
                 SoundEvent.createVariableRangeEvent(currentTrack.parts.get(partPointer).id), SoundSource.MASTER, 1, 1
         );
     }
@@ -54,8 +54,8 @@ public class Jukebox {
             currentPart = currentTrack.parts.get(partPointer);
         }
         try {
-            assert HideawayPlus.client().player != null;
-            HideawayPlus.client().player.playNotifySound(
+            assert HideawayContinued.client().player != null;
+            HideawayContinued.client().player.playNotifySound(
                     SoundEvent.createVariableRangeEvent(currentTrack.parts.get(partPointer).id), SoundSource.MASTER, 1, 1
             );
         } catch (Exception e) {

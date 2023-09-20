@@ -11,6 +11,10 @@ base {
     archivesName = project.archives_base_name
 }
 
+loom {
+    accessWidenerPath = file("src/main/resources/hideaway_continued.accesswidener")
+}
+
 repositories {
     mavenCentral()
     maven { url "https://jitpack.io" }
