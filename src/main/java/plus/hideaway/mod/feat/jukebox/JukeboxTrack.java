@@ -1,74 +1,73 @@
 package plus.hideaway.mod.feat.jukebox;
 
-import net.minecraft.util.Identifier;
-
 import java.util.List;
+import net.minecraft.resources.ResourceLocation;
 
 public enum JukeboxTrack {
     ACTIVITY_BOUNCE_BATTLE(
         "Bounce Battle",
-        List.of(new Part(new Identifier("hideaway", "activities.bounce_battle_music_loop"), 40 * 20)),
+        List.of(new Part(new ResourceLocation("hideaway", "activities.bounce_battle_music_loop"), 40 * 20)),
         Category.ACTIVITIES
     ),
     ACTIVITY_KING_OF_THE_CASTLE(
         "King of the Castle",
         List.of(
-            new Part(new Identifier("hideaway", "activities.event_jazzyjingle1"),  19 * 20),
-            new Part(new Identifier("hideaway", "activities.event_jazzyjingle2"),  19 * 20),
-            new Part(new Identifier("hideaway", "activities.event_jazzyjingle3"), 19 * 20)
+            new Part(new ResourceLocation("hideaway", "activities.event_jazzyjingle1"),  19 * 20),
+            new Part(new ResourceLocation("hideaway", "activities.event_jazzyjingle2"),  19 * 20),
+            new Part(new ResourceLocation("hideaway", "activities.event_jazzyjingle3"), 19 * 20)
         ),
         Category.ACTIVITIES
     ),
     ACTIVITY_JETSKI_RACE(
         "Jet Ski Race",
-        List.of(new Part(new Identifier("hideaway", "activities.jet_ski_race_music_loop"), (long) (34.5  * 20))),
+        List.of(new Part(new ResourceLocation("hideaway", "activities.jet_ski_race_music_loop"), (long) (34.5  * 20))),
         Category.ACTIVITIES
     ),
     ACTIVITY_TREASURE_DIVING(
         "Treasure Diving",
-        List.of(new Part(new Identifier("hideaway", "activities.treasure_diving_music_loop"), (long) (86.5 * 20))),
+        List.of(new Part(new ResourceLocation("hideaway", "activities.treasure_diving_music_loop"), (long) (86.5 * 20))),
         Category.ACTIVITIES
     ),
     ACTIVITY_VOLLEYBALL(
         "Volleyball",
-        List.of(new Part(new Identifier("hideaway", "activities.volleyball_music_loop"), (long) (46.5 * 20))),
+        List.of(new Part(new ResourceLocation("hideaway", "activities.volleyball_music_loop"), (long) (46.5 * 20))),
         Category.ACTIVITIES
     ),
 
     ARCADE_BIRDSPOTTING(
         "Birdspotting",
-        List.of(new Part(new Identifier("hideaway", "arcade.birdspotting_music_loop"), (long) (25.5 * 20))),
+        List.of(new Part(new ResourceLocation("hideaway", "arcade.birdspotting_music_loop"), (long) (25.5 * 20))),
         Category.ARCADE
     ),
     ARCADE_BUNCHABUGS(
             "Bunch-A-Bugs",
-            List.of(new Part(new Identifier("hideaway", "arcade.bunchabugs_music_loop"), (long) (22 * 20))),
+            List.of(new Part(new ResourceLocation("hideaway", "arcade.bunchabugs_music_loop"), (long) (22 * 20))),
             Category.ARCADE
     ),
     ARCADE_FRUIT_JUICED(
             "Fruit Juiced",
-            List.of(new Part(new Identifier("hideaway", "arcade.fruitjuiced_music_loop"), (long) (31.5 * 20))),
+            List.of(new Part(new ResourceLocation("hideaway", "arcade.fruitjuiced_music_loop"), (long) (31.5 * 20))),
             Category.ARCADE
     ),
     ARCADE_SAND_STACKER(
             "Sand Stacker",
-            List.of(new Part(new Identifier("hideaway", "arcade.sandstacker_music_loop"), (long) (23.5 * 20))),
+            List.of(new Part(new ResourceLocation("hideaway", "arcade.sandstacker_music_loop"), (long) (23.5 * 20))),
             Category.ARCADE
     ),
     ARCADE_SEAFLOOR_URCHINS(
             "The Seafloor is Urchins",
-            List.of(new Part(new Identifier("hideaway", "arcade.theseafloorisurchins_music_loop"), (long) (50.5 * 20))),
+            List.of(new Part(new ResourceLocation("hideaway", "arcade.theseafloorisurchins_music_loop"), (long) (50.5 * 20))),
             Category.ARCADE
     ),
     ARCADE_VOLCANIC_PANIC(
             "Volcanic Panic",
-            List.of(new Part(new Identifier("hideaway", "arcade.volcanicpanic_music_loop"), (long) (34.5 * 20))),
+            List.of(new Part(new ResourceLocation("hideaway", "arcade.volcanicpanic_music_loop"), (long) (34.5 * 20))),
             Category.ARCADE
     ),
 
     WARDROBE(
         "Wardrobe Theme",
-        List.of(new Part(new Identifier("hideaway", "ui.wardrobe.song_loop"), (long) (23 * 20))),
+        List.of(new Part(new ResourceLocation("hideaway", "ui.wardrobe.song_loop"), (long) (23 * 20))),
         Category.MISC
     ),
 
@@ -98,10 +97,10 @@ public enum JukeboxTrack {
     }
 
     public static class Part {
-        public Identifier id;
+        public ResourceLocation id;
         public long length;
 
-        public Part(Identifier i, long l) {
+        public Part(ResourceLocation i, long l) {
             this.id = i;
             this.length = l;
         }

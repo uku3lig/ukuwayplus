@@ -1,14 +1,14 @@
 package plus.hideaway.mod;
 
-import net.minecraft.client.network.ClientPlayerEntity;
-import net.minecraft.text.Text;
 import plus.hideaway.mod.feat.config.HideawayPlusConfig;
 import plus.hideaway.mod.feat.discord.DiscordManager;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.network.chat.Component;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import plus.hideaway.mod.feat.jukebox.Jukebox;
@@ -31,7 +31,7 @@ public class HideawayPlus implements ClientModInitializer {
     private static Location LOCATION = Location.UNKNOWN;
     private static Lifecycle LIFECYCLE;
 
-    private static final Queue<Text> TOAST_STACK = new LinkedList<>();
+    private static final Queue<Component> TOAST_STACK = new LinkedList<>();
 
     @Override
     public void onInitializeClient() {
@@ -56,8 +56,8 @@ public class HideawayPlus implements ClientModInitializer {
     }
 
     public static boolean connected() {
-        if (MinecraftClient.getInstance().getCurrentServerEntry() != null) {
-            return MinecraftClient.getInstance().getCurrentServerEntry().address.endsWith("playhideaway.com");
+        if (Minecraft.getInstance().getCurrentServer() != null) {
+            return Minecraft.getInstance().getCurrentServer().ip.endsWith("playhideaway.com");
         } else return false;
     }
 
@@ -69,9 +69,9 @@ public class HideawayPlus implements ClientModInitializer {
 
     public static Logger logger() { return LOGGER; }
     public static boolean debug() { return player().getName().getString().equals("sxpphic"); }
-    public static MinecraftClient client() { return MinecraftClient.getInstance(); }
-    public static ClientPlayerEntity player() { return client().player; }
-    public static Queue<Text> toastStack() { return TOAST_STACK; }
+    public static Minecraft client() { return Minecraft.getInstance(); }
+    public static LocalPlayer player() { return client().player; }
+    public static Queue<Component> toastStack() { return TOAST_STACK; }
 
     public static HideawayPlusConfig config() { return CONFIG; }
     public static DiscordManager discord() { return DISCORD_MANAGER; }

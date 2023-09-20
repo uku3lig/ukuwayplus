@@ -1,7 +1,7 @@
 package plus.hideaway.mod.feat.jukebox;
 
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
 import plus.hideaway.mod.HideawayPlus;
 import plus.hideaway.mod.Prompt;
 import plus.hideaway.mod.feat.lifecycle.Task;
@@ -37,13 +37,13 @@ public class Jukebox {
     }
 
     public void play(JukeboxTrack track) {
-        HideawayPlus.client().getSoundManager().stopAll();
+        HideawayPlus.client().getSoundManager().stop();
         currentTrack = track;
         currentPart = track.parts.get(0);
         trackPointer = 0;
         partPointer = 0;
-        HideawayPlus.client().player.playSound(
-                SoundEvent.of(currentTrack.parts.get(partPointer).id), SoundCategory.MASTER, 1, 1
+        HideawayPlus.client().player.playNotifySound(
+                SoundEvent.createVariableRangeEvent(currentTrack.parts.get(partPointer).id), SoundSource.MASTER, 1, 1
         );
     }
 
@@ -63,8 +63,8 @@ public class Jukebox {
             currentPart = currentTrack.parts.get(partPointer);
         }
         try {
-            HideawayPlus.client().player.playSound(
-                    SoundEvent.of(currentTrack.parts.get(partPointer).id), SoundCategory.MASTER, 1, 1
+            HideawayPlus.client().player.playNotifySound(
+                    SoundEvent.createVariableRangeEvent(currentTrack.parts.get(partPointer).id), SoundSource.MASTER, 1, 1
             );
         } catch (Exception e) {
             Prompt.error("An issue occurred when looping music with the Jukebox. Please send your latest.log file to the developers of Hideaway+.");
@@ -73,7 +73,7 @@ public class Jukebox {
     }
 
     public void stop() {
-        HideawayPlus.client().getSoundManager().stopAll();
+        HideawayPlus.client().getSoundManager().stop();
         currentTrack = null;
         currentPart = null;
         trackPointer = -1;

@@ -1,9 +1,8 @@
 package plus.hideaway.mod.util;
 
-import net.minecraft.client.MinecraftClient;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import net.minecraft.client.Minecraft;
 
 public class DisplayNameUtil {
     public static String ignFromDisplayName(String content) {
@@ -16,6 +15,6 @@ public class DisplayNameUtil {
     }
 
     public static String clientUsername() {
-        return MinecraftClient.getInstance().player.getName().getString().trim();
+        return Minecraft.getInstance().player.getName().getString().trim();
     }
 }

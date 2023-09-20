@@ -1,6 +1,6 @@
 package plus.hideaway.mod.mixins;
 
-import net.minecraft.sound.SoundEvent;
+import net.minecraft.sounds.SoundEvent;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(SoundEvent.class)
