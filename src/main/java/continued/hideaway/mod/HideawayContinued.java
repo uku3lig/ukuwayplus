@@ -67,6 +67,9 @@ public class HideawayContinued implements ClientModInitializer {
                 .add(Task.of(() -> {
                     if (HideawayContinued.connected() && HideawayContinued.client().screen instanceof ContainerScreen) {
                         HideawayContinued.shop().tick();
+                    } else if (StaticValues.shopScreenWasFilled) {
+                        StaticValues.shopIterationNum = 0;
+                        StaticValues.shopScreenWasFilled = false;
                     }
                 }, 0));
     }
