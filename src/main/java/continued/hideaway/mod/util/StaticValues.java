@@ -1,4 +1,4 @@
-package continued.hideaway.mod;
+package continued.hideaway.mod.util;
 
 public class StaticValues {
     public static int shopIterationNum = 0;

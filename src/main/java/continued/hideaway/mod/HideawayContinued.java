@@ -8,6 +8,8 @@ import continued.hideaway.mod.feat.lifecycle.Lifecycle;
 import continued.hideaway.mod.feat.lifecycle.Task;
 import continued.hideaway.mod.feat.location.Location;
 import continued.hideaway.mod.feat.shop.Shop;
+import continued.hideaway.mod.util.Constants;
+import continued.hideaway.mod.util.StaticValues;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;

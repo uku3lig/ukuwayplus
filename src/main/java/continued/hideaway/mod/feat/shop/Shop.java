@@ -1,23 +1,12 @@
 package continued.hideaway.mod.feat.shop;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import continued.hideaway.mod.HideawayContinued;
-import continued.hideaway.mod.StaticValues;
+import continued.hideaway.mod.util.StaticValues;
 import continued.hideaway.mod.feat.ext.AbstractContainerScreenAccessor;
-import continued.hideaway.mod.feat.lifecycle.Task;
-import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
-import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.screens.inventory.ContainerScreen;
-import net.minecraft.network.protocol.game.ClientboundContainerSetSlotPacket;
-import net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket;
-import net.minecraft.network.protocol.game.ServerboundContainerButtonClickPacket;
-import net.minecraft.network.protocol.game.ServerboundContainerClickPacket;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.inventory.ClickType;
-import net.minecraft.world.inventory.InventoryMenu;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;

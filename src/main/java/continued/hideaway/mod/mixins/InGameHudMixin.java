@@ -1,20 +1,13 @@
 package continued.hideaway.mod.mixins;
 
 import continued.hideaway.mod.HideawayContinued;
-import continued.hideaway.mod.feat.ext.BossHealthOverlayAccessor;
+import continued.hideaway.mod.feat.ext.InGameHudAccessor;
 import continued.hideaway.mod.util.Chars;
-import continued.hideaway.mod.util.ParseItemName;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.BossHealthOverlay;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.screens.inventory.ContainerScreen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.inventory.ChestMenu;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(Gui.class)
-public abstract class InGameHudMixin {
+public abstract class InGameHudMixin implements InGameHudAccessor {
 
     @Shadow private int screenWidth;
 
@@ -34,9 +27,11 @@ public abstract class InGameHudMixin {
 
     @Shadow @Final private Minecraft minecraft;
 
-    @Shadow @Final private BossHealthOverlay bossOverlay;
-
     @Shadow @Nullable private Component overlayMessageString;
+
+    @Shadow @Nullable private Component title;
+
+    @Shadow @Nullable private Component subtitle;
 
     @Inject(at = @At("HEAD"), method = "render")
     public void onRender(GuiGraphics guiGraphics, float partialTick, CallbackInfo ci) {
@@ -72,5 +67,30 @@ public abstract class InGameHudMixin {
             guiGraphics.drawString(this.getFont(), string, (int)(textSize + 1), (int)textPos, 0, true);
             guiGraphics.drawString(this.getFont(), string, (int)(textSize + 1), (int)textPos, 8453920, true);
         }
+    }
+
+    @Override
+    public Component hp$getOverlayMessage() {
+        return this.overlayMessageString;
+    }
+
+    @Override
+    public Component hp$getTitleMessage() {
+        return this.title;
+    }
+
+    @Override
+    public Component hp$getSubtitleMessage() {
+        return this.subtitle;
+    }
+
+    @Override
+    public float hp$getExperiencePoints() {
+        return this.minecraft.player.experienceProgress;
+    }
+
+    @Override
+    public int hp$getExperienceLevel() {
+        return this.minecraft.player.experienceLevel;
     }
 }
