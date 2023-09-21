@@ -1,6 +1,9 @@
 > [!IMPORTANT]
-> **Hideaway+ has ceased service, all code exists as an archive.** If you would like the Github or Twitter handles please contact @imskylerwhiteyo on Discord or @servantofsappho on Twitter.
+> **Hideaway+ has ceased service, all code exists as an archive.**
 > Feel free to use this code in your project - credit is appreciated but not mandated. I look forward to seeing all the Hideaway code projects that come in future! ❤️ - Skye
+
+> [!NOTE]
+> Quick update as of 21st September 2023, some new developers are taking over the brand and project. It will remain open source and you can continue to fork and/or work on it but development will continue on Hideaway+ in a new form and/or direction. ❤️
 
 ## 🍍 Hideaway+ - a QOL mod for Hideaway
 
