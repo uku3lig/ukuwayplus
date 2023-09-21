@@ -14,6 +14,7 @@ import net.minecraft.client.gui.screens.inventory.ContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -70,20 +71,6 @@ public abstract class InGameHudMixin {
             guiGraphics.drawString(this.getFont(), string, (int)(textSize + 1), (int)textPos + 1, 0, true);
             guiGraphics.drawString(this.getFont(), string, (int)(textSize + 1), (int)textPos, 0, true);
             guiGraphics.drawString(this.getFont(), string, (int)(textSize + 1), (int)textPos, 8453920, true);
-        }
-    }
-
-    @Inject(at = @At("HEAD"), method = "tick()V")
-    public void tick(CallbackInfo ci) {
-        if (minecraft.screen instanceof ContainerScreen) {
-            ChestMenu screen = ((AbstractContainerScreen<ChestMenu>) minecraft.screen).getMenu();
-            for (int i = 0; i < screen.slots.size(); i++) {
-                ItemStack stack = screen.slots.get(i).getItem();
-                if (ParseItemName.getItemName(stack) != null) {
-                    String name = ParseItemName.getItemName(stack);
-                    System.out.println(name);
-                }
-            }
         }
     }
 }

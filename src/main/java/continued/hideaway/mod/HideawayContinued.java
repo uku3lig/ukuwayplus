@@ -7,11 +7,13 @@ import continued.hideaway.mod.feat.keyboard.KeyboardManager;
 import continued.hideaway.mod.feat.lifecycle.Lifecycle;
 import continued.hideaway.mod.feat.lifecycle.Task;
 import continued.hideaway.mod.feat.location.Location;
+import continued.hideaway.mod.feat.shop.Shop;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.inventory.ContainerScreen;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
 import org.apache.logging.log4j.LogManager;
@@ -28,6 +30,7 @@ public class HideawayContinued implements ClientModInitializer {
 
     public static DiscordManager DISCORD_MANAGER;
     public static Jukebox JUKEBOX;
+    public static Shop SHOP;
 
     private static final HideawayContinuedConfig CONFIG = HideawayContinuedConfig.createAndLoad();
     private static Location LOCATION = Location.UNKNOWN;
@@ -53,13 +56,19 @@ public class HideawayContinued implements ClientModInitializer {
 
         if (config().discordRPC()) DISCORD_MANAGER = new DiscordManager().start();
         if (config().jukebox()) JUKEBOX = new Jukebox();
+        SHOP = new Shop();
 
         // Lifecycle tasks should be initialized here.
         lifecycle()
                 .add(Task.of(Location::check, 20))
                 .add(Task.of(() -> {
                     if (DiscordManager.active) DISCORD_MANAGER.update();
-                }, 10));
+                }, 10))
+                .add(Task.of(() -> {
+                    if (HideawayContinued.connected() && HideawayContinued.client().screen instanceof ContainerScreen) {
+                        HideawayContinued.shop().tick();
+                    }
+                }, 0));
     }
 
     public static boolean connected() {
@@ -83,6 +92,8 @@ public class HideawayContinued implements ClientModInitializer {
     public static HideawayContinuedConfig config() { return CONFIG; }
     public static DiscordManager discord() { return DISCORD_MANAGER; }
     public static Jukebox jukebox() { return JUKEBOX; }
+    public static Shop shop() { return SHOP; }
+
     public static Lifecycle lifecycle() { return LIFECYCLE; }
     public static Location location() { return LOCATION; }
 
