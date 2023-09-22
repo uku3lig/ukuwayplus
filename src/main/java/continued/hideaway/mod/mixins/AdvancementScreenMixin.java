@@ -1,6 +1,6 @@
 package continued.hideaway.mod.mixins;
 
-import continued.hideaway.mod.HideawayContinued;
+import continued.hideaway.mod.HideawayPlus;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.advancements.AdvancementsScreen;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,7 +17,7 @@ public class AdvancementScreenMixin {
      */
     @Inject(at = @At("HEAD"), method = "render", cancellable = true)
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick, CallbackInfo ci) {
-        if (HideawayContinued.connected()) {
+        if (HideawayPlus.connected()) {
             ci.cancel();
         }
     }

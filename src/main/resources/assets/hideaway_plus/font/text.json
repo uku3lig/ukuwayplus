@@ -2,7 +2,7 @@
   "providers": [
     {
       "type": "bitmap",
-      "file": "hideaway_continued:alphabet_smallcaps.png",
+      "file": "hideaway_plus:alphabet_smallcaps.png",
       "chars": [
         "ABCDEFGHIJKLM",
         "NOPQRSTUVWXYZ"
@@ -12,7 +12,7 @@
     },
     {
       "type": "bitmap",
-      "file": "hideaway_continued:punc_smallcaps.png",
+      "file": "hideaway_plus:punc_smallcaps.png",
       "chars": [
         ".!?+: "
       ],
@@ -21,28 +21,28 @@
     },
     {
       "type": "bitmap",
-      "file": "hideaway_continued:icon.png",
+      "file": "hideaway_plus:icon.png",
       "chars": [ "\uE001" ],
       "height": 8,
       "ascent": 7
     },
     {
       "type": "bitmap",
-      "file": "hideaway_continued:wordmark.png",
+      "file": "hideaway_plus:wordmark.png",
       "chars": [ "\uE002" ],
       "height": 16,
       "ascent": 8
     },
     {
       "type": "bitmap",
-      "file": "hideaway_continued:disc.png",
+      "file": "hideaway_plus:disc.png",
       "chars": [ "\uE003" ],
       "height": 8,
       "ascent": 7
     },
     {
       "type": "bitmap",
-      "file": "hideaway_continued:friend.png",
+      "file": "hideaway_plus:friend.png",
       "chars": [ "\uE004" ],
       "height": 8,
       "ascent": 7

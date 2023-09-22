@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
-  "id": "hideaway_continued",
+  "id": "hideaway_plus",
   "version": "${version}",
-  "name": "Hideaway: Continued",
+  "name": "Hideaway+",
   "description": "",
   "authors": [
     "skyelander",
@@ -12,16 +12,16 @@
   ],
   "contact": {},
   "license": "MIT",
-  "icon": "assets/hideaway_continued/icon.png",
+  "icon": "assets/hideaway_plus/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
-      "continued.hideaway.mod.HideawayContinued"
+      "continued.hideaway.mod.HideawayPlus"
     ]
   },
-  "accessWidener": "hideaway_continued.accesswidener",
+  "accessWidener": "hideaway_plus.accesswidener",
   "mixins": [
-    "hideaway_continued.mixins.json"
+    "hideaway_plus.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.14.22",

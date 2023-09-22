@@ -11,13 +11,13 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.client.renderer.entity.layers.CapeLayer;
-import continued.hideaway.mod.HideawayContinued;
+import continued.hideaway.mod.HideawayPlus;
 
 @Mixin(CapeLayer.class)
 public class CapeLayerMixin {
     @Inject(at = @At("HEAD"), method = "render", cancellable = true)
     public void render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, AbstractClientPlayer livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo info) {
-        if (HideawayContinued.connected()) {
+        if (HideawayPlus.connected()) {
             ItemStack playerChestplate = livingEntity.getItemBySlot(EquipmentSlot.CHEST);
             if (playerChestplate != ItemStack.EMPTY) {
                 info.cancel();

@@ -28,7 +28,7 @@ public class Prompt {
     }
 
     public static void trace(String message) {
-        if (HideawayContinued.debug()) {
+        if (HideawayPlus.debug()) {
             Minecraft.getInstance().player.sendSystemMessage(
                 MutableComponent.create(ComponentContents.EMPTY)
                     .append(Component.literal("[").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)))
@@ -41,7 +41,7 @@ public class Prompt {
     }
 
     public static void trace(Component message) {
-        if (HideawayContinued.debug()) {
+        if (HideawayPlus.debug()) {
             Minecraft.getInstance().player.sendSystemMessage(
                     MutableComponent.create(ComponentContents.EMPTY)
                             .append(Component.literal("[").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)))
@@ -54,7 +54,7 @@ public class Prompt {
     }
 
     public static void traceWithClick(Component message, String hover) {
-        if (HideawayContinued.debug()) {
+        if (HideawayPlus.debug()) {
             Minecraft.getInstance().player.sendSystemMessage(
                     MutableComponent.create(ComponentContents.EMPTY)
                             .append(Component.literal("[").setStyle(Style.EMPTY.withColor(ChatFormatting.GRAY)))

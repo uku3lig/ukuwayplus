@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.client.renderer.entity.ItemRenderer;
-import continued.hideaway.mod.HideawayContinued;
+import continued.hideaway.mod.HideawayPlus;
 
 @Mixin(ItemRenderer.class)
 public class ItemRendererMixin {
@@ -26,7 +26,7 @@ public class ItemRendererMixin {
 
     @Inject(method = "render", at = @At("HEAD"), cancellable = true)
     private void render(ItemStack itemStack, ItemDisplayContext displayContext, boolean leftHand, PoseStack poseStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay, BakedModel model, CallbackInfo ci) {
-        if (minecraft.player != null && minecraft.options.getCameraType().isFirstPerson() && displayContext != ItemDisplayContext.GUI && HideawayContinued.connected()) {
+        if (minecraft.player != null && minecraft.options.getCameraType().isFirstPerson() && displayContext != ItemDisplayContext.GUI && HideawayPlus.connected()) {
             CompoundTag playerChestNbt = minecraft.player.getItemBySlot(EquipmentSlot.CHEST).getTagElement("PublicBukkitValues");
             CompoundTag stackNbt = itemStack.getTagElement("PublicBukkitValues");
 

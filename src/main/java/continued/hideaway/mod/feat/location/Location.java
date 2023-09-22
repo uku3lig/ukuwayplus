@@ -1,6 +1,6 @@
 package continued.hideaway.mod.feat.location;
 
-import continued.hideaway.mod.HideawayContinued;
+import continued.hideaway.mod.HideawayPlus;
 import continued.hideaway.mod.feat.discord.PresenceImage;
 import continued.hideaway.mod.feat.ext.BossHealthOverlayAccessor;
 import net.minecraft.client.Minecraft;
@@ -154,7 +154,7 @@ public enum Location {
         PresenceImage.Small.ROUNDEL
     ),
     UNKNOWN(
-        "Using HideawayContinued",
+        "Using HideawayPlus",
         "Somewhere in the metaverse... 🚀",
         PresenceImage.Large.SCENE_DARK,
         PresenceImage.Small.ROUNDEL
@@ -182,8 +182,8 @@ public enum Location {
     // messy and complicated hardcoding you are about to be
     // subjected to. Grab a paper bag if you get sick easily.
     public static void check() {
-        if (!HideawayContinued.connected()) {
-            HideawayContinued.setLocation(UNKNOWN);
+        if (!HideawayPlus.connected()) {
+            HideawayPlus.setLocation(UNKNOWN);
             return;
         }
 
@@ -193,52 +193,51 @@ public enum Location {
         String bossBarName;
 
         // Location-based
-        if (location.closerThan(new Vec3(66.5f, 5f, -130.5f), 5)) HideawayContinued.setLocation(WARDROBE_WHEEL);
-        else if (location.closerThan(new Vec3(-77.5f, 6f, -263.5f), 7)) HideawayContinued.setLocation(MONKEY_BROTHERS);
-        else if (location.closerThan(new Vec3(-28.5f, 5f, -120.5f), 20)) HideawayContinued.setLocation(FURNITURE_FUNCTIONATOR);
-        else if (location.closerThan(new Vec3(54.5f, 5f, -119.5f), 20)) HideawayContinued.setLocation(ISLAND_EMPORIUM);
-        else if (location.closerThan(new Vec3(59.5f, 15f, -82.5f), 20)) HideawayContinued.setLocation(TINTS_N_TEXTURES);
-        else if (location.closerThan(new Vec3(148.5f, 15f, -403.5f), 20)) HideawayContinued.setLocation(BANANA);
-        else if (location.closerThan(new Vec3(234.5f, 0f, -361.5f), 50)) HideawayContinued.setLocation(BONFIRE);
-        else if (location.closerThan(new Vec3(317.5f, 4f, -193.5f), 50)) HideawayContinued.setLocation(BREAKFAST);
-        else if (location.closerThan(new Vec3(145.5f, 0f, -203.5f), 50)) HideawayContinued.setLocation(ASTRAL_AUDITORIUM);
-        else if (location.closerThan(new Vec3(-319.5f, 9f, -236.5f), 65)) HideawayContinued.setLocation(SKULL_ISLAND);
-        else if (location.closerThan(new Vec3(122.5f, 3f, -94.5f), 65)) HideawayContinued.setLocation(MARKETPLACE_PIER);
+        if (location.closerThan(new Vec3(66.5f, 5f, -130.5f), 5)) HideawayPlus.setLocation(WARDROBE_WHEEL);
+        else if (location.closerThan(new Vec3(-77.5f, 6f, -263.5f), 7)) HideawayPlus.setLocation(MONKEY_BROTHERS);
+        else if (location.closerThan(new Vec3(-28.5f, 5f, -120.5f), 20)) HideawayPlus.setLocation(FURNITURE_FUNCTIONATOR);
+        else if (location.closerThan(new Vec3(54.5f, 5f, -119.5f), 20)) HideawayPlus.setLocation(ISLAND_EMPORIUM);
+        else if (location.closerThan(new Vec3(59.5f, 15f, -82.5f), 20)) HideawayPlus.setLocation(TINTS_N_TEXTURES);
+        else if (location.closerThan(new Vec3(148.5f, 15f, -403.5f), 20)) HideawayPlus.setLocation(BANANA);
+        else if (location.closerThan(new Vec3(234.5f, 0f, -361.5f), 50)) HideawayPlus.setLocation(BONFIRE);
+        else if (location.closerThan(new Vec3(317.5f, 4f, -193.5f), 50)) HideawayPlus.setLocation(BREAKFAST);
+        else if (location.closerThan(new Vec3(145.5f, 0f, -203.5f), 50)) HideawayPlus.setLocation(ASTRAL_AUDITORIUM);
+        else if (location.closerThan(new Vec3(-319.5f, 9f, -236.5f), 65)) HideawayPlus.setLocation(SKULL_ISLAND);
+        else if (location.closerThan(new Vec3(122.5f, 3f, -94.5f), 65)) HideawayPlus.setLocation(MARKETPLACE_PIER);
         else if (server != null) {
             // Scoreboard-based
             ServerScoreboard board = server.getScoreboard();
             Collection<String> boardNames = getBoardNames(board);
-            if (client.player.isSpectator()) HideawayContinued.setLocation(WARDROBE);
-            else if (boardNames.contains("\ue4d5")) HideawayContinued.setLocation(KING_OF_CASTLE);
-            else if (boardNames.contains("\ue4db")) HideawayContinued.setLocation(BOUNCE_BATTLE);
-            else if (boardNames.contains("\ue4dc")) HideawayContinued.setLocation(TREASURE_DIVING);
-            else if (boardNames.contains("\ue523")) HideawayContinued.setLocation(JETSKI);
-            else if (boardNames.contains("\ue524")) HideawayContinued.setLocation(VOLLEYBALL);
+            if (client.player.isSpectator()) HideawayPlus.setLocation(WARDROBE);
+            else if (boardNames.contains("\ue4d5")) HideawayPlus.setLocation(KING_OF_CASTLE);
+            else if (boardNames.contains("\ue4db")) HideawayPlus.setLocation(BOUNCE_BATTLE);
+            else if (boardNames.contains("\ue4dc")) HideawayPlus.setLocation(TREASURE_DIVING);
+            else if (boardNames.contains("\ue523")) HideawayPlus.setLocation(JETSKI);
+            else if (boardNames.contains("\ue524")) HideawayPlus.setLocation(VOLLEYBALL);
             else if (server.getCustomBossEvents().getEvents().stream().findFirst().isPresent()) {
-                if (boardNames.contains("\ue4d5")) HideawayContinued.setLocation(KING_OF_CASTLE);
-                else if (boardNames.contains("\ue4db")) HideawayContinued.setLocation(BOUNCE_BATTLE);
-                else if (boardNames.contains("\ue4dc")) HideawayContinued.setLocation(TREASURE_DIVING);
-                else if (boardNames.contains("\ue523")) HideawayContinued.setLocation(JETSKI);
-                else if (boardNames.contains("\ue524")) HideawayContinued.setLocation(VOLLEYBALL);
+                if (boardNames.contains("\ue4d5")) HideawayPlus.setLocation(KING_OF_CASTLE);
+                else if (boardNames.contains("\ue4db")) HideawayPlus.setLocation(BOUNCE_BATTLE);
+                else if (boardNames.contains("\ue4dc")) HideawayPlus.setLocation(TREASURE_DIVING);
+                else if (boardNames.contains("\ue523")) HideawayPlus.setLocation(JETSKI);
+                else if (boardNames.contains("\ue524")) HideawayPlus.setLocation(VOLLEYBALL);
             }
             // Bossbar-based
             else if ((bossBarName = ((BossHealthOverlayAccessor)client.gui.getBossOverlay()).getBossBarName()) != null) {
-                if (bossBarName.contains("\uE612 | Editor Mode is")) HideawayContinued.setLocation(HOTEL_ROOM_SELF);
+                if (bossBarName.contains("\uE612 | Editor Mode is")) HideawayPlus.setLocation(HOTEL_ROOM_SELF);
                 else if (bossBarName.contains("\uE293 ") && bossBarName.contains("'s Room")) {
                     String visitingPlayerName = ((BossHealthOverlayAccessor)client.gui.getBossOverlay()).getBossBarName().split(" ")[0];
                     visitingPlayerName = visitingPlayerName.replace("'s", "");
 
                     Location.HOTEL_ROOM_OTHER.name = "In " + visitingPlayerName + "'s room";
-                    HideawayContinued.setLocation(HOTEL_ROOM_OTHER);
+                    HideawayPlus.setLocation(HOTEL_ROOM_OTHER);
                 }
                 else if (bossBarName.contains("\uE293 ")) {
-                    Location.HOTEL_ROOM_OTHER.name = "In a someone's room \uD83E\uDD37";
-                    HideawayContinued.setLocation(HOTEL_ROOM_OTHER);
+                    HideawayPlus.setLocation(HOTEL_ROOM_OTHER);
                 }
             }
-            else HideawayContinued.setLocation(GENERIC);
+            else HideawayPlus.setLocation(GENERIC);
         }
-        else HideawayContinued.setLocation(GENERIC);
+        else HideawayPlus.setLocation(GENERIC);
     }
 
     private static Collection<String> getBoardNames(ServerScoreboard board) {

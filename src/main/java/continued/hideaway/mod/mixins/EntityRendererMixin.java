@@ -1,7 +1,7 @@
 package continued.hideaway.mod.mixins;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import continued.hideaway.mod.HideawayContinued;
+import continued.hideaway.mod.HideawayPlus;
 import continued.hideaway.mod.util.Chars;
 import continued.hideaway.mod.util.DisplayNameUtil;
 import continued.hideaway.mod.util.StaticValues;
@@ -27,7 +27,7 @@ public abstract class EntityRendererMixin <T extends Entity>{
 
     @Inject(at = @At("HEAD"), method = "render", cancellable = true)
     private void render(T entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource buffer, int packedLight, CallbackInfo ci) {
-        if (this.shouldShowName(entity) && HideawayContinued.connected() && entity instanceof Player) {
+        if (this.shouldShowName(entity) && HideawayPlus.connected() && entity instanceof Player) {
             Component name = entity.getDisplayName();
 
             String result = DisplayNameUtil.ignFromDisplayName(name.getString());

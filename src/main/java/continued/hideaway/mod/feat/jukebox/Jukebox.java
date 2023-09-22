@@ -1,6 +1,6 @@
 package continued.hideaway.mod.feat.jukebox;
 
-import continued.hideaway.mod.HideawayContinued;
+import continued.hideaway.mod.HideawayPlus;
 import continued.hideaway.mod.Prompt;
 import continued.hideaway.mod.feat.lifecycle.Task;
 import net.minecraft.sounds.SoundEvent;
@@ -15,9 +15,9 @@ public class Jukebox {
     public boolean looping = false;
 
     public Jukebox() {
-        HideawayContinued.lifecycle().add(
+        HideawayPlus.lifecycle().add(
             Task.of(() -> {
-                if (!looping && HideawayContinued.connected() & HideawayContinued.jukebox() != null
+                if (!looping && HideawayPlus.connected() & HideawayPlus.jukebox() != null
                         && currentTrack != null && currentPart != null) {
                     if (trackPointer >= currentPart.length) loop();
                     else trackPointer++;
@@ -27,13 +27,13 @@ public class Jukebox {
     }
 
     public void play(JukeboxTrack track) {
-        HideawayContinued.client().getSoundManager().stop();
+        HideawayPlus.client().getSoundManager().stop();
         currentTrack = track;
         currentPart = track.parts.get(0);
         trackPointer = 0;
         partPointer = 0;
-        assert HideawayContinued.client().player != null;
-        HideawayContinued.client().player.playNotifySound(
+        assert HideawayPlus.client().player != null;
+        HideawayPlus.client().player.playNotifySound(
                 SoundEvent.createVariableRangeEvent(currentTrack.parts.get(partPointer).id), SoundSource.MASTER, 1, 1
         );
     }
@@ -54,8 +54,8 @@ public class Jukebox {
             currentPart = currentTrack.parts.get(partPointer);
         }
         try {
-            assert HideawayContinued.client().player != null;
-            HideawayContinued.client().player.playNotifySound(
+            assert HideawayPlus.client().player != null;
+            HideawayPlus.client().player.playNotifySound(
                     SoundEvent.createVariableRangeEvent(currentTrack.parts.get(partPointer).id), SoundSource.MASTER, 1, 1
             );
         } catch (Exception e) {
@@ -65,7 +65,7 @@ public class Jukebox {
     }
 
     public void stop() {
-        HideawayContinued.client().getSoundManager().stop();
+        HideawayPlus.client().getSoundManager().stop();
         currentTrack = null;
         currentPart = null;
         trackPointer = -1;

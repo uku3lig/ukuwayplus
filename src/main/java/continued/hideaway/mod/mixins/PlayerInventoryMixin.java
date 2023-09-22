@@ -1,6 +1,6 @@
 package continued.hideaway.mod.mixins;
 
-import continued.hideaway.mod.HideawayContinued;
+import continued.hideaway.mod.HideawayPlus;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
@@ -16,7 +16,7 @@ public class PlayerInventoryMixin {
 
     @Inject(at = @At("RETURN"), method = "add(Lnet/minecraft/world/item/ItemStack;)Z")
     public void addItem(ItemStack stack, CallbackInfoReturnable<Integer> cir) {
-        HideawayContinued.toastStack().add(
+        HideawayPlus.toastStack().add(
                 Component.empty().append(
                         Component.literal("+ " + stack.getCount() + "x ").append(stack.getHoverName())
                                 .setStyle(Style.EMPTY.withColor(ChatFormatting.GREEN))

@@ -1,6 +1,6 @@
 package continued.hideaway.mod.feat.ui;
 
-import continued.hideaway.mod.HideawayContinued;
+import continued.hideaway.mod.HideawayPlus;
 import continued.hideaway.mod.feat.jukebox.JukeboxTrack;
 import io.wispforest.owo.ui.base.BaseOwoScreen;
 import io.wispforest.owo.ui.component.ButtonComponent;
@@ -28,7 +28,7 @@ public class JukeboxUI extends BaseOwoScreen<FlowLayout> {
         FlowLayout content = Containers.verticalFlow(Sizing.content(), Sizing.content())
                                 .child(Components.label(Component.literal("Play a song")).horizontalTextAlignment(HorizontalAlignment.CENTER));
 
-        var stopBtn = (ButtonComponent) Components.button(Component.literal("Stop all music"), (btn) -> HideawayContinued.client().getSoundManager().stop())
+        var stopBtn = (ButtonComponent) Components.button(Component.literal("Stop all music"), (btn) -> HideawayPlus.client().getSoundManager().stop())
                 .margins(Insets.vertical(4));
         stopBtn.setWidth(160);
         content.child(stopBtn);
@@ -36,7 +36,7 @@ public class JukeboxUI extends BaseOwoScreen<FlowLayout> {
         content.child(stopBtn);
 
         for (JukeboxTrack track : JukeboxTrack.values())  {
-            var component = (ButtonComponent) Components.button(Component.literal(track.name), (btn) -> HideawayContinued.jukebox().play(track))
+            var component = (ButtonComponent) Components.button(Component.literal(track.name), (btn) -> HideawayPlus.jukebox().play(track))
                     .margins(Insets.vertical(2));
             component.setWidth(160);
             content.child(component);

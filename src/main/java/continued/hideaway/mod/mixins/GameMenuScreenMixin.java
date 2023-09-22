@@ -1,6 +1,6 @@
 package continued.hideaway.mod.mixins;
 
-import continued.hideaway.mod.HideawayContinued;
+import continued.hideaway.mod.HideawayPlus;
 import continued.hideaway.mod.Prompt;
 import continued.hideaway.mod.mixins.ext.GridLayoutAccessor;
 import net.minecraft.client.gui.components.Button;
@@ -61,7 +61,7 @@ public abstract class GameMenuScreenMixin extends Screen {
 
         if (gridLayout != null) {
             final List<LayoutElement> buttons = ((GridLayoutAccessor) gridLayout).getChildren();
-            if (HideawayContinued.connected()) {
+            if (HideawayPlus.connected()) {
                 // literally the only thing I added :sob:
                 buttons.add(Button.builder(Component.literal("Hideaway: Continued Settings"), button -> {
                     button.active = false;

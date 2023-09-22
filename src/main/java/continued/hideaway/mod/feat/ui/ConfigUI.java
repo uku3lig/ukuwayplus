@@ -1,6 +1,6 @@
 package continued.hideaway.mod.feat.ui;
 
-import continued.hideaway.mod.HideawayContinued;
+import continued.hideaway.mod.HideawayPlus;
 import io.wispforest.owo.config.Option;
 import io.wispforest.owo.ui.base.BaseOwoScreen;
 import io.wispforest.owo.ui.component.Components;
@@ -31,16 +31,16 @@ public class ConfigUI extends BaseOwoScreen<FlowLayout> {
         var options = new ArrayList<ConfigOption<?>>();
 
         // General
-        options.add(new ConfigOption<>("PipNav", HideawayContinued.config().optionForKey(new Option.Key("pipNav")).key(), HideawayContinued.config().optionForKey(new Option.Key("pipNav")).value()));
-        options.add(new ConfigOption<>("Hide Cosmetics", HideawayContinued.config().optionForKey(new Option.Key("hideCosmetics")).key(), HideawayContinued.config().optionForKey(new Option.Key("hideCosmetics")).value()));
-        options.add(new ConfigOption<>("Discord RPC", HideawayContinued.config().optionForKey(new Option.Key("discordRPC")).key(), HideawayContinued.config().optionForKey(new Option.Key("discordRPC")).value()));
+        options.add(new ConfigOption<>("PipNav", HideawayPlus.config().optionForKey(new Option.Key("pipNav")).key(), HideawayPlus.config().optionForKey(new Option.Key("pipNav")).value()));
+        options.add(new ConfigOption<>("Hide Cosmetics", HideawayPlus.config().optionForKey(new Option.Key("hideCosmetics")).key(), HideawayPlus.config().optionForKey(new Option.Key("hideCosmetics")).value()));
+        options.add(new ConfigOption<>("Discord RPC", HideawayPlus.config().optionForKey(new Option.Key("discordRPC")).key(), HideawayPlus.config().optionForKey(new Option.Key("discordRPC")).value()));
 
         // Rooms
-        options.add(new ConfigOption<>("Auto-Enable Editor", HideawayContinued.config().optionForKey(new Option.Key("autoEnableEditor")).key(), HideawayContinued.config().optionForKey(new Option.Key("autoEnableEditor")).value()));
+        options.add(new ConfigOption<>("Auto-Enable Editor", HideawayPlus.config().optionForKey(new Option.Key("autoEnableEditor")).key(), HideawayPlus.config().optionForKey(new Option.Key("autoEnableEditor")).value()));
 
         // Sound
-        options.add(new ConfigOption<>("Jukebox", HideawayContinued.config().optionForKey(new Option.Key("jukebox")).key(), HideawayContinued.config().optionForKey(new Option.Key("jukebox")).value()));
-        options.add(new ConfigOption<>("Disable Ambient Sounds", HideawayContinued.config().optionForKey(new Option.Key("noAmbientSounds")).key(), HideawayContinued.config().optionForKey(new Option.Key("noAmbientSounds")).value()));
+        options.add(new ConfigOption<>("Jukebox", HideawayPlus.config().optionForKey(new Option.Key("jukebox")).key(), HideawayPlus.config().optionForKey(new Option.Key("jukebox")).value()));
+        options.add(new ConfigOption<>("Disable Ambient Sounds", HideawayPlus.config().optionForKey(new Option.Key("noAmbientSounds")).key(), HideawayPlus.config().optionForKey(new Option.Key("noAmbientSounds")).value()));
 
         final var optionsScrollContainer = Containers.verticalScroll(
                 Sizing.fill(90),
@@ -71,7 +71,7 @@ public class ConfigUI extends BaseOwoScreen<FlowLayout> {
 
         if (option.value instanceof Boolean) {
             final var valueBox = Components.checkbox(Component.nullToEmpty(option.name));
-            valueBox.onChanged(now -> HideawayContinued.config().optionForKey(option.key));
+            valueBox.onChanged(now -> HideawayPlus.config().optionForKey(option.key));
             valueLayout.child(valueBox.margins(Insets.horizontal(5)));
         } // all options are boolean for now
 

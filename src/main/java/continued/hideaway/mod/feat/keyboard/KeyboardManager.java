@@ -1,7 +1,7 @@
 package continued.hideaway.mod.feat.keyboard;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import continued.hideaway.mod.HideawayContinued;
+import continued.hideaway.mod.HideawayPlus;
 import continued.hideaway.mod.feat.ui.ConfigUI;
 import continued.hideaway.mod.feat.ui.JukeboxUI;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
@@ -17,10 +17,10 @@ public class KeyboardManager {
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (menu.consumeClick()) {
-                HideawayContinued.client().setScreen(new ConfigUI());
+                HideawayPlus.client().setScreen(new ConfigUI());
             }
             while (jukebox.consumeClick()) {
-                if (HideawayContinued.config().jukebox()) HideawayContinued.client().setScreen(new JukeboxUI());
+                if (HideawayPlus.config().jukebox()) HideawayPlus.client().setScreen(new JukeboxUI());
             }
         });
 

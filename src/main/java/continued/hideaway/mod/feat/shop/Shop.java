@@ -1,6 +1,6 @@
 package continued.hideaway.mod.feat.shop;
 
-import continued.hideaway.mod.HideawayContinued;
+import continued.hideaway.mod.HideawayPlus;
 import continued.hideaway.mod.feat.ui.FriendsListUI;
 import continued.hideaway.mod.util.StaticValues;
 import continued.hideaway.mod.feat.ext.AbstractContainerScreenAccessor;
@@ -24,7 +24,7 @@ public class Shop {
         if ("fruit".equals(shopName) || "fish".equals(shopName)) {
             List<Slot> emptyChestSlots = new ArrayList<>();
             List<Slot> playerEmptySlots = new ArrayList<>();
-            AbstractContainerScreen<ChestMenu> menu = (AbstractContainerScreen<ChestMenu>) HideawayContinued.client().screen;
+            AbstractContainerScreen<ChestMenu> menu = (AbstractContainerScreen<ChestMenu>) HideawayPlus.client().screen;
             ChestMenu chestMenu = menu.getMenu();
 
             for (Slot slot : chestMenu.slots) {
@@ -59,7 +59,7 @@ public class Shop {
     }
 
     private String getShopName() {
-        ChestMenu screen = ((AbstractContainerScreen<ChestMenu>) HideawayContinued.client().screen).getMenu();
+        ChestMenu screen = ((AbstractContainerScreen<ChestMenu>) HideawayPlus.client().screen).getMenu();
         if (screen.getItems().stream().anyMatch(itemStack -> itemStack.getItem() == Items.PLAYER_HEAD)) { FriendsListUI.tick(); return null; }
 
         for (ItemStack itemStack : screen.getItems()) {

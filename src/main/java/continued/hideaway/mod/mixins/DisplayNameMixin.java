@@ -1,6 +1,6 @@
 package continued.hideaway.mod.mixins;
 
-import continued.hideaway.mod.HideawayContinued;
+import continued.hideaway.mod.HideawayPlus;
 import continued.hideaway.mod.util.Chars;
 import continued.hideaway.mod.util.DisplayNameUtil;
 import continued.hideaway.mod.util.StaticValues;
@@ -20,7 +20,7 @@ public class DisplayNameMixin {
     @Inject(at = @At("RETURN"), method = "getNameForDisplay", cancellable = true)
     public void getDisplayName(PlayerInfo entry, CallbackInfoReturnable<Component> cir) {
         Component name = cir.getReturnValue();
-        if (HideawayContinued.connected()){
+        if (HideawayPlus.connected()){
             String result = DisplayNameUtil.ignFromDisplayName(name.getString());
             MutableComponent newName = MutableComponent.create(ComponentContents.EMPTY);
             if (DisplayNameUtil.clientUsername().equals(result)) {
