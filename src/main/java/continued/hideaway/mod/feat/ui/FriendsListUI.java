@@ -35,7 +35,7 @@ public class FriendsListUI {
                 }
             }
 
-            while (menu.getItems().stream().anyMatch(itemStack -> itemStack.getTag().toString().contains("→"))) {
+            while (menu.getItems().stream().anyMatch(itemStack -> itemStack.getItem() == Items.PAPER && itemStack.getTag().getAsString().contains("→"))) {
                 for (ItemStack itemStack : menu.getItems()) {
                     if (itemStack.getItem() == Items.PLAYER_HEAD) {
                         if (itemStack.getTag().toString().contains("Left click to Accept")) continue;
