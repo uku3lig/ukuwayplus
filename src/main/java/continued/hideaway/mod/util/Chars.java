@@ -16,4 +16,9 @@ public class Chars {
                 new ResourceLocation("hideaway_continued:text")
         )).withStyle(ChatFormatting.WHITE);
     }
+    public static Component friendBadge() {
+        return Component.literal("\uE004").setStyle(Style.EMPTY.withFont(
+                new ResourceLocation("hideaway_continued:text")
+        )).withStyle(ChatFormatting.WHITE);
+    }
 }

@@ -8,6 +8,7 @@ import continued.hideaway.mod.feat.lifecycle.Lifecycle;
 import continued.hideaway.mod.feat.lifecycle.Task;
 import continued.hideaway.mod.feat.location.Location;
 import continued.hideaway.mod.feat.shop.Shop;
+import continued.hideaway.mod.feat.ui.FriendsListUI;
 import continued.hideaway.mod.util.Constants;
 import continued.hideaway.mod.util.StaticValues;
 import net.fabricmc.api.ClientModInitializer;
@@ -15,6 +16,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.ContainerScreen;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.network.chat.Component;
@@ -24,6 +26,8 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
+
+import static continued.hideaway.mod.util.StaticValues.friendsCheck;
 
 @Environment(EnvType.CLIENT)
 public class HideawayContinued implements ClientModInitializer {
@@ -72,6 +76,11 @@ public class HideawayContinued implements ClientModInitializer {
                     } else if (StaticValues.shopScreenWasFilled) {
                         StaticValues.shopIterationNum = 0;
                         StaticValues.shopScreenWasFilled = false;
+                    }
+                }, 0))
+                .add(Task.of(() -> {
+                    if (HideawayContinued.connected() && !friendsCheck) {
+                        FriendsListUI.tick();
                     }
                 }, 0));
     }

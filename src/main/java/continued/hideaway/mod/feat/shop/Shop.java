@@ -1,6 +1,7 @@
 package continued.hideaway.mod.feat.shop;
 
 import continued.hideaway.mod.HideawayContinued;
+import continued.hideaway.mod.feat.ui.FriendsListUI;
 import continued.hideaway.mod.util.StaticValues;
 import continued.hideaway.mod.feat.ext.AbstractContainerScreenAccessor;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -59,6 +60,7 @@ public class Shop {
 
     private String getShopName() {
         ChestMenu screen = ((AbstractContainerScreen<ChestMenu>) HideawayContinued.client().screen).getMenu();
+        if (screen.getItems().stream().anyMatch(itemStack -> itemStack.getItem() == Items.PLAYER_HEAD)) { FriendsListUI.tick(); return null; }
 
         for (ItemStack itemStack : screen.getItems()) {
             if (!itemStack.hasTag()) continue;

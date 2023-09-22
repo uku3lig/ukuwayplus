@@ -3,6 +3,7 @@ package continued.hideaway.mod.mixins;
 import continued.hideaway.mod.HideawayContinued;
 import continued.hideaway.mod.util.Chars;
 import continued.hideaway.mod.util.DisplayNameUtil;
+import continued.hideaway.mod.util.StaticValues;
 import net.minecraft.client.gui.components.PlayerTabOverlay;
 import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.network.chat.Component;
@@ -21,9 +22,17 @@ public class DisplayNameMixin {
         Component name = cir.getReturnValue();
         if (HideawayContinued.connected()){
             String result = DisplayNameUtil.ignFromDisplayName(name.getString());
+            MutableComponent newName = MutableComponent.create(ComponentContents.EMPTY);
             if (DisplayNameUtil.clientUsername().equals(result)) {
-                MutableComponent newName = MutableComponent.create(ComponentContents.EMPTY);
-                newName.append(name).append(" ").append(Chars.badge());
+                newName = MutableComponent.create(ComponentContents.EMPTY);
+                newName.append(name)
+                        .append(" ")
+                        .append(Chars.badge())
+                        .append(" ")
+                        .append(Chars.friendBadge());
+                cir.setReturnValue(newName);
+            } else if (StaticValues.friendsList.contains(result)) {
+                newName.append(name).append(" ").append(Chars.friendBadge());
                 cir.setReturnValue(newName);
             }
         }

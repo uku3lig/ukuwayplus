@@ -39,6 +39,13 @@
       "chars": [ "\uE003" ],
       "height": 8,
       "ascent": 7
+    },
+    {
+      "type": "bitmap",
+      "file": "hideaway_continued:friend.png",
+      "chars": [ "\uE004" ],
+      "height": 10,
+      "ascent": 7
     }
   ]
 }

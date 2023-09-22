@@ -10,6 +10,7 @@
     "AbstractContainerScreenMixin",
     "AdvancementScreenMixin",
     "BossHealthOverlayMixin",
+    "ClientAdvancementsMixin",
     "DisplayNameMixin",
     "GameMenuScreenMixin",
     "InGameHudMixin",
