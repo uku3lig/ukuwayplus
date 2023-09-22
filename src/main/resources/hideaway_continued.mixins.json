@@ -12,6 +12,7 @@
     "BossHealthOverlayMixin",
     "ClientAdvancementsMixin",
     "DisplayNameMixin",
+    "EntityRendererMixin",
     "GameMenuScreenMixin",
     "InGameHudMixin",
     "MinecraftClientMixin",
