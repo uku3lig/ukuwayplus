@@ -11,18 +11,21 @@
     "AdvancementScreenMixin",
     "BossHealthOverlayMixin",
     "CapeLayerMixin",
-    "ItemRendererMixin",
     "ClientAdvancementsMixin",
     "DisplayNameMixin",
     "EntityRendererMixin",
     "GameMenuScreenMixin",
     "InGameHudMixin",
+    "ItemRendererMixin",
     "MinecraftClientMixin",
     "PlayerInventoryMixin",
     "PlayerMixin",
     "ScreenHandlerMixin",
     "SoundEventMixin",
     "TickMixin",
-    "ext.GridLayoutAccessor"
+
+
+    "ext.GridLayoutAccessor",
+    "ext.SoundEventAccessor"
   ]
 }
