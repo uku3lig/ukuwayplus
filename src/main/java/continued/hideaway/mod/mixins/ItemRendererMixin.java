@@ -31,7 +31,7 @@ public class ItemRendererMixin {
             CompoundTag stackNbt = itemStack.getTagElement("PublicBukkitValues");
 
             if (stackNbt != null && playerChestNbt != null) {
-                String stackId = stackNbt.getString("pixelhideawaycore:random");;
+                String stackId = stackNbt.getString("pixelhideawaycore:random");
                 String chestId = playerChestNbt.getString("pixelhideawaycore:random");
                 
                 if (stackId.equals(chestId)) {
