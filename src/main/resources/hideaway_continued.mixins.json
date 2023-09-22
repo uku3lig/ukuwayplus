@@ -10,6 +10,8 @@
     "AbstractContainerScreenMixin",
     "AdvancementScreenMixin",
     "BossHealthOverlayMixin",
+    "CapeLayerMixin",
+    "ItemRendererMixin",
     "ClientAdvancementsMixin",
     "DisplayNameMixin",
     "GameMenuScreenMixin",

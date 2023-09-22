@@ -49,6 +49,7 @@ public class HideawayContinued implements ClientModInitializer {
         // Initalize debug users (USE UUID)
         debugUsers.add("1228311667704193a92fc26a31a3455d"); // Bisou
         debugUsers.add("b344687bec74479a95401aa8ccb13e92"); // OliviaTheVampire
+        debugUsers.add("8b484179e47e417b8ecad204aa796e79"); // Dragonostic
 
 
         // Managers and services that need to be retained after
