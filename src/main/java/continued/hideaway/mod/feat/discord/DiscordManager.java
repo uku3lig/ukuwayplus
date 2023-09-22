@@ -60,4 +60,9 @@ public class DiscordManager {
             client.sendRichPresence(builder.build());
         } else start();
     }
+
+    public void stop() {
+            client.sendRichPresence(null);
+            active = false;
+    }
 }
