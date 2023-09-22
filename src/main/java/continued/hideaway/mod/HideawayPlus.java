@@ -1,6 +1,6 @@
 package continued.hideaway.mod;
 
-import continued.hideaway.mod.feat.config.HideawayContinuedConfig;
+import continued.hideaway.mod.feat.config.HideawayPlusConfig;
 import continued.hideaway.mod.feat.discord.DiscordManager;
 import continued.hideaway.mod.feat.jukebox.Jukebox;
 import continued.hideaway.mod.feat.keyboard.KeyboardManager;
@@ -37,7 +37,7 @@ public class HideawayPlus implements ClientModInitializer {
     public static Jukebox JUKEBOX;
     public static Shop SHOP;
 
-    private static final HideawayContinuedConfig CONFIG = HideawayContinuedConfig.createAndLoad();
+    private static final HideawayPlusConfig CONFIG = HideawayPlusConfig.createAndLoad();
     private static Location LOCATION = Location.UNKNOWN;
     private static Lifecycle LIFECYCLE;
 
@@ -103,7 +103,7 @@ public class HideawayPlus implements ClientModInitializer {
     public static LocalPlayer player() { return client().player; }
     public static Queue<Component> toastStack() { return TOAST_STACK; }
 
-    public static HideawayContinuedConfig config() { return CONFIG; }
+    public static HideawayPlusConfig config() { return CONFIG; }
     public static DiscordManager discord() { return DISCORD_MANAGER; }
     public static Jukebox jukebox() { return JUKEBOX; }
     public static Shop shop() { return SHOP; }

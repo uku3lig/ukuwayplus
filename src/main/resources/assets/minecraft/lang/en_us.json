@@ -6,5 +6,16 @@
 
     "option.hideaway_plus.rpc": "Use Discord Presence",
     "option.hideaway_plus.ws": "Use WebSockets",
-    "option.hideaway_plus.jukebox": "Use Jukebox"
+    "option.hideaway_plus.jukebox": "Use Jukebox",
+
+    "text.config.hp-config.title": "Hideaway+ Configuration",
+
+    "text.config.hp-config.option.pipNav": "Use PiP Navigation",
+    "text.config.hp-config.option.hideCosmetics": "Hide Cosmetics",
+    "text.config.hp-config.option.discordRPC": "Use Discord Rich Presence",
+    "text.config.hp-config.option.autoEnableEditor": "Use Discord Rich Presence",
+    "text.config.hp-config.option.jukebox": "Use Jukebox",
+    "text.config.hp-config.option.noAmbientSounds": "Allow Ambient Sounds"
+
+
 }

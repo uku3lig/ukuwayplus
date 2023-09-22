@@ -8,8 +8,8 @@ import io.wispforest.owo.config.annotation.Sync;
 
 @Sync(Option.SyncMode.NONE)
 @Modmenu(modId = Constants.MOD_ID)
-@Config(name = "hc-config", wrapperName = "HideawayContinuedConfig")
-public class HideawayContinuedConfigModel {
+@Config(name = "hp-config", wrapperName = "HideawayPlusConfig")
+public class HideawayPlusConfigModel {
     // General
     public boolean pipNav = true;
     public boolean hideCosmetics = true;
