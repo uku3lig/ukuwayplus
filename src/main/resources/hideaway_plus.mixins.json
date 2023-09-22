@@ -20,10 +20,11 @@
     "MinecraftClientMixin",
     "PlayerInventoryMixin",
     "PlayerMixin",
+    "PlayerRendererMixin",
     "ScreenHandlerMixin",
     "SoundEventMixin",
     "TickMixin",
-
+    "ArmourStandMobMixin",
 
     "ext.GridLayoutAccessor",
     "ext.SoundEventAccessor"
