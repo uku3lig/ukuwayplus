@@ -10,7 +10,7 @@ public class DisplayNameUtil {
         Pattern pattern = Pattern.compile("[\\w]+");
         Matcher matcher = pattern.matcher(content);
         String username = matcher.find() ? matcher.group(0) : null;
-        if (username == null || username.length() == 0) {
+        if (username == null || username.isEmpty()) {
             return content;
         } else return username;
     }

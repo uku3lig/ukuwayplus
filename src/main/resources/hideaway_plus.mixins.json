@@ -9,8 +9,10 @@
   "client": [
     "AbstractContainerScreenMixin",
     "AdvancementScreenMixin",
+    "ArmourStandMobMixin",
     "BossHealthOverlayMixin",
     "CapeLayerMixin",
+    "ChatComponentMixin",
     "ClientAdvancementsMixin",
     "DisplayNameMixin",
     "EntityRendererMixin",
@@ -24,8 +26,6 @@
     "ScreenHandlerMixin",
     "SoundEventMixin",
     "TickMixin",
-    "ArmourStandMobMixin",
-
     "ext.GridLayoutAccessor",
     "ext.SoundEventAccessor"
   ]

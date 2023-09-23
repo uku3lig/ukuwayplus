@@ -24,12 +24,9 @@ public class DisplayNameMixin {
             String result = DisplayNameUtil.ignFromDisplayName(name.getString());
             MutableComponent newName = MutableComponent.create(ComponentContents.EMPTY);
             if (DisplayNameUtil.clientUsername().equals(result)) {
-                newName = MutableComponent.create(ComponentContents.EMPTY);
                 newName.append(name)
                         .append(" ")
-                        .append(Chars.badge())
-                        .append(" ")
-                        .append(Chars.friendBadge());
+                        .append(Chars.badge());
                 cir.setReturnValue(newName);
             } else if (StaticValues.friendsList.contains(result)) {
                 newName.append(name).append(" ").append(Chars.friendBadge());

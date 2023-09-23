@@ -12,7 +12,7 @@ import io.wispforest.owo.config.annotation.Sync;
 public class HideawayPlusConfigModel {
     // General
     public boolean pipNav = true;
-    public boolean hideCosmetics = true;
+    public boolean hideCosmetics = false;
     public boolean discordRPC = true;
 
     // Rooms
@@ -20,5 +20,5 @@ public class HideawayPlusConfigModel {
 
     // Sound
     public boolean jukebox = true;
-    public boolean noAmbientSounds = true;
+    public boolean noAmbientSounds = false;
 }
