@@ -19,12 +19,18 @@ public class ChatComponentMixin {
         String playerID = DisplayNameUtil.modPlayerID(username);
 
         if (StaticValues.modUsers.containsValue(username) && !StaticValues.modDevelopers.contains(playerID)) newMessage.append(Chars.badge());
-        if (StaticValues.modDevelopers.contains(playerID)) newMessage.append(Chars.devBadge());
+        if (StaticValues.modDevelopers.contains(playerID)) newMessage.append(Chars.devBadge())
+                .withStyle(Style.EMPTY.withHoverEvent(
+                        new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.literal("")
+                                .append(Component.translatable("tooltip.hp.developer")
+                                        .setStyle(Style.EMPTY.withColor(ChatFormatting.GOLD)))
+                        )
+                ));
         if (StaticValues.friendsList.contains(username))
             newMessage.append(Chars.friendBadge())
                             .withStyle(Style.EMPTY.withHoverEvent(
                                     new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.literal("")
-                                            .append(Component.translatable("hideaway.tooltip.friend")
+                                            .append(Component.translatable("tooltip.hp.friend")
                                                     .setStyle(Style.EMPTY.withColor(ChatFormatting.GOLD)))
                                     )
                             ));

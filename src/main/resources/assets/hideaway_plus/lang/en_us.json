@@ -1,5 +1,6 @@
 {
     "categories.hp": "Hideaway+",
+
     "key.hp.menu": "Open Hideaway+ Menu",
     "key.hp.jukebox": "Open Jukebox",
     "key.hp.luggage": "Luggage",
@@ -10,6 +11,9 @@
     "key.hp.palm_plate": "Palm Plate",
     "key.hp.mail": "Mail",
     "key.hp.explore": "Explore",
+
+    "tooltip.hp.friend": "Friend :)",
+    "tooltip.hp.developer": "Developer of Hideaway+",
 
     "jukebox.title": "Play a song",
     "jukebox.stop_all_songs": "Stop all music",
@@ -22,7 +26,5 @@
     "text.config.hp-config.option.autoEnableEditor": "Automatically Enable Editor",
     "text.config.hp-config.option.jukebox": "Use Jukebox",
     "text.config.hp-config.option.noAmbientSounds": "Allow Ambient Sounds",
-    "text.config.hp-config.option.noActivitySongs": "Allow Activity Songs",
-
-    "hideaway.tooltip.friend": "Friend :)"
+    "text.config.hp-config.option.noActivitySongs": "Allow Activity Songs"
 }
