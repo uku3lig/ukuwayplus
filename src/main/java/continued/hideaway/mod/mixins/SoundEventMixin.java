@@ -17,7 +17,6 @@ public class SoundEventMixin {
 
     @Inject(at = @At("HEAD"), method = "create", cancellable = true)
     private static void newSoundEvent(ResourceLocation location, Optional<Float> range, CallbackInfoReturnable<SoundEvent> cir) {
-        System.out.println(location.getPath());
         boolean isAmbient = location.getPath().split("\\.")[0].contains("ambient");
         boolean isActivity = location.getPath().split("\\.")[0].contains("activities");
 

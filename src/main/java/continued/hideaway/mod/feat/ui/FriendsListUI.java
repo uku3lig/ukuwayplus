@@ -25,13 +25,16 @@ public class FriendsListUI {
             if (!(screen.getMenu() instanceof ChestMenu menu)) return;
             for (ItemStack itemStack : menu.getItems()) {
                 if (itemStack.getItem() == Items.PLAYER_HEAD) {
-                    if (StaticValues.friendsList.size() <= 1) {finishedChecking = false;StaticValues.friendsCheck = false;}
+                    if (StaticValues.friendsList.size() <= 1) {
+                        finishedChecking = false;
+                        StaticValues.friendsCheck = false;
+                    }
 
                     if (itemStack.getTag().toString().contains("Left click to Accept")) continue;
                     String name = itemStack.getTag().getCompound("SkullOwner").getString("Name");
                     if (!StaticValues.friendsList.contains(name)) StaticValues.friendsList.add(name);
                     if (!finishedChecking) {
-                        HideawayPlus.client().setScreen((Screen) null);
+                        HideawayPlus.client().setScreen(null);
                         finishedChecking = true;
                     }
                 } else finishedChecking = true;

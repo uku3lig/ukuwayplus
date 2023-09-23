@@ -6,6 +6,10 @@
     "key.hp.wardrobe": "Wardrobe",
     "key.hp.profile": "Profile",
     "key.hp.friends": "Friends List",
+    "key.hp.journal": "Progression Journal",
+    "key.hp.palm_plate": "Palm Plate",
+    "key.hp.mail": "Mail",
+    "key.hp.explore": "Explore",
 
     "jukebox.title": "Play a song",
     "jukebox.stop_all_songs": "Stop all music",
