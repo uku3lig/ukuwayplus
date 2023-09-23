@@ -27,7 +27,7 @@ public class QueryURL {
     private static final CloseableHttpClient HTTP_CLIENT =
             HttpClients.custom().setConnectionManager(CONNECTION_MANAGER).build();
     private static final URL API_URL;
-    private static final URL MOJANG_API_URL
+    private static final URL MOJANG_API_URL;
 
     static {
         try {
