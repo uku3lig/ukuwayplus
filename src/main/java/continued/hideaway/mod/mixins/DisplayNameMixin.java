@@ -29,6 +29,7 @@ public class DisplayNameMixin {
                 for (String key : StaticValues.modUsers.keySet()) {
                     if (StaticValues.modUsers.get(key).equals(result)) {
                         playerID = key;
+                        System.out.println("found user" + result);
                         break;
                     }
                 }
