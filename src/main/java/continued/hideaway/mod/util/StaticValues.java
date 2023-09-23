@@ -10,6 +10,7 @@ public class StaticValues {
     public static boolean shopScreenWasFilled = false;
 
     public static List<String> friendsList = new ArrayList<>();
+    public static List<String> friendsToCheck = new ArrayList<>();
     public static boolean friendsCheck = false;
 
     public static Map<String, String> modUsers = new HashMap<>();
