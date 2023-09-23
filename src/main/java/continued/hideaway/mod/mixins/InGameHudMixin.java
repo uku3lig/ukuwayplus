@@ -54,17 +54,14 @@ public abstract class InGameHudMixin implements InGameHudAccessor {
             slice = @Slice(
                     from = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/client/gui/GuiGraphics;drawString(Lnet/minecraft/client/gui/Font;Ljava/lang/String;IIIZ)I", ordinal = 1))
     )
-    public void expereicneBarPercent(GuiGraphics guiGraphics, int x, CallbackInfo ci, int i, String string, int textSize, int textPos) {
+    public void experienceBarPercent(GuiGraphics guiGraphics, int x, CallbackInfo ci, int i, String string, int textSize, int textPos) {
         if (HideawayPlus.connected()) {
             string = (Math.round(this.minecraft.player.experienceProgress * 10000) / 100.0) + "%";
             textSize = (this.screenWidth - this.getFont().width(string)) / 2;
 
             textPos = textPos - 14;
 
-            guiGraphics.drawString(this.getFont(), string, (int)(textSize + 1), (int)textPos, 0, true);
-            guiGraphics.drawString(this.getFont(), string, (int)(textSize + 1), (int)textPos, 0, true);
             guiGraphics.drawString(this.getFont(), string, (int)(textSize + 1), (int)textPos + 1, 0, true);
-            guiGraphics.drawString(this.getFont(), string, (int)(textSize + 1), (int)textPos, 0, true);
             guiGraphics.drawString(this.getFont(), string, (int)(textSize + 1), (int)textPos, 8453920, true);
         }
     }

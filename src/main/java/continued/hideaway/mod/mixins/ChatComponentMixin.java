@@ -17,9 +17,7 @@ public class ChatComponentMixin {
         MutableComponent newMessage = MutableComponent.create(ComponentContents.EMPTY);
         String username = message.getString().substring(2, message.getString().indexOf(":"));
 
-        if (StaticValues.friendsList.contains(username)) {
-            newMessage.append(Chars.friendBadge());
-        }
+        if (StaticValues.friendsList.contains(username)) newMessage.append(Chars.friendBadge());
         newMessage.append(message);
         return newMessage;
     }

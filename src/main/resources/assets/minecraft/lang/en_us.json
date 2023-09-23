@@ -1,12 +1,11 @@
 {
-    "categories.hp": "Hideaway: Continued",
-    "categories.hp.menu": "Open Hideaway: Continued Menu",
-    "categories.hp.editor": "Open Editor",
-    "categories.hp.debug": "Debug (Unused)",
-
-    "option.hideaway_plus.rpc": "Use Discord Presence",
-    "option.hideaway_plus.ws": "Use WebSockets",
-    "option.hideaway_plus.jukebox": "Use Jukebox",
+    "categories.hp": "Hideaway+",
+    "key.hp.menu": "Open Hideaway+ Menu",
+    "key.hp.jukebox": "Open Jukebox",
+    "key.hp.luggage": "Luggage",
+    "key.hp.wardrobe": "Wardrobe",
+    "key.hp.profile": "Profile",
+    "key.hp.friends": "Friends List",
 
     "text.config.hp-config.title": "Hideaway+ Configuration",
 
@@ -15,7 +14,6 @@
     "text.config.hp-config.option.discordRPC": "Use Discord Rich Presence",
     "text.config.hp-config.option.autoEnableEditor": "Automatically Enable Editor",
     "text.config.hp-config.option.jukebox": "Use Jukebox",
-    "text.config.hp-config.option.noAmbientSounds": "Allow Ambient Sounds"
-
-
+    "text.config.hp-config.option.noAmbientSounds": "Allow Ambient Sounds",
+    "text.config.hp-config.option.noActivitySongs": "Allow Activity Songs"
 }

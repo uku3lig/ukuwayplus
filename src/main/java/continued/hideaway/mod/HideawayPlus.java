@@ -87,18 +87,18 @@ public class HideawayPlus implements ClientModInitializer {
                     if (HideawayPlus.connected() && !friendsCheck) {
                         FriendsListUI.tick();
                     }
-                }, 0))
-                .add(Task.of(() -> {
-                    if (HideawayPlus.connected()) {
-                        API.enabled = true;
-                        API.tick();
-                    }
-                }, 0))
-                .add(Task.of(() -> {
-                    if (HideawayPlus.connected()) {
-                        API.live();
-                    }
-                }, 30));
+                }, 0));
+//                .add(Task.of(() -> {
+//                    if (HideawayPlus.connected()) {
+//                        API.enabled = true;
+//                        API.tick();
+//                    }
+//                }, 0))
+//                .add(Task.of(() -> {
+//                    if (HideawayPlus.connected()) {
+//                        API.live();
+//                    }
+//                }, 30));
 
     }
 
