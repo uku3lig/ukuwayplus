@@ -23,7 +23,6 @@
     "PlayerInventoryMixin",
     "PlayerMixin",
     "PlayerRendererMixin",
-    "ScreenHandlerMixin",
     "SoundEventMixin",
     "TickMixin",
     "ext.GridLayoutAccessor",

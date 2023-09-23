@@ -18,14 +18,14 @@ import java.util.UUID;
 
 @Mixin(BossHealthOverlay.class)
 public class BossHealthOverlayMixin implements BossHealthOverlayAccessor {
-    @Shadow @Final private Map<UUID, LerpingBossEvent> events;
-    @Unique
-    private String bossBarName;
+    @Shadow @Final Map<UUID, LerpingBossEvent> events;
+    @Unique private String bossBarName;
+
     @Inject(method = "render", at = @At("HEAD"))
     private void renderBossBarName(GuiGraphics guiGraphics, CallbackInfo ci) {
-        Iterator var4 = this.events.values().iterator();
+        Iterator<LerpingBossEvent> var4 = this.events.values().iterator();
         if (var4.hasNext()) {
-            LerpingBossEvent lerpingBossEvent = (LerpingBossEvent) var4.next();
+            LerpingBossEvent lerpingBossEvent = var4.next();
 
             this.bossBarName = lerpingBossEvent.getName().getString();
         } else {

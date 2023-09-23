@@ -7,6 +7,9 @@
     "key.hp.profile": "Profile",
     "key.hp.friends": "Friends List",
 
+    "jukebox.title": "Play a song",
+    "jukebox.stop_all_songs": "Stop all music",
+
     "text.config.hp-config.title": "Hideaway+ Configuration",
 
     "text.config.hp-config.option.pipNav": "Use PiP Navigation",

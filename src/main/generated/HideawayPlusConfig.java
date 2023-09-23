@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
-public class HideawayContinuedConfig extends ConfigWrapper<continued.hideaway.mod.feat.config.HideawayContinuedConfigModel> {
+public class HideawayPlusConfig extends ConfigWrapper<continued.hideaway.mod.feat.config.HideawayPlusConfigModel> {
 
     public final Keys keys = new Keys();
 
@@ -19,23 +19,24 @@ public class HideawayContinuedConfig extends ConfigWrapper<continued.hideaway.mo
     private final Option<java.lang.Boolean> autoEnableEditor = this.optionForKey(this.keys.autoEnableEditor);
     private final Option<java.lang.Boolean> jukebox = this.optionForKey(this.keys.jukebox);
     private final Option<java.lang.Boolean> noAmbientSounds = this.optionForKey(this.keys.noAmbientSounds);
+    private final Option<java.lang.Boolean> noActivitySongs = this.optionForKey(this.keys.noActivitySongs);
 
-    private HideawayContinuedConfig() {
-        super(continued.hideaway.mod.feat.config.HideawayContinuedConfigModel.class);
+    private HideawayPlusConfig() {
+        super(continued.hideaway.mod.feat.config.HideawayPlusConfigModel.class);
     }
 
-    private HideawayContinuedConfig(Consumer<Jankson.Builder> janksonBuilder) {
-        super(continued.hideaway.mod.feat.config.HideawayContinuedConfigModel.class, janksonBuilder);
+    private HideawayPlusConfig(Consumer<Jankson.Builder> janksonBuilder) {
+        super(continued.hideaway.mod.feat.config.HideawayPlusConfigModel.class, janksonBuilder);
     }
 
-    public static HideawayContinuedConfig createAndLoad() {
-        var wrapper = new HideawayContinuedConfig();
+    public static HideawayPlusConfig createAndLoad() {
+        var wrapper = new HideawayPlusConfig();
         wrapper.load();
         return wrapper;
     }
 
-    public static HideawayContinuedConfig createAndLoad(Consumer<Jankson.Builder> janksonBuilder) {
-        var wrapper = new HideawayContinuedConfig(janksonBuilder);
+    public static HideawayPlusConfig createAndLoad(Consumer<Jankson.Builder> janksonBuilder) {
+        var wrapper = new HideawayPlusConfig(janksonBuilder);
         wrapper.load();
         return wrapper;
     }
@@ -88,6 +89,14 @@ public class HideawayContinuedConfig extends ConfigWrapper<continued.hideaway.mo
         noAmbientSounds.set(value);
     }
 
+    public boolean noActivitySongs() {
+        return noActivitySongs.value();
+    }
+
+    public void noActivitySongs(boolean value) {
+        noActivitySongs.set(value);
+    }
+
 
     public static class Keys {
         public final Option.Key pipNav = new Option.Key("pipNav");
@@ -96,6 +105,7 @@ public class HideawayContinuedConfig extends ConfigWrapper<continued.hideaway.mo
         public final Option.Key autoEnableEditor = new Option.Key("autoEnableEditor");
         public final Option.Key jukebox = new Option.Key("jukebox");
         public final Option.Key noAmbientSounds = new Option.Key("noAmbientSounds");
+        public final Option.Key noActivitySongs = new Option.Key("noActivitySongs");
     }
 }
 

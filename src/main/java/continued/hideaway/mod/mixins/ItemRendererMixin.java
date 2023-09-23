@@ -1,6 +1,7 @@
 package continued.hideaway.mod.mixins;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import continued.hideaway.mod.util.Constants;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.resources.model.BakedModel;
@@ -28,15 +29,15 @@ public class ItemRendererMixin {
     private void render(ItemStack itemStack, ItemDisplayContext displayContext, boolean leftHand, PoseStack poseStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay, BakedModel model, CallbackInfo ci) {
         if ((minecraft.player != null && displayContext != ItemDisplayContext.GUI && HideawayPlus.connected())) {
 
-            CompoundTag playerChestNbt = minecraft.player.getItemBySlot(EquipmentSlot.CHEST).getTagElement("PublicBukkitValues");
-            CompoundTag playerHeadNbt = minecraft.player.getItemBySlot(EquipmentSlot.HEAD).getTagElement("PublicBukkitValues");
+            CompoundTag playerChestNbt = minecraft.player.getItemBySlot(EquipmentSlot.CHEST).getTagElement(Constants.PUBLIC_BUKKIT_VALUES);
+            CompoundTag playerHeadNbt = minecraft.player.getItemBySlot(EquipmentSlot.HEAD).getTagElement(Constants.PUBLIC_BUKKIT_VALUES);
 
-            CompoundTag stackNbt = itemStack.getTagElement("PublicBukkitValues");
+            CompoundTag stackNbt = itemStack.getTagElement(Constants.PUBLIC_BUKKIT_VALUES);
 
             if (HideawayPlus.config().hideCosmetics() || minecraft.options.getCameraType().isFirstPerson()) {
                 if (stackNbt != null && playerChestNbt != null) {
-                    String stackId = stackNbt.getString("pixelhideawaycore:random");
-                    String itemId = playerChestNbt.getString("pixelhideawaycore:random");
+                    String stackId = stackNbt.getString(Constants.hideawayId("random"));
+                    String itemId = playerChestNbt.getString(Constants.hideawayId("random"));
 
                     if (stackId.equals(itemId)) {
                         ci.cancel();
@@ -44,8 +45,8 @@ public class ItemRendererMixin {
                 }
 
                 if (stackNbt != null && playerHeadNbt != null) {
-                    String stackId = stackNbt.getString("pixelhideawaycore:random");
-                    String itemId = playerHeadNbt.getString("pixelhideawaycore:random");
+                    String stackId = stackNbt.getString(Constants.hideawayId("random"));
+                    String itemId = playerHeadNbt.getString(Constants.hideawayId("random"));
 
                     if (stackId.equals(itemId)) {
                         ci.cancel();

@@ -26,12 +26,11 @@ public class JukeboxUI extends BaseOwoScreen<FlowLayout> {
             .verticalAlignment(VerticalAlignment.CENTER);
 
         FlowLayout content = Containers.verticalFlow(Sizing.content(), Sizing.content())
-                                .child(Components.label(Component.literal("Play a song")).horizontalTextAlignment(HorizontalAlignment.CENTER));
+                                .child(Components.label(Component.translatable("jukebox.title")).horizontalTextAlignment(HorizontalAlignment.CENTER));
 
-        var stopBtn = (ButtonComponent) Components.button(Component.literal("Stop all music"), (btn) -> HideawayPlus.client().getSoundManager().stop())
+        var stopBtn = (ButtonComponent) Components.button(Component.translatable("jukebox.stop_all_songs"), (btn) -> HideawayPlus.client().getSoundManager().stop())
                 .margins(Insets.vertical(4));
         stopBtn.setWidth(160);
-        content.child(stopBtn);
 
         content.child(stopBtn);
 
@@ -39,10 +38,10 @@ public class JukeboxUI extends BaseOwoScreen<FlowLayout> {
             var component = (ButtonComponent) Components.button(Component.literal(track.name), (btn) -> HideawayPlus.jukebox().play(track))
                     .margins(Insets.vertical(2));
             component.setWidth(160);
-            content.child(component);
+//            content.child(component);
         }
 
-        rootComponent.child(content.padding(Insets.of(10)));
+        rootComponent.child(content);
     }
 
 }
