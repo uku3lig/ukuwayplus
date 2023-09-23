@@ -21,4 +21,6 @@ public class HideawayPlusConfigModel {
     // Sound
     public boolean jukebox = true;
     public boolean noAmbientSounds = false;
+
+    public boolean noActivitySongs = false;
 }

@@ -1,5 +1,6 @@
 package continued.hideaway.mod;
 
+import continued.hideaway.mod.feat.api.API;
 import continued.hideaway.mod.feat.config.HideawayPlusConfig;
 import continued.hideaway.mod.feat.discord.DiscordManager;
 import continued.hideaway.mod.feat.jukebox.Jukebox;
@@ -66,6 +67,7 @@ public class HideawayPlus implements ClientModInitializer {
 
         // Lifecycle tasks should be initialized here.
         lifecycle()
+                .add(Task.of(() -> {if (!HideawayPlus.connected() && API.enabled) {API.end();}}, 0))
                 .add(Task.of(Location::check, 20))
                 .add(Task.of(() -> {
                     if (DiscordManager.active) DISCORD_MANAGER.update();
@@ -85,7 +87,19 @@ public class HideawayPlus implements ClientModInitializer {
                     if (HideawayPlus.connected() && !friendsCheck) {
                         FriendsListUI.tick();
                     }
-                }, 0));
+                }, 0))
+                .add(Task.of(() -> {
+                    if (HideawayPlus.connected()) {
+                        API.enabled = true;
+                        API.tick();
+                    }
+                }, 0))
+                .add(Task.of(() -> {
+                    if (HideawayPlus.connected()) {
+                        API.live();
+                    }
+                }, 30));
+
     }
 
     public static boolean connected() {

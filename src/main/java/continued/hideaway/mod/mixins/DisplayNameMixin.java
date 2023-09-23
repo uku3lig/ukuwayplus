@@ -6,6 +6,7 @@ import continued.hideaway.mod.util.DisplayNameUtil;
 import continued.hideaway.mod.util.StaticValues;
 import net.minecraft.client.gui.components.PlayerTabOverlay;
 import net.minecraft.client.multiplayer.PlayerInfo;
+import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentContents;
 import net.minecraft.network.chat.MutableComponent;
@@ -22,16 +23,23 @@ public class DisplayNameMixin {
         Component name = cir.getReturnValue();
         if (HideawayPlus.connected()){
             String result = DisplayNameUtil.ignFromDisplayName(name.getString());
-            MutableComponent newName = MutableComponent.create(ComponentContents.EMPTY);
-            if (DisplayNameUtil.clientUsername().equals(result)) {
-                newName.append(name)
-                        .append(" ")
-                        .append(Chars.badge());
-                cir.setReturnValue(newName);
-            } else if (StaticValues.friendsList.contains(result)) {
-                newName.append(name).append(" ").append(Chars.friendBadge());
-                cir.setReturnValue(newName);
+            String playerID = "";
+            if (HideawayPlus.client().level.players().stream().anyMatch(player -> DisplayNameUtil.ignFromDisplayName(player.getDisplayName().getString()).equals(result))) {
+                for (AbstractClientPlayer player : HideawayPlus.client().level.players()) {
+                    if (DisplayNameUtil.ignFromDisplayName(player.getDisplayName().getString()).equals(result)){
+                        playerID = String.valueOf(player.getUUID());
+                    }
+                }
             }
+
+            MutableComponent newName = MutableComponent.create(ComponentContents.EMPTY);
+            newName.append(name);
+
+            if (StaticValues.modUsers.contains(playerID)) newName.append(" ").append(Chars.badge());
+            if (StaticValues.modUsers.contains(playerID)) System.out.println("Mod User: " + result);
+            if (StaticValues.friendsList.contains(result)) newName.append(" ").append(Chars.friendBadge());
+            if (StaticValues.friendsList.contains(result)) System.out.println("Friend: " + result);
+            if (!newName.toString().equals(result)) cir.setReturnValue(newName);
         }
     }
 }
