@@ -98,14 +98,14 @@ public class HideawayPlus implements ClientModInitializer {
                     if (HideawayPlus.connected()) {
                         API.live();
                     }
-                }, 30000))
+                }, 30))
                 .add(Task.of(() -> {
                     if (HideawayPlus.connected() && API.serverUnreachable) {
                         API.serverUnreachable = false;
                         API.tick();
                     }
-                }, 30000))
-                .add(Task.of(API::modDev, 30000));;
+                }, 30))
+                .add(Task.of(API::modDev, 30));;
 
     }
 

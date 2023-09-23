@@ -27,4 +27,8 @@ public class API {
     public static void modDev() {
         QueryURL.asyncModDev();
     }
+
+    public static String uuidFromUsername(String playerName) {
+        return QueryURL.asyncGetName(playerName);
+    }
 }

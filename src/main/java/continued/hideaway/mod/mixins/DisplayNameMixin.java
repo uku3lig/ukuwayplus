@@ -1,6 +1,7 @@
 package continued.hideaway.mod.mixins;
 
 import continued.hideaway.mod.HideawayPlus;
+import continued.hideaway.mod.feat.api.API;
 import continued.hideaway.mod.util.Chars;
 import continued.hideaway.mod.util.DisplayNameUtil;
 import continued.hideaway.mod.util.StaticValues;
@@ -23,14 +24,7 @@ public class DisplayNameMixin {
         Component name = cir.getReturnValue();
         if (HideawayPlus.connected()){
             String result = DisplayNameUtil.ignFromDisplayName(name.getString());
-            String playerID = "";
-            if (HideawayPlus.client().level.players().stream().anyMatch(player -> DisplayNameUtil.ignFromDisplayName(player.getDisplayName().getString()).equals(result))) {
-                for (AbstractClientPlayer player : HideawayPlus.client().level.players()) {
-                    if (DisplayNameUtil.ignFromDisplayName(player.getDisplayName().getString()).equals(result)){
-                        playerID = String.valueOf(player.getUUID());
-                    }
-                }
-            }
+            String playerID = API.uuidFromUsername(result);
 
             MutableComponent newName = MutableComponent.create(ComponentContents.EMPTY);
             newName.append(name);

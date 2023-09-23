@@ -7,7 +7,6 @@ import com.google.gson.JsonSyntaxException;
 import continued.hideaway.mod.HideawayPlus;
 import continued.hideaway.mod.util.Constants;
 import continued.hideaway.mod.util.StaticValues;
-import org.apache.http.HttpEntity;
 import org.apache.http.ParseException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -20,6 +19,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class QueryURL {
     private static final PoolingHttpClientConnectionManager CONNECTION_MANAGER =
@@ -27,10 +27,12 @@ public class QueryURL {
     private static final CloseableHttpClient HTTP_CLIENT =
             HttpClients.custom().setConnectionManager(CONNECTION_MANAGER).build();
     private static final URL API_URL;
+    private static final URL MOJANG_API_URL
 
     static {
         try {
             API_URL = new URL("http://xn--4ca.day/api/");
+            MOJANG_API_URL = new URL("https://api.mojang.com/users/profiles/minecraft/");
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -203,5 +205,35 @@ public class QueryURL {
                 }
             }
         });
+    }
+
+    public static String asyncGetName(String playerName) {
+        AtomicReference<String> playerUUID = new AtomicReference<>("");
+
+        CompletableFuture.runAsync(() -> {
+            try {
+                HttpGet request = new HttpGet(API_URL + playerName);
+                request.addHeader(Constants.MOD_NAME + " v" + Constants.VERSION, HideawayPlus.client().player.getName().getString());
+                try (CloseableHttpResponse response = HTTP_CLIENT.execute(request)) {
+                    if (response.getStatusLine().getStatusCode() == 200) {
+                        String jsonContent = EntityUtils.toString(response.getEntity());
+
+                        JsonObject jsonObject = JsonParser.parseString(jsonContent).getAsJsonObject();
+                        if (jsonObject.has("name")) playerUUID.set(jsonObject.get("name").getAsString());
+                    }
+                }
+            } catch (IOException | ParseException | JsonSyntaxException e) {
+                if (e instanceof IOException) {
+                    HideawayPlus.logger().error("API Error: " + e.getMessage() + "\n"
+                            + "Checking back in 30 seconds..." + "\n"
+                            + "Error area: asyncGetName");
+                    API.serverUnreachable = true;
+                } else {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        return playerUUID.get();
     }
 }
