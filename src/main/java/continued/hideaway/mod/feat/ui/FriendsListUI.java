@@ -18,17 +18,13 @@ public class FriendsListUI {
     private static boolean finishedChecking = false;
 
     public static void tick() {
-        String playerName = HideawayPlus.client().player.getName().getString();
-        if (!StaticValues.friendsList.contains(playerName)) StaticValues.friendsList.add(playerName);
+        if (!StaticValues.friendsList.contains(HideawayPlus.client().player.getName().getString())) StaticValues.friendsList.add(HideawayPlus.client().player.getName().getString());
 
         if (HideawayPlus.client().screen instanceof AbstractContainerScreen screen) {
             if (!(screen.getMenu() instanceof ChestMenu menu)) return;
             for (ItemStack itemStack : menu.getItems()) {
                 if (itemStack.getItem() == Items.PLAYER_HEAD) {
-                    if (StaticValues.friendsList.size() <= 1) {
-                        finishedChecking = false;
-                        StaticValues.friendsCheck = false;
-                    }
+                    if (StaticValues.friendsList.size() <= 1) {finishedChecking = false;StaticValues.friendsCheck = false;}
 
                     if (itemStack.getTag().toString().contains("Left click to Accept")) continue;
                     String name = itemStack.getTag().getCompound("SkullOwner").getString("Name");

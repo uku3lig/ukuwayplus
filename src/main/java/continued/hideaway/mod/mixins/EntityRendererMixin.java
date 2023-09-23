@@ -29,17 +29,16 @@ public abstract class EntityRendererMixin <T extends Entity>{
     @Inject(at = @At("HEAD"), method = "render", cancellable = true)
     private void render(T entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource buffer, int packedLight, CallbackInfo ci) {
         if (this.shouldShowName(entity) && HideawayPlus.connected() && entity instanceof Player) {
-            Component name = entity.getDisplayName();
-            String playerID = API.uuidFromUsername(name.getString());
+            String result = DisplayNameUtil.ignFromDisplayName(entity.getDisplayName().getString());
+            String playerID = API.uuidFromUsername(result);
 
-            String result = DisplayNameUtil.ignFromDisplayName(name.getString());
             MutableComponent newName = MutableComponent.create(ComponentContents.EMPTY);
-            newName.append(name);
+            newName.append(result);
 
             if (StaticValues.modUsers.contains(playerID) && !StaticValues.modDevelopers.contains(playerID)) newName.append(" ").append(Chars.badge());
             if (StaticValues.modDevelopers.contains(playerID)) newName.append(" ").append(Chars.devBadge());
             if (StaticValues.friendsList.contains(result)) newName.append(" ").append(Chars.friendBadge());
-            if (!StaticValues.modUsers.contains(playerID) && !StaticValues.friendsList.contains(result)) newName = name.copy();
+            if (!StaticValues.modUsers.contains(playerID) && !StaticValues.friendsList.contains(result)) newName = entity.getDisplayName().copy();
 
             this.renderNameTag(entity, newName, poseStack, buffer, packedLight);
         }

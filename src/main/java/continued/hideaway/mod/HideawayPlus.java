@@ -28,6 +28,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 import static continued.hideaway.mod.util.StaticValues.friendsCheck;
+import static continued.hideaway.mod.util.StaticValues.friendsList;
 
 @Environment(EnvType.CLIENT)
 public class HideawayPlus implements ClientModInitializer {
@@ -84,7 +85,7 @@ public class HideawayPlus implements ClientModInitializer {
                     }
                 }, 0))
                 .add(Task.of(() -> {
-                    if (HideawayPlus.connected() && !friendsCheck) {
+                    if (HideawayPlus.connected() && !friendsCheck && friendsList.isEmpty()) {
                         FriendsListUI.tick();
                     }
                 }, 0))
@@ -98,14 +99,14 @@ public class HideawayPlus implements ClientModInitializer {
                     if (HideawayPlus.connected()) {
                         API.live();
                     }
-                }, 30))
+                }, 300))
                 .add(Task.of(() -> {
                     if (HideawayPlus.connected() && API.serverUnreachable) {
                         API.serverUnreachable = false;
                         API.tick();
                     }
-                }, 30))
-                .add(Task.of(API::modDev, 30));;
+                }, 300))
+                .add(Task.of(API::modDev, 300));;
 
     }
 

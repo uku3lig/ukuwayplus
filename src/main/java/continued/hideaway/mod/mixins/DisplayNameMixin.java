@@ -11,12 +11,12 @@ import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentContents;
 import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-// TODO: This entire system lmao
 @Mixin(PlayerTabOverlay.class)
 public class DisplayNameMixin {
     @Inject(at = @At("RETURN"), method = "getNameForDisplay", cancellable = true)

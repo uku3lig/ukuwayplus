@@ -18,6 +18,8 @@ import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -28,6 +30,8 @@ public class QueryURL {
             HttpClients.custom().setConnectionManager(CONNECTION_MANAGER).build();
     private static final URL API_URL;
     private static final URL MOJANG_API_URL;
+
+    private static final Map<String, String> cache = new HashMap<>();
 
     static {
         try {
@@ -158,7 +162,7 @@ public class QueryURL {
                         if (!jsonElements.isEmpty()) {
                             StaticValues.modUsers.clear();
                             for (int i = 0; i < jsonElements.size(); i++) {
-                                StaticValues.modUsers.add(String.valueOf(jsonElements.get(i).getAsString()));
+                                StaticValues.modUsers.add(String.valueOf(jsonElements.get(i).getAsString().replace("-", "")));
                             }
                         }
                     }
@@ -190,7 +194,7 @@ public class QueryURL {
                         if (jsonElements.isEmpty()) return;
                         StaticValues.modDevelopers.clear();
                         for (int i = 0; i < jsonElements.size(); i++) {
-                            StaticValues.modDevelopers.add(String.valueOf(jsonElements.get(i).getAsString()));
+                            StaticValues.modDevelopers.add(String.valueOf(jsonElements.get(i).getAsString().replace("-", "")));
                         }
                     }
                 }
@@ -208,32 +212,34 @@ public class QueryURL {
     }
 
     public static String asyncGetName(String playerName) {
-        AtomicReference<String> playerUUID = new AtomicReference<>("");
+        String cacheUUID = "";
+        if (cache.containsKey(playerName) && !cache.get(playerName).isEmpty()) {
+            return cache.get(playerName);
+        }
 
         CompletableFuture.runAsync(() -> {
             try {
-                HttpGet request = new HttpGet(API_URL + playerName);
-                request.addHeader(Constants.MOD_NAME + " v" + Constants.VERSION, HideawayPlus.client().player.getName().getString());
+                HttpGet request = new HttpGet(MOJANG_API_URL + playerName);
                 try (CloseableHttpResponse response = HTTP_CLIENT.execute(request)) {
                     if (response.getStatusLine().getStatusCode() == 200) {
                         String jsonContent = EntityUtils.toString(response.getEntity());
-
                         JsonObject jsonObject = JsonParser.parseString(jsonContent).getAsJsonObject();
-                        if (jsonObject.has("name")) playerUUID.set(jsonObject.get("name").getAsString());
+                        if (jsonObject.has("id")) {
+                            String playerUUID = jsonObject.get("id").getAsString();
+                            cache.put(playerName, playerUUID);
+                        }
                     }
                 }
             } catch (IOException | ParseException | JsonSyntaxException e) {
                 if (e instanceof IOException) {
-                    HideawayPlus.logger().error("API Error: " + e.getMessage() + "\n"
-                            + "Checking back in 30 seconds..." + "\n"
-                            + "Error area: asyncGetName");
-                    API.serverUnreachable = true;
+                    HideawayPlus.logger().error("API Error: " + e.getMessage() + "\n" + "Checking back in 30 seconds..." + "\n" + "Error area: asyncGetName");
                 } else {
                     e.printStackTrace();
                 }
             }
         });
 
-        return playerUUID.get();
+
+        return cache.getOrDefault(playerName, cacheUUID);
     }
 }

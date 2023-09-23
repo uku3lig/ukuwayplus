@@ -60,7 +60,8 @@ public class Shop {
 
     private String getShopName() {
         ChestMenu screen = ((AbstractContainerScreen<ChestMenu>) HideawayPlus.client().screen).getMenu();
-        if (HideawayPlus.client().screen.getTitle().getString().contains("\uE00C")) { FriendsListUI.tick(); return null; }
+        String screenName = HideawayPlus.client().screen.getTitle().getString();
+        if (screenName.contains("\uE00C") || screenName.contains("\uE010")) { FriendsListUI.tick(); return null; }
 
 
         for (ItemStack itemStack : screen.getItems()) {
