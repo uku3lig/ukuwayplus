@@ -1,6 +1,7 @@
 package continued.hideaway.mod.mixins;
 
 import continued.hideaway.mod.util.Chars;
+import continued.hideaway.mod.util.DisplayNameUtil;
 import continued.hideaway.mod.util.StaticValues;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.ChatComponent;
@@ -15,7 +16,10 @@ public class ChatComponentMixin {
     private Component addMessageIcons(Component message) {
         MutableComponent newMessage = MutableComponent.create(ComponentContents.EMPTY);
         String username = message.getString().substring(2, message.getString().indexOf(":"));
+        String playerID = DisplayNameUtil.modPlayerID(username);
 
+        if (StaticValues.modUsers.containsValue(username) && !StaticValues.modDevelopers.contains(playerID)) newMessage.append(Chars.badge());
+        if (StaticValues.modDevelopers.contains(playerID)) newMessage.append(Chars.devBadge());
         if (StaticValues.friendsList.contains(username))
             newMessage.append(Chars.friendBadge())
                             .withStyle(Style.EMPTY.withHoverEvent(

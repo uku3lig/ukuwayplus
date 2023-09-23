@@ -18,4 +18,15 @@ public class DisplayNameUtil {
     public static String clientUsername() {
         return Minecraft.getInstance().player.getName().getString().trim();
     }
+
+    public static String modPlayerID(String username) {
+        if (StaticValues.modUsers.containsValue(username)) {
+            for (String key : StaticValues.modUsers.keySet()) {
+                if (StaticValues.modUsers.get(key).equals(username)) {
+                    return key;
+                }
+            }
+        }
+        return null;
+    }
 }

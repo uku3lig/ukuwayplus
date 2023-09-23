@@ -28,13 +28,12 @@ public class ItemRendererMixin {
     @Inject(method = "render", at = @At("HEAD"), cancellable = true)
     private void render(ItemStack itemStack, ItemDisplayContext displayContext, boolean leftHand, PoseStack poseStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay, BakedModel model, CallbackInfo ci) {
         if ((minecraft.player != null && displayContext != ItemDisplayContext.GUI && HideawayPlus.connected())) {
-
-            CompoundTag playerChestNbt = minecraft.player.getItemBySlot(EquipmentSlot.CHEST).getTagElement(Constants.PUBLIC_BUKKIT_VALUES);
-            CompoundTag playerHeadNbt = minecraft.player.getItemBySlot(EquipmentSlot.HEAD).getTagElement(Constants.PUBLIC_BUKKIT_VALUES);
-
-            CompoundTag stackNbt = itemStack.getTagElement(Constants.PUBLIC_BUKKIT_VALUES);
-
             if (HideawayPlus.config().hideCosmetics() || minecraft.options.getCameraType().isFirstPerson()) {
+                CompoundTag playerChestNbt = minecraft.player.getItemBySlot(EquipmentSlot.CHEST).getTagElement(Constants.PUBLIC_BUKKIT_VALUES);
+                CompoundTag playerHeadNbt = minecraft.player.getItemBySlot(EquipmentSlot.HEAD).getTagElement(Constants.PUBLIC_BUKKIT_VALUES);
+
+                CompoundTag stackNbt = itemStack.getTagElement(Constants.PUBLIC_BUKKIT_VALUES);
+
                 if (stackNbt != null && playerChestNbt != null) {
                     String stackId = stackNbt.getString(Constants.hideawayId("random"));
                     String itemId = playerChestNbt.getString(Constants.hideawayId("random"));
