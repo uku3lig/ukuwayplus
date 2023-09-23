@@ -9,4 +9,6 @@ public class StaticValues {
 
     public static List<String> friendsList = new ArrayList<>();
     public static boolean friendsCheck = false;
+
+    public static List<String> modUsers = new ArrayList<>();
 }
