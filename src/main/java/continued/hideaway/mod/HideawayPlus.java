@@ -90,7 +90,8 @@ public class HideawayPlus implements ClientModInitializer {
                     }
                 }, 0))
                 .add(Task.of(() -> {
-                    if (API.enabled) {
+                    if (HideawayPlus.connected()) {
+                        API.enabled = true;
                         API.tick();
                     }
                 }, 0))

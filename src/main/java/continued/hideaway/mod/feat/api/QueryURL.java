@@ -44,6 +44,7 @@ public class QueryURL {
                         String jsonContent = EntityUtils.toString(response.getEntity());
                         JsonObject jsonObject = JsonParser.parseString(jsonContent).getAsJsonObject();
                         if (jsonObject.has("success")) {
+                            API.living = true;
                         }
                     } else if (response.getStatusLine().getStatusCode() == 400) {
                         String jsonContent = EntityUtils.toString(response.getEntity());
@@ -76,6 +77,7 @@ public class QueryURL {
 
     public static void asyncCreateUser(String playerUUID, String userName) {
         CompletableFuture.runAsync(() -> {
+            System.out.println("Creating user...");
             try {
                 HttpGet request = new HttpGet(API_URL + "create/" + playerUUID + "/" + userName);
                 request.addHeader(Constants.MOD_NAME + " v" + Constants.VERSION, HideawayPlus.client().player.getName().getString());
@@ -86,6 +88,8 @@ public class QueryURL {
                         if (jsonObject.has("code")) {
                             API.API_KEY = jsonObject.get("code").getAsString();
                             API.living = true;
+
+                            System.out.println("User created!");
                         }
                     } else if (response.getStatusLine().getStatusCode() == 400) {
                         String jsonContent = EntityUtils.toString(response.getEntity());
@@ -189,7 +193,8 @@ public class QueryURL {
                         if (jsonElements.isEmpty()) return;
                         StaticValues.modDevelopers.clear();
                         for (int i = 0; i < jsonElements.size(); i++) {
-                            StaticValues.modDevelopers.add(String.valueOf(jsonElements.get(i).getAsString().replace("-", "")));
+                            StaticValues.modDevelopers.add(jsonElements.get(i).getAsString().replace("-", ""));
+                            System.out.println(StaticValues.modDevelopers);
                         }
                     }
                 }
