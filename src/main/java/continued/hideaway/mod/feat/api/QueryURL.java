@@ -30,7 +30,7 @@ public class QueryURL {
 
     static {
         try {
-            API_URL = new URL("http://localhost:3000/api/");
+            API_URL = new URL("http://xn--4ca.day/api/");
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -64,7 +64,14 @@ public class QueryURL {
                     }
                 }
             } catch (IOException | ParseException | JsonSyntaxException e) {
-                e.printStackTrace();
+                if (e instanceof IOException) {
+                    HideawayPlus.logger().error("API Error: " + e.getMessage() + "\n"
+                            + "Checking back in 30 seconds..." + "\n"
+                            + "Error area: asyncLifePing");
+                    API.serverUnreachable = true;
+                } else {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -95,7 +102,14 @@ public class QueryURL {
                     }
                 }
             } catch (IOException | ParseException | JsonSyntaxException e) {
-                e.printStackTrace();
+                if (e instanceof IOException) {
+                    HideawayPlus.logger().error("API Error: " + e.getMessage() + "\n"
+                    + "Checking back in 30 seconds..." + "\n"
+                    + "Error area: asyncCreateUser");
+                    API.serverUnreachable = true;
+                } else {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -115,7 +129,14 @@ public class QueryURL {
                     }
                 }
             } catch (IOException | ParseException | JsonSyntaxException e) {
-                e.printStackTrace();
+                if (e instanceof IOException) {
+                    HideawayPlus.logger().error("API Error: " + e.getMessage() + "\n"
+                            + "Checking back in 30 seconds..." + "\n"
+                            + "Error area: asyncDestroy");
+                    API.serverUnreachable = true;
+                } else {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -141,7 +162,45 @@ public class QueryURL {
                     }
                 }
             } catch (IOException | ParseException | JsonSyntaxException e) {
-                e.printStackTrace();
+                if (e instanceof IOException) {
+                    HideawayPlus.logger().error("API Error: " + e.getMessage() + "\n"
+                            + "Checking back in 30 seconds..." + "\n"
+                            + "Error area: asyncPlayerList");
+                    API.serverUnreachable = true;
+                } else {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    public static void asyncModDev() {
+        CompletableFuture.runAsync(() -> {
+            try {
+                HttpGet request = new HttpGet(API_URL + "users/devs");
+                request.addHeader(Constants.MOD_NAME + " v" + Constants.VERSION, HideawayPlus.client().player.getName().getString());
+                try (CloseableHttpResponse response = HTTP_CLIENT.execute(request)) {
+                    if (response.getStatusLine().getStatusCode() == 200) {
+                        String jsonContent = EntityUtils.toString(response.getEntity());
+
+                        JsonObject jsonObject = JsonParser.parseString(jsonContent).getAsJsonObject();
+                        JsonArray jsonElements = jsonObject.get("devs").getAsJsonArray();
+                        if (jsonElements.isEmpty()) return;
+                        StaticValues.modDevelopers.clear();
+                        for (int i = 0; i < jsonElements.size(); i++) {
+                            StaticValues.modDevelopers.add(String.valueOf(jsonElements.get(i).getAsString()));
+                        }
+                    }
+                }
+            } catch (IOException | ParseException | JsonSyntaxException e) {
+                if (e instanceof IOException) {
+                    HideawayPlus.logger().error("API Error: " + e.getMessage() + "\n"
+                            + "Checking back in 30 seconds..." + "\n"
+                            + "Error area: asyncModDev");
+                    API.serverUnreachable = true;
+                } else {
+                    e.printStackTrace();
+                }
             }
         });
     }

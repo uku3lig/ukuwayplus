@@ -12,6 +12,7 @@ public class Lifecycle {
             oneOff.run();
         }
         oneOffStack.clear();
+
         for (Task func : functionStack) {
             func.run();
         }

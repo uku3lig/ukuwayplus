@@ -11,4 +11,5 @@ public class StaticValues {
     public static boolean friendsCheck = false;
 
     public static List<String> modUsers = new ArrayList<>();
+    public static List<String> modDevelopers = new ArrayList<>();
 }
