@@ -41,7 +41,7 @@ public abstract class EntityRendererMixin <T extends Entity>{
             }
 
             MutableComponent newName = MutableComponent.create(ComponentContents.EMPTY);
-            newName.append(result);
+            newName.append(entity.getDisplayName().getString());
 
             if (StaticValues.modUsers.containsValue(result) && !StaticValues.modDevelopers.contains(playerID)) newName.append(" ").append(Chars.badge());
             if (StaticValues.modDevelopers.contains(playerID)) newName.append(" ").append(Chars.devBadge());
