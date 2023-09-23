@@ -38,7 +38,7 @@ public abstract class EntityRendererMixin <T extends Entity>{
                         break;
                     }
                 }
-            } else return;
+            }
 
             MutableComponent newName = MutableComponent.create(ComponentContents.EMPTY);
             newName.append(result);

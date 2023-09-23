@@ -29,11 +29,11 @@ public class DisplayNameMixin {
                 for (String key : StaticValues.modUsers.keySet()) {
                     if (StaticValues.modUsers.get(key).equals(result)) {
                         playerID = key;
-                        System.out.println("found user" + result);
+                        System.out.println("found user " + result);
                         break;
                     }
                 }
-            } else return;
+            }
 
             MutableComponent newName = MutableComponent.create(ComponentContents.EMPTY);
             newName.append(name);
