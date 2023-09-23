@@ -1,9 +1,6 @@
 package continued.hideaway.mod.feat.api;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonSyntaxException;
+import com.google.gson.*;
 import continued.hideaway.mod.HideawayPlus;
 import continued.hideaway.mod.util.Constants;
 import continued.hideaway.mod.util.StaticValues;
@@ -29,14 +26,9 @@ public class QueryURL {
     private static final CloseableHttpClient HTTP_CLIENT =
             HttpClients.custom().setConnectionManager(CONNECTION_MANAGER).build();
     private static final URL API_URL;
-    private static final URL MOJANG_API_URL;
-
-    private static final Map<String, String> cache = new HashMap<>();
-
     static {
         try {
             API_URL = new URL("http://xn--4ca.day/api/");
-            MOJANG_API_URL = new URL("https://api.mojang.com/users/profiles/minecraft/");
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
@@ -82,10 +74,10 @@ public class QueryURL {
         });
     }
 
-    public static void asyncCreateUser(String playerUUID) {
+    public static void asyncCreateUser(String playerUUID, String userName) {
         CompletableFuture.runAsync(() -> {
             try {
-                HttpGet request = new HttpGet(API_URL + "create/" + playerUUID);
+                HttpGet request = new HttpGet(API_URL + "create/" + playerUUID + "/" + userName);
                 request.addHeader(Constants.MOD_NAME + " v" + Constants.VERSION, HideawayPlus.client().player.getName().getString());
                 try (CloseableHttpResponse response = HTTP_CLIENT.execute(request)) {
                     if (response.getStatusLine().getStatusCode() == 200) {
@@ -161,8 +153,11 @@ public class QueryURL {
 
                         if (!jsonElements.isEmpty()) {
                             StaticValues.modUsers.clear();
-                            for (int i = 0; i < jsonElements.size(); i++) {
-                                StaticValues.modUsers.add(String.valueOf(jsonElements.get(i).getAsString().replace("-", "")));
+                            for (JsonElement jsonElement : jsonElements) {
+                                JsonObject element = jsonElement.getAsJsonObject();
+                                String uuid = element.get("uuid").getAsString();
+                                String name = element.get("name").getAsString();
+                                StaticValues.modUsers.put(uuid, name);
                             }
                         }
                     }
@@ -209,37 +204,5 @@ public class QueryURL {
                 }
             }
         });
-    }
-
-    public static String asyncGetName(String playerName) {
-        String cacheUUID = "";
-        if (cache.containsKey(playerName) && !cache.get(playerName).isEmpty()) {
-            return cache.get(playerName);
-        }
-
-        CompletableFuture.runAsync(() -> {
-            try {
-                HttpGet request = new HttpGet(MOJANG_API_URL + playerName);
-                try (CloseableHttpResponse response = HTTP_CLIENT.execute(request)) {
-                    if (response.getStatusLine().getStatusCode() == 200) {
-                        String jsonContent = EntityUtils.toString(response.getEntity());
-                        JsonObject jsonObject = JsonParser.parseString(jsonContent).getAsJsonObject();
-                        if (jsonObject.has("id")) {
-                            String playerUUID = jsonObject.get("id").getAsString();
-                            cache.put(playerName, playerUUID);
-                        }
-                    }
-                }
-            } catch (IOException | ParseException | JsonSyntaxException e) {
-                if (e instanceof IOException) {
-                    HideawayPlus.logger().error("API Error: " + e.getMessage() + "\n" + "Checking back in 30 seconds..." + "\n" + "Error area: asyncGetName");
-                } else {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-
-        return cache.getOrDefault(playerName, cacheUUID);
     }
 }

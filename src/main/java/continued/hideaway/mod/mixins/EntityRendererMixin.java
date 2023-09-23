@@ -30,15 +30,23 @@ public abstract class EntityRendererMixin <T extends Entity>{
     private void render(T entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource buffer, int packedLight, CallbackInfo ci) {
         if (this.shouldShowName(entity) && HideawayPlus.connected() && entity instanceof Player) {
             String result = DisplayNameUtil.ignFromDisplayName(entity.getDisplayName().getString());
-            String playerID = API.uuidFromUsername(result);
+            String playerID = "";
+            if (StaticValues.modUsers.containsValue(result)) {
+                for (String key : StaticValues.modUsers.keySet()) {
+                    if (StaticValues.modUsers.get(key).equals(result)) {
+                        playerID = key;
+                        break;
+                    }
+                }
+            } else return;
 
             MutableComponent newName = MutableComponent.create(ComponentContents.EMPTY);
             newName.append(result);
 
-            if (StaticValues.modUsers.contains(playerID) && !StaticValues.modDevelopers.contains(playerID)) newName.append(" ").append(Chars.badge());
+            if (StaticValues.modUsers.containsValue(result) && !StaticValues.modDevelopers.contains(playerID)) newName.append(" ").append(Chars.badge());
             if (StaticValues.modDevelopers.contains(playerID)) newName.append(" ").append(Chars.devBadge());
             if (StaticValues.friendsList.contains(result)) newName.append(" ").append(Chars.friendBadge());
-            if (!StaticValues.modUsers.contains(playerID) && !StaticValues.friendsList.contains(result)) newName = entity.getDisplayName().copy();
+            if (!StaticValues.modUsers.containsValue(result) && !StaticValues.friendsList.contains(result)) newName = entity.getDisplayName().copy();
 
             this.renderNameTag(entity, newName, poseStack, buffer, packedLight);
         }

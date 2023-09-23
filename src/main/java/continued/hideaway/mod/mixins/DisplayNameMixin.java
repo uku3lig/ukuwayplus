@@ -24,12 +24,20 @@ public class DisplayNameMixin {
         Component name = cir.getReturnValue();
         if (HideawayPlus.connected()){
             String result = DisplayNameUtil.ignFromDisplayName(name.getString());
-            String playerID = API.uuidFromUsername(result);
+            String playerID = "";
+            if (StaticValues.modUsers.containsValue(result)) {
+                for (String key : StaticValues.modUsers.keySet()) {
+                    if (StaticValues.modUsers.get(key).equals(result)) {
+                        playerID = key;
+                        break;
+                    }
+                }
+            } else return;
 
             MutableComponent newName = MutableComponent.create(ComponentContents.EMPTY);
             newName.append(name);
 
-            if (StaticValues.modUsers.contains(playerID) && !StaticValues.modDevelopers.contains(playerID)) newName.append(" ").append(Chars.badge());
+            if (StaticValues.modUsers.containsValue(result) && !StaticValues.modDevelopers.contains(playerID)) newName.append(" ").append(Chars.badge());
             if (StaticValues.modDevelopers.contains(playerID)) newName.append(" ").append(Chars.devBadge());
             if (StaticValues.friendsList.contains(result)) newName.append(" ").append(Chars.friendBadge());
             if (!newName.toString().equals(result)) cir.setReturnValue(newName);
