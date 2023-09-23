@@ -2,10 +2,9 @@ package continued.hideaway.mod.mixins;
 
 import continued.hideaway.mod.util.Chars;
 import continued.hideaway.mod.util.StaticValues;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.components.ChatComponent;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.ComponentContents;
-import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.*;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
@@ -17,7 +16,14 @@ public class ChatComponentMixin {
         MutableComponent newMessage = MutableComponent.create(ComponentContents.EMPTY);
         String username = message.getString().substring(2, message.getString().indexOf(":"));
 
-        if (StaticValues.friendsList.contains(username)) newMessage.append(Chars.friendBadge());
+        if (StaticValues.friendsList.contains(username))
+            newMessage.append(Chars.friendBadge())
+                            .withStyle(Style.EMPTY.withHoverEvent(
+                                    new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.literal("")
+                                            .append(Component.translatable("hideaway.tooltip.friend")
+                                                    .setStyle(Style.EMPTY.withColor(ChatFormatting.GOLD)))
+                                    )
+                            ));
         newMessage.append(message);
         return newMessage;
     }
