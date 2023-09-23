@@ -24,8 +24,8 @@ public class KeyboardManager {
         var friends = new KeyMapping("key.hp.friends", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_U, "categories.hp");
         var journal = new KeyMapping("key.hp.journal", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_L, "categories.hp");
         var palmPlate = new KeyMapping("key.hp.palm_plate", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_V, "categories.hp");
-        var mail = new KeyMapping("key.hp.palm_plate", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_C, "categories.hp");
-//        var explore = new KeyMapping("key.hp.palm_plate", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_H, "categories.hp");
+        var mail = new KeyMapping("key.hp.mail", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_C, "categories.hp");
+//        var explore = new KeyMapping("key.hp.explore", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_H, "categories.hp");
         // var debug = new KeyBinding("categories.hplus.debug", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F10,"categories.hplus");
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
