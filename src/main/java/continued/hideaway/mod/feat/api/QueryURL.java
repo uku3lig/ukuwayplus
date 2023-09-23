@@ -180,7 +180,6 @@ public class QueryURL {
                 HttpGet request = new HttpGet(API_URL + "users/devs");
                 request.addHeader(Constants.MOD_NAME + " v" + Constants.VERSION, HideawayPlus.client().player.getName().getString());
                 try (CloseableHttpResponse response = HTTP_CLIENT.execute(request)) {
-                    System.out.println(" response code " + response.getStatusLine().getStatusCode());
                     if (response.getStatusLine().getStatusCode() == 200) {
                         String jsonContent = EntityUtils.toString(response.getEntity());
 
