@@ -3,6 +3,7 @@
 
     "key.hp.menu": "Open Hideaway+ Menu",
     "key.hp.jukebox": "Open Jukebox",
+    "key.hp.autoSell": "Automatically fill shop screen",
     "key.hp.luggage": "Luggage",
     "key.hp.wardrobe": "Wardrobe",
     "key.hp.profile": "Profile",
@@ -24,6 +25,7 @@
     "text.config.hp-config.option.hideCosmetics": "Hide Cosmetics",
     "text.config.hp-config.option.inventoryRarities": "Item Rarity Colors",
     "text.config.hp-config.option.discordRPC": "Use Discord Rich Presence",
+    "text.config.hp-config.option.autoSell": "Automatically fill shop screen",
     "text.config.hp-config.option.autoEnableEditor": "Automatically Enable Editor",
     "text.config.hp-config.option.jukebox": "Use Jukebox",
     "text.config.hp-config.option.noAmbientSounds": "Allow Ambient Sounds",

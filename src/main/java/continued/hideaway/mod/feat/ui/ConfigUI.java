@@ -35,6 +35,8 @@ public class ConfigUI extends BaseOwoScreen<FlowLayout> {
         options.add(new ConfigOption<>(Component.translatable("text.config.hp-config.option.hideCosmetics"), HideawayPlus.config().keys.hideCosmetics, HideawayPlus.config().hideCosmetics()));
         options.add(new ConfigOption<>(Component.translatable("text.config.hp-config.option.discordRPC"), HideawayPlus.config().keys.discordRPC, HideawayPlus.config().discordRPC()));
 
+        options.add(new ConfigOption<>(Component.translatable("text.config.hp-config.option.autoSell"), HideawayPlus.config().keys.autoSell, HideawayPlus.config().autoSell()));
+
         // Rooms
         //options.add(new ConfigOption<>(Component.translatable("text.config.hp-config.option.autoEnableEditor"), HideawayPlus.config().keys.autoEnableEditor, HideawayPlus.config().autoEnableEditor()));
 

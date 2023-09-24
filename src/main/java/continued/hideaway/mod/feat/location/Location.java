@@ -154,7 +154,7 @@ public enum Location {
         PresenceImage.Small.ROUNDEL
     ),
     UNKNOWN(
-        "Using HideawayPlus",
+        "Using Hideaway+",
         "Somewhere in the metaverse... 🚀",
         PresenceImage.Large.SCENE_DARK,
         PresenceImage.Small.ROUNDEL

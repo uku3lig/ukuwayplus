@@ -16,18 +16,18 @@ import java.time.Instant;
 import java.util.BitSet;
 
 public class KeyboardManager {
+    public static final KeyMapping jukebox = new KeyMapping("key.hp.jukebox", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_J, "categories.hp");
+    public static final KeyMapping autoSell = new KeyMapping("key.hp.autoSell", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_S, "categories.hp");
+    public static final KeyMapping luggage = new KeyMapping("key.hp.luggage", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_B, "categories.hp");
+    public static final KeyMapping wardrobe = new KeyMapping("key.hp.wardrobe", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_G, "categories.hp");
+    public static final KeyMapping profile = new KeyMapping("key.hp.profile", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_P, "categories.hp");
+    public static final KeyMapping friends = new KeyMapping("key.hp.friends", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_U, "categories.hp");
+    public static final KeyMapping journal = new KeyMapping("key.hp.journal", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_L, "categories.hp");
+    public static final KeyMapping palmPlate = new KeyMapping("key.hp.palm_plate", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_V, "categories.hp");
+    public static final KeyMapping mail = new KeyMapping("key.hp.mail", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_C, "categories.hp");
+    // public static final KeyMapping explore = new KeyMapping("key.hp.explore", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_H, "categories.hp");
+    // public static final KeyMapping debug = new KeyBinding("categories.hplus.debug", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F10,"categories.hplus");
     public KeyboardManager() {
-        var jukebox = new KeyMapping("key.hp.jukebox", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_J, "categories.hp");
-        var luggage = new KeyMapping("key.hp.luggage", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_B, "categories.hp");
-        var wardrobe = new KeyMapping("key.hp.wardrobe", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_G, "categories.hp");
-        var profile = new KeyMapping("key.hp.profile", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_P, "categories.hp");
-        var friends = new KeyMapping("key.hp.friends", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_U, "categories.hp");
-        var journal = new KeyMapping("key.hp.journal", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_L, "categories.hp");
-        var palmPlate = new KeyMapping("key.hp.palm_plate", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_V, "categories.hp");
-        var mail = new KeyMapping("key.hp.mail", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_C, "categories.hp");
-        //var explore = new KeyMapping("key.hp.explore", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_H, "categories.hp");
-        //var debug = new KeyBinding("categories.hplus.debug", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F10,"categories.hplus");
-
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (jukebox.consumeClick()) client.setScreen(new JukeboxUI());
             while (luggage.consumeClick()) InventorySlotsUI.clickSlot(1, client);
@@ -47,12 +47,18 @@ public class KeyboardManager {
                     messages
                 ));
             }
+            while (autoSell.consumeClick()) {
+                if (!HideawayPlus.config().autoSell() && HideawayPlus.client().screen != null) {
+                    HideawayPlus.shop().tick();
+                }
+            }
 //            while (explore.consumeClick()) {
 //                InventorySlotsUI.clickSlot(44, client);
 //            }
         });
 
         KeyBindingHelper.registerKeyBinding(jukebox);
+        KeyBindingHelper.registerKeyBinding(autoSell);
         KeyBindingHelper.registerKeyBinding(luggage);
         KeyBindingHelper.registerKeyBinding(wardrobe);
         KeyBindingHelper.registerKeyBinding(profile);

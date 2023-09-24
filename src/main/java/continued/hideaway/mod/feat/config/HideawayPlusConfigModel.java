@@ -16,6 +16,8 @@ public class HideawayPlusConfigModel {
 
     public boolean inventoryRarities = true;
 
+    public boolean autoSell = false;
+
     // Rooms
     //public boolean autoEnableEditor = true;
 

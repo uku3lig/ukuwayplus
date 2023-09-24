@@ -17,70 +17,70 @@ public class DisplayNameUtil {
 
     public static String newRankFromRank(String content) {
         String rank = content.substring(0, content.indexOf(" "));
-        switch (rank) {
+        return switch (rank) {
             // Admin
-            case "\uE29A": return "default";
+            case "\uE29A" -> "default";
             // Mod
-            case "\uE29B": return "mod";
+            case "\uE29B" -> "mod";
             // TEAM
-            case "\uE608": return "team";
+            case "\uE608" -> "team";
             // MEDIA
-            case "\uE29C": return "media";
+            case "\uE29C" -> "media";
             // GUIDE
-            case "\uE29D": return "guide";
+            case "\uE29D" -> "guide";
             // EVENTS
-            case "\uE29E": return "events";
+            case "\uE29E" -> "events";
             // VACATION CLUB+
-            case "\uE29F": return "vacation_club_plus";
+            case "\uE29F" -> "vacation_club_plus";
             // VACATION CLUB
-            case "\uE5F8": return "vacation_club";
+            case "\uE5F8" -> "vacation_club";
             // GUEST
-            case "\uE5F9": return "guest";
+            case "\uE5F9" -> "guest";
 
 
             // COMMON
-            case "\uE2A0": return "common";
+            case "\uE2A0" -> "common";
             // UNCOMMON
-            case "\uE2A1": return "rare";
+            case "\uE2A1" -> "rare";
             // RARE
-            case "\uE2A2": return "rare";
+            case "\uE2A2" -> "rare";
             // EXOTIC
-            case "\uE2A3": return "rare";
+            case "\uE2A3" -> "rare";
             // MYTHICAL
-            case "\uE2A4": return "rare";
+            case "\uE2A4" -> "rare";
             // LIMITED
-            case "\uE2A5": return "rare";
+            case "\uE2A5" -> "rare";
             // SECRET RARE
-            case "\uE2A6": return "rare";
+            case "\uE2A6" -> "rare";
 
             // BAKEND
-            case "\uE2A7": return "rare";
+            case "\uE2A7" -> "rare";
             // CHILL
-            case "\uE607": return "rare";
+            case "\uE607" -> "rare";
 
             // TRINKET
-            case "\uE2A8": return "rare";
+            case "\uE2A8" -> "rare";
             // ITEM
-            case "\uE2A9": return "rare";
+            case "\uE2A9" -> "rare";
             // HAT
-            case "\uE2AA": return "rare";
+            case "\uE2AA" -> "rare";
             // FURNITURE
-            case "\uE2AB": return "rare";
+            case "\uE2AB" -> "rare";
             // BADGE
-            case "\uE2AC": return "rare";
+            case "\uE2AC" -> "rare";
             // PICTURE
-            case "\uE2AD": return "rare";
+            case "\uE2AD" -> "rare";
             // SPECIAL
-            case "\uE2AE": return "rare";
+            case "\uE2AE" -> "rare";
             // AUTHOR
-            case "\uE2AF": return "rare";
+            case "\uE2AF" -> "rare";
             // SHELL
-            case "\uE2B0": return "rare";
+            case "\uE2B0" -> "rare";
             // FISH
-            case "\uE2B1": return "rare";
-        }
+            case "\uE2B1" -> "rare";
+            default -> rank;
+        };
 
-        return rank;
     }
 
     public static String clientUsername() {
