@@ -35,7 +35,7 @@ public class FriendsListUI {
             List<ItemStack> allItems = new ArrayList<>(menu.getItems());
             while (menu.getItems().stream().anyMatch(itemStack -> itemStack.getItem() == Items.PAPER && itemStack.getTag().getAsString().contains("→"))) {
                 Slot paperSlot = menu.slots.stream().filter(slot -> slot.getItem().getItem() == Items.PAPER && slot.getItem().getTag().getAsString().contains("→")).findFirst().orElse(null);
-                ((AbstractContainerScreenAccessor)menu).hp$slotChange(paperSlot, paperSlot.index - 1, 0, ClickType.QUICK_MOVE);
+                ((AbstractContainerScreenAccessor)menu).hp$slotChange(paperSlot, 0, 0, ClickType.QUICK_MOVE);
                 allItems.addAll(menu.getItems());
             }
 
