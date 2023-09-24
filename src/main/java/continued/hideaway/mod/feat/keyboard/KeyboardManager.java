@@ -30,7 +30,7 @@ public class KeyboardManager {
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (jukebox.consumeClick()) {
-                if (HideawayPlus.config().jukebox()) client.setScreen(new JukeboxUI());
+                client.setScreen(new JukeboxUI());
             }
             while (luggage.consumeClick()) {
                 InventorySlotsUI.clickSlot(1, client);

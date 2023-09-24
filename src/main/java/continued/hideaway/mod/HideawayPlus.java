@@ -52,6 +52,10 @@ public class HideawayPlus implements ClientModInitializer {
         debugUsers.add("b344687bec74479a95401aa8ccb13e92"); // OliviaTheVampire
         debugUsers.add("8b484179e47e417b8ecad204aa796e79"); // Dragonostic
 
+        Constants.MOD_MENU_PRESENT = FabricLoader.getInstance().isModLoaded("modmenu");
+
+        System.out.println(Constants.MOD_MENU_PRESENT + " is mod menu present?");
+
 
         // Managers and services that need to be retained after
         // initialization, and/or be accessed by other services, should
@@ -63,7 +67,7 @@ public class HideawayPlus implements ClientModInitializer {
         new KeyboardManager();
 
         if (config().discordRPC()) DISCORD_MANAGER = new DiscordManager().start();
-        if (config().jukebox()) JUKEBOX = new Jukebox();
+        JUKEBOX = new Jukebox();
         SHOP = new Shop();
 
         // Lifecycle tasks should be initialized here.

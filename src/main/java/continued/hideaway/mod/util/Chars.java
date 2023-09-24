@@ -7,12 +7,12 @@ import net.minecraft.resources.ResourceLocation;
 
 public class Chars {
     public static Component disc() {
-        return Component.literal("\uE003 ").setStyle(Style.EMPTY.withFont(
+        return Component.literal("\uE004").setStyle(Style.EMPTY.withFont(
                 new ResourceLocation("hideaway_plus:text")
         )).withStyle(ChatFormatting.WHITE);
     }
     public static Component devBadge() {
-        return Component.literal("\uE001").setStyle(Style.EMPTY.withFont(
+        return Component.literal("\uE003").setStyle(Style.EMPTY.withFont(
                 new ResourceLocation("hideaway_plus:text")
         )).withStyle(ChatFormatting.WHITE);
     }
@@ -22,7 +22,13 @@ public class Chars {
         )).withStyle(ChatFormatting.WHITE);
     }
     public static Component friendBadge() {
-        return Component.literal("\uE004").setStyle(Style.EMPTY.withFont(
+        return Component.literal("\uE002").setStyle(Style.EMPTY.withFont(
+                new ResourceLocation("hideaway_plus:text")
+        )).withStyle(ChatFormatting.WHITE);
+    }
+
+    public static Component settingsIcon() {
+        return Component.literal("\uEF01").setStyle(Style.EMPTY.withFont(
                 new ResourceLocation("hideaway_plus:text")
         )).withStyle(ChatFormatting.WHITE);
     }

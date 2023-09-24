@@ -190,7 +190,7 @@ public class QueryURL {
                         if (jsonElements.isEmpty()) return;
                         StaticValues.modDevelopers.clear();
                         for (int i = 0; i < jsonElements.size(); i++) {
-                            StaticValues.modDevelopers.add(jsonElements.get(i).getAsString().replace("-", ""));
+                            StaticValues.modDevelopers.add(jsonElements.get(i).getAsString());
                         }
                     }
                 }

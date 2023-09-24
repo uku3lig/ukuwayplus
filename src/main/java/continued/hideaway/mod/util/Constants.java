@@ -12,4 +12,6 @@ public class Constants {
 	public static String hideawayId(String path) {
 		return new ResourceLocation("pixelhideawaycore", path).toString();
 	}
+
+	public static boolean MOD_MENU_PRESENT = false;
 }
