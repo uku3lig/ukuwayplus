@@ -25,31 +25,17 @@ public class KeyboardManager {
         var journal = new KeyMapping("key.hp.journal", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_L, "categories.hp");
         var palmPlate = new KeyMapping("key.hp.palm_plate", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_V, "categories.hp");
         var mail = new KeyMapping("key.hp.mail", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_C, "categories.hp");
-//        var explore = new KeyMapping("key.hp.explore", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_H, "categories.hp");
-        // var debug = new KeyBinding("categories.hplus.debug", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F10,"categories.hplus");
+        //var explore = new KeyMapping("key.hp.explore", InputConstants.Type.KEYSYM, GLFW.GLFW_KEY_H, "categories.hp");
+        //var debug = new KeyBinding("categories.hplus.debug", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F10,"categories.hplus");
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while (jukebox.consumeClick()) {
-                client.setScreen(new JukeboxUI());
-            }
-            while (luggage.consumeClick()) {
-                InventorySlotsUI.clickSlot(1, client);
-            }
-            while (wardrobe.consumeClick()) {
-                InventorySlotsUI.clickSlot(2, client);
-            }
-            while (profile.consumeClick()) {
-                InventorySlotsUI.clickSlot(3, client);
-            }
-            while (friends.consumeClick()) {
-                InventorySlotsUI.clickSlot(4, client);
-            }
-            while (journal.consumeClick()) {
-                InventorySlotsUI.clickSlot(43, client);
-            }
-            while (palmPlate.consumeClick()) {
-                InventorySlotsUI.clickSlot(44, client);
-            }
+            while (jukebox.consumeClick()) client.setScreen(new JukeboxUI());
+            while (luggage.consumeClick()) InventorySlotsUI.clickSlot(1, client);
+            while (wardrobe.consumeClick()) InventorySlotsUI.clickSlot(2, client);
+            while (profile.consumeClick()) InventorySlotsUI.clickSlot(3, client);
+            while (friends.consumeClick()) InventorySlotsUI.clickSlot(4, client);
+            while (journal.consumeClick()) InventorySlotsUI.clickSlot(43, client);
+            while (palmPlate.consumeClick()) InventorySlotsUI.clickSlot(44, client);
             while (mail.consumeClick()) {
                 LastSeenMessages.Update messages = new LastSeenMessages.Update(0, new BitSet());
                 Instant now = Instant.now();
