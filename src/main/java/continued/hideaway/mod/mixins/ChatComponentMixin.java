@@ -15,11 +15,11 @@ public class ChatComponentMixin {
     @ModifyVariable(at = @At("HEAD"), method = "addMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;ILnet/minecraft/client/GuiMessageTag;Z)V", argsOnly = true)
     private Component addMessageIcons(Component message) {
         MutableComponent newMessage = MutableComponent.create(ComponentContents.EMPTY);
-        String username = message.getString().substring(2, message.getString().indexOf(":"));
+        String username = DisplayNameUtil.nameFromChatMessage(message.getString());
         String playerID = DisplayNameUtil.modPlayerID(username);
 
-        if (StaticValues.modUsers.containsValue(username) && !StaticValues.modDevelopers.contains(playerID)) newMessage.append(Chars.badge());
-        if (StaticValues.modDevelopers.contains(playerID)) newMessage.append(Chars.devBadge())
+        if (StaticValues.modUsers.containsValue(username) && !StaticValues.modDevelopers.contains(playerID)) {newMessage.append(Chars.badge());}
+        if (StaticValues.modDevelopers.contains(playerID)) newMessage.append("").append(Chars.devBadge())
                 .withStyle(Style.EMPTY.withHoverEvent(
                         new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.literal("")
                                 .append(Component.translatable("tooltip.hp.developer")
@@ -27,7 +27,7 @@ public class ChatComponentMixin {
                         )
                 ));
         if (StaticValues.friendsList.contains(username))
-            newMessage.append(Chars.friendBadge())
+            newMessage.append("").append(Chars.friendBadge())
                             .withStyle(Style.EMPTY.withHoverEvent(
                                     new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.literal("")
                                             .append(Component.translatable("tooltip.hp.friend")

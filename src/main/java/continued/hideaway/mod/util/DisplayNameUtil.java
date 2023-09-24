@@ -97,4 +97,12 @@ public class DisplayNameUtil {
         }
         return null;
     }
+
+    public static String nameFromChatMessage(String chatMessage) {
+        String username = chatMessage.replaceAll(":(.*)", "");
+        username = username.replaceAll("^\\S+ ", "");
+        if (username.isEmpty()) {
+            return "";
+        } else return username;
+    }
 }
