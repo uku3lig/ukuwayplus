@@ -14,11 +14,15 @@ public class HideawayPlusConfigModel {
     public boolean hideCosmetics = false;
     public boolean discordRPC = true;
 
+    public boolean autoSell = false;
+
     // Rooms
     //public boolean autoEnableEditor = true;
 
     // Sound
-    public boolean noAmbientSounds = false;
+    public boolean noAmbientSounds = true;
 
-    public boolean noActivitySongs = false;
+    public boolean noActivitySongs = true;
+
+    // these two are backwards lol
 }

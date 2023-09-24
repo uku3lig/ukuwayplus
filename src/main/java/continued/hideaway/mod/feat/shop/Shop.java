@@ -1,27 +1,41 @@
 package continued.hideaway.mod.feat.shop;
 
 import continued.hideaway.mod.HideawayPlus;
+import continued.hideaway.mod.feat.keyboard.KeyboardManager;
 import continued.hideaway.mod.feat.ui.FriendsListUI;
 import continued.hideaway.mod.util.StaticValues;
 import continued.hideaway.mod.feat.ext.AbstractContainerScreenAccessor;
+import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.minecraft.client.KeyboardHandler;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.player.Input;
+import net.minecraft.client.player.KeyboardInput;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.inventory.ClickType;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class Shop {
+
+    private static boolean fill;
+
     public void tick() {
         if (getShopName() == null) return;
         String shopName = getShopName();
 
-        if ("fruit".equals(shopName) || "fish".equals(shopName)) {
+        if (GLFW.glfwGetKey(GLFW.glfwGetCurrentContext(), KeyBindingHelper.getBoundKeyOf(KeyboardManager.autoSell).getValue()) == GLFW.GLFW_PRESS) {
+            fill = true;
+        }
+
+        if (("fruit".equals(shopName) || "fish".equals(shopName)) && (HideawayPlus.config().autoSell() || fill)) {
+            fill = false;
             List<Slot> emptyChestSlots = new ArrayList<>();
             List<Slot> playerEmptySlots = new ArrayList<>();
             AbstractContainerScreen<ChestMenu> menu = (AbstractContainerScreen<ChestMenu>) HideawayPlus.client().screen;
