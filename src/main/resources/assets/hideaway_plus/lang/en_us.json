@@ -22,6 +22,7 @@
 
     "text.config.hp-config.option.pipNav": "Use PiP Navigation",
     "text.config.hp-config.option.hideCosmetics": "Hide Cosmetics",
+    "text.config.hp-config.option.inventoryRarities": "Item Rarity Colors",
     "text.config.hp-config.option.discordRPC": "Use Discord Rich Presence",
     "text.config.hp-config.option.autoEnableEditor": "Automatically Enable Editor",
     "text.config.hp-config.option.jukebox": "Use Jukebox",

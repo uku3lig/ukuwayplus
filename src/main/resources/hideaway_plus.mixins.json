@@ -19,6 +19,7 @@
     "GameMenuScreenMixin",
     "InGameHudMixin",
     "ItemRendererMixin",
+    "LogoRendererMixin",
     "MinecraftClientMixin",
     "PlayerInventoryMixin",
     "PlayerMixin",

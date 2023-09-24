@@ -14,6 +14,8 @@ public class HideawayPlusConfigModel {
     public boolean hideCosmetics = false;
     public boolean discordRPC = true;
 
+    public boolean inventoryRarities = true;
+
     // Rooms
     //public boolean autoEnableEditor = true;
 

@@ -2,7 +2,6 @@ package continued.hideaway.mod.mixins;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import continued.hideaway.mod.HideawayPlus;
-import continued.hideaway.mod.feat.api.API;
 import continued.hideaway.mod.util.Chars;
 import continued.hideaway.mod.util.DisplayNameUtil;
 import continued.hideaway.mod.util.StaticValues;
@@ -30,15 +29,7 @@ public abstract class EntityRendererMixin <T extends Entity>{
     private void render(T entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource buffer, int packedLight, CallbackInfo ci) {
         if (this.shouldShowName(entity) && HideawayPlus.connected() && entity instanceof Player) {
             String result = DisplayNameUtil.ignFromDisplayName(entity.getDisplayName().getString());
-            String playerID = "";
-            if (StaticValues.modUsers.containsValue(result)) {
-                for (String key : StaticValues.modUsers.keySet()) {
-                    if (StaticValues.modUsers.get(key).equals(result)) {
-                        playerID = key;
-                        break;
-                    }
-                }
-            }
+            String playerID = DisplayNameUtil.modPlayerID(result);
 
             MutableComponent newName = MutableComponent.create(ComponentContents.EMPTY);
             newName.append(entity.getDisplayName().getString());
