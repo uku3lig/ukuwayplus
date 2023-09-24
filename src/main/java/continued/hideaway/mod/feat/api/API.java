@@ -10,11 +10,11 @@ public class API {
 
     public static void tick() {
         if (!enabled || serverUnreachable) return;
-        if (!living || API_KEY.isEmpty()) {
-            QueryURL.asyncCreateUser(HideawayPlus.player().getStringUUID(), HideawayPlus.player().getName().getString());
-            QueryURL.asyncPlayerList();
-            QueryURL.asyncModDev();
-        }
+        if (living || !API_KEY.isEmpty()) return;
+        QueryURL.asyncCreateUser(HideawayPlus.player().getStringUUID(), HideawayPlus.player().getName().getString());
+        QueryURL.asyncPlayerList();
+        QueryURL.asyncModDev();
+        living = true;
     }
 
     public static void live() {

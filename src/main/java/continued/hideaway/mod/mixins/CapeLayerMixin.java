@@ -17,7 +17,7 @@ import continued.hideaway.mod.HideawayPlus;
 public class CapeLayerMixin {
     @Inject(at = @At("HEAD"), method = "render", cancellable = true)
     public void render(PoseStack poseStack, MultiBufferSource buffer, int packedLight, AbstractClientPlayer livingEntity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, CallbackInfo info) {
-        if (HideawayPlus.connected()) {
+        if (HideawayPlus.connected() && !HideawayPlus.config().hideCosmetics()) {
             ItemStack playerChestplate = livingEntity.getItemBySlot(EquipmentSlot.CHEST);
             if (playerChestplate != ItemStack.EMPTY) {
                 info.cancel();
