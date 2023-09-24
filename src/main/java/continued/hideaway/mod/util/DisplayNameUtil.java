@@ -1,6 +1,7 @@
 package continued.hideaway.mod.util;
 
 import net.minecraft.client.Minecraft;
+import org.intellij.lang.annotations.RegExp;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -96,5 +97,13 @@ public class DisplayNameUtil {
             }
         }
         return null;
+    }
+
+    public static String nameFromChatMessage(String chatMessage) {
+        String username = chatMessage.replaceAll(":(.*)", "");
+        username = username.replaceAll("^\\S+ ", "");
+        if (username.isEmpty()) {
+            return "";
+        } else return username;
     }
 }

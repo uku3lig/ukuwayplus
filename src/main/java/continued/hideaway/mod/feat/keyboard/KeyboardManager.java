@@ -33,7 +33,7 @@ public class KeyboardManager {
     public KeyboardManager() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             while (jukebox.consumeClick()) {
-                client.setScreen(new JukeboxUI());
+                if (HideawayPlus.client().screen != null) client.setScreen(new JukeboxUI());
             }
             while (autoSell.consumeClick()) {
                 if (!HideawayPlus.config().autoSell() && HideawayPlus.client().screen != null) {
