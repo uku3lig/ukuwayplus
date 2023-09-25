@@ -10,7 +10,6 @@ import continued.hideaway.mod.feat.lifecycle.Task;
 import continued.hideaway.mod.feat.location.Location;
 import continued.hideaway.mod.feat.shop.Shop;
 import continued.hideaway.mod.feat.ui.FriendsListUI;
-import continued.hideaway.mod.feat.wardrobe.Wardrobe;
 import continued.hideaway.mod.util.Constants;
 import continued.hideaway.mod.util.StaticValues;
 import net.fabricmc.api.ClientModInitializer;
@@ -111,9 +110,7 @@ public class HideawayPlus implements ClientModInitializer {
                         API.tick();
                     }
                 }, 300))
-                .add(Task.of(API::modDev, 100))
-                .add(Task.of(Wardrobe::tick, 0));
-
+                .add(Task.of(API::modDev, 100));
     }
 
     public static boolean connected() {
