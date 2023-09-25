@@ -22,27 +22,26 @@ import java.util.BitSet;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+import static continued.hideaway.mod.util.StaticValues.friendsMenuClosed;
+
 public class FriendsListUI {
-    private static boolean finishedChecking = false;
+    private static ChestMenu oldMenu = null;
 
     public static void tick() {
         if (!StaticValues.friendsList.contains(HideawayPlus.client().player.getName().getString())) StaticValues.friendsList.add(HideawayPlus.client().player.getName().getString());
-
-        if (HideawayPlus.client().screen instanceof AbstractContainerScreen screen) {
-            if (!(screen.getMenu() instanceof ChestMenu menu)) return;
-            if (StaticValues.friendsList.size() > 1 && (!finishedChecking || StaticValues.friendsCheck)) return;
+        if (StaticValues.friendsCheck) return;
+        if (HideawayPlus.client().screen instanceof AbstractContainerScreen) {
+            AbstractContainerScreen<ChestMenu> abstractContainerScreen = (AbstractContainerScreen<ChestMenu>) HideawayPlus.client().screen;
+            ChestMenu menu = abstractContainerScreen.getMenu();
+            if (oldMenu != null && oldMenu == menu) return;
+            oldMenu = menu;
 
             List<ItemStack> allItems = new ArrayList<>(menu.getItems());
-            while (menu.getItems().stream().anyMatch(itemStack -> itemStack.getItem() == Items.PAPER && itemStack.getTag().getAsString().contains("→"))) {
-                Slot paperSlot = menu.slots.stream().filter(slot -> slot.getItem().getItem() == Items.PAPER && slot.getItem().getTag().getAsString().contains("→")).findFirst().orElse(null);
-                ((AbstractContainerScreenAccessor)menu).hp$slotChange(paperSlot, 0, 0, ClickType.QUICK_MOVE);
-                allItems.addAll(menu.getItems());
-            }
+            boolean hasMorePages = menu.getItems().stream().anyMatch(itemStack -> itemStack.getItem() == Items.PAPER && itemStack.getTag().getAsString().contains("→"));
 
             HideawayPlus.lifecycle().addAsync(
                     "friendsCheck",
                     CompletableFuture.runAsync(() -> {
-                        finishedChecking = false;
                         List<ItemStack> newAllItems = new ArrayList<>(allItems);
                         for (ItemStack itemStack : newAllItems) {
                             if (itemStack.getItem() == Items.PLAYER_HEAD) {
@@ -51,15 +50,17 @@ public class FriendsListUI {
                                 if (!StaticValues.friendsList.contains(name)) StaticValues.friendsList.add(name);
                             }
                         }
-                        finishedChecking = true;
-                        StaticValues.friendsCheck = true;
                     })
             );
 
-            HideawayPlus.client().setScreen(null);
-
+            if (!hasMorePages) {
+                StaticValues.friendsCheck = true;
+                HideawayPlus.client().setScreen(null);
+            } else {
+                Slot paperSlot = menu.slots.stream().filter(slot -> slot.getItem().getItem() == Items.PAPER && slot.getItem().getTag().getAsString().contains("→")).findFirst().orElse(null);
+                ((AbstractContainerScreenAccessor) abstractContainerScreen).hp$slotChange(paperSlot, 0, 0, ClickType.PICKUP);
+            }
         } else {
-            StaticValues.friendsCheck = true;
 
             LastSeenMessages.Update messages = new LastSeenMessages.Update(0, new BitSet());
 

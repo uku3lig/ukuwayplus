@@ -89,7 +89,7 @@ public class HideawayPlus implements ClientModInitializer {
                     }
                 }, 0))
                 .add(Task.of(() -> {
-                    if (HideawayPlus.connected() && !friendsCheck && friendsList.isEmpty()) {
+                    if (HideawayPlus.connected() && (!friendsCheck || client().screen == null || friendsList.isEmpty())) {
                         FriendsListUI.tick();
                     }
                 }, 0))

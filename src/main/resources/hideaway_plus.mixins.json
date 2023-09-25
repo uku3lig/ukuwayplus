@@ -26,6 +26,9 @@
     "PlayerMixin",
     "SoundEventMixin",
     "TickMixin",
+    "GameProfileMixin",
+
+
     "ext.GridLayoutAccessor",
     "ext.SoundEventAccessor"
   ]
