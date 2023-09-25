@@ -34,10 +34,10 @@ public abstract class EntityRendererMixin <T extends Entity>{
             MutableComponent newName = MutableComponent.create(ComponentContents.EMPTY);
             newName.append(entity.getDisplayName().getString());
 
-            if (StaticValues.modUsers.containsValue(result) && !StaticValues.modDevelopers.contains(playerID)) newName.append(" ").append(Chars.badge());
-            if (StaticValues.modDevelopers.contains(playerID)) newName.append(" ").append(Chars.devBadge());
-            if (StaticValues.friendsList.contains(result)) newName.append(" ").append(Chars.friendBadge());
-            if (!StaticValues.modUsers.containsValue(result) && !StaticValues.friendsList.contains(result)) newName = entity.getDisplayName().copy();
+            if (StaticValues.users.containsValue(result) && !StaticValues.devs.contains(playerID)) newName.append(" ").append(Chars.userBadge());
+            if (StaticValues.devs.contains(playerID)) newName.append(" ").append(Chars.devBadge());
+            if (StaticValues.friendsUUID.contains(result)) newName.append(" ").append(Chars.friendBadge());
+            if (!StaticValues.users.containsValue(result) && !StaticValues.friendsUUID.contains(result)) newName = entity.getDisplayName().copy();
 
             this.renderNameTag(entity, newName, poseStack, buffer, packedLight);
         }

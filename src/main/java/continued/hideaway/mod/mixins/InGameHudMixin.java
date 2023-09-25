@@ -59,8 +59,8 @@ public abstract class InGameHudMixin implements InGameHudAccessor {
 
             textPos = textPos - 14;
 
-            guiGraphics.drawString(this.getFont(), string, (int)(textSize + 1), (int)textPos + 1, 0, true);
-            guiGraphics.drawString(this.getFont(), string, (int)(textSize + 1), (int)textPos, 8453920, true);
+            guiGraphics.drawString(this.getFont(), string, textSize + 1, textPos + 1, 0, true);
+            guiGraphics.drawString(this.getFont(), string, textSize + 1, textPos, 8453920, true);
         }
     }
 

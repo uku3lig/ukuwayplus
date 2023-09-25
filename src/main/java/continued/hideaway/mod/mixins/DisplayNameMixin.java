@@ -20,16 +20,25 @@ public class DisplayNameMixin {
     public void getDisplayName(PlayerInfo entry, CallbackInfoReturnable<Component> cir) {
         Component name = cir.getReturnValue();
         if (HideawayPlus.connected()){
-            String result = DisplayNameUtil.ignFromDisplayName(name.getString());
-            String playerID = DisplayNameUtil.modPlayerID(result);
+            String username = DisplayNameUtil.ignFromDisplayName(name.getString());
+            String playerID = DisplayNameUtil.modPlayerID(username);
 
             MutableComponent newName = MutableComponent.create(ComponentContents.EMPTY);
             newName.append(name);
 
-            if (StaticValues.modUsers.containsValue(result) && !StaticValues.modDevelopers.contains(playerID)) newName.append(" ").append(Chars.badge());
-            if (StaticValues.modDevelopers.contains(playerID)) newName.append(" ").append(Chars.devBadge());
-            if (StaticValues.friendsList.contains(result)) newName.append(" ").append(Chars.friendBadge());
-            if (!newName.toString().equals(result)) cir.setReturnValue(newName);
+            if (StaticValues.friendsUsernames.contains(username))
+                Chars.addBadge(newName, Chars.friendBadge());
+
+            if (StaticValues.devs.contains(playerID))
+                Chars.addBadge(newName, Chars.devBadge());
+            else if (StaticValues.teamMembers.contains(playerID))
+                Chars.addBadge(newName, Chars.teamBadge());
+            else if (StaticValues.translators.contains(playerID))
+                Chars.addBadge(newName, Chars.translatorBadge());
+            else if (StaticValues.users.containsKey(playerID))
+                Chars.addBadge(newName, Chars.userBadge());
+
+            if (!newName.toString().equals(username)) cir.setReturnValue(newName);
         }
     }
 }

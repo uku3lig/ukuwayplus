@@ -13,11 +13,10 @@ public class HideawayPlusConfig extends ConfigWrapper<continued.hideaway.mod.fea
 
     public final Keys keys = new Keys();
 
-    private final Option<java.lang.Boolean> pipNav = this.optionForKey(this.keys.pipNav);
     private final Option<java.lang.Boolean> hideCosmetics = this.optionForKey(this.keys.hideCosmetics);
     private final Option<java.lang.Boolean> discordRPC = this.optionForKey(this.keys.discordRPC);
-    private final Option<java.lang.Boolean> autoEnableEditor = this.optionForKey(this.keys.autoEnableEditor);
-    private final Option<java.lang.Boolean> jukebox = this.optionForKey(this.keys.jukebox);
+    private final Option<java.lang.Boolean> inventoryRarities = this.optionForKey(this.keys.inventoryRarities);
+    private final Option<java.lang.Boolean> autoSell = this.optionForKey(this.keys.autoSell);
     private final Option<java.lang.Boolean> noAmbientSounds = this.optionForKey(this.keys.noAmbientSounds);
     private final Option<java.lang.Boolean> noActivitySongs = this.optionForKey(this.keys.noActivitySongs);
 
@@ -41,14 +40,6 @@ public class HideawayPlusConfig extends ConfigWrapper<continued.hideaway.mod.fea
         return wrapper;
     }
 
-    public boolean pipNav() {
-        return pipNav.value();
-    }
-
-    public void pipNav(boolean value) {
-        pipNav.set(value);
-    }
-
     public boolean hideCosmetics() {
         return hideCosmetics.value();
     }
@@ -65,20 +56,20 @@ public class HideawayPlusConfig extends ConfigWrapper<continued.hideaway.mod.fea
         discordRPC.set(value);
     }
 
-    public boolean autoEnableEditor() {
-        return autoEnableEditor.value();
+    public boolean inventoryRarities() {
+        return inventoryRarities.value();
     }
 
-    public void autoEnableEditor(boolean value) {
-        autoEnableEditor.set(value);
+    public void inventoryRarities(boolean value) {
+        inventoryRarities.set(value);
     }
 
-    public boolean jukebox() {
-        return jukebox.value();
+    public boolean autoSell() {
+        return autoSell.value();
     }
 
-    public void jukebox(boolean value) {
-        jukebox.set(value);
+    public void autoSell(boolean value) {
+        autoSell.set(value);
     }
 
     public boolean noAmbientSounds() {
@@ -99,11 +90,10 @@ public class HideawayPlusConfig extends ConfigWrapper<continued.hideaway.mod.fea
 
 
     public static class Keys {
-        public final Option.Key pipNav = new Option.Key("pipNav");
         public final Option.Key hideCosmetics = new Option.Key("hideCosmetics");
         public final Option.Key discordRPC = new Option.Key("discordRPC");
-        public final Option.Key autoEnableEditor = new Option.Key("autoEnableEditor");
-        public final Option.Key jukebox = new Option.Key("jukebox");
+        public final Option.Key inventoryRarities = new Option.Key("inventoryRarities");
+        public final Option.Key autoSell = new Option.Key("autoSell");
         public final Option.Key noAmbientSounds = new Option.Key("noAmbientSounds");
         public final Option.Key noActivitySongs = new Option.Key("noActivitySongs");
     }

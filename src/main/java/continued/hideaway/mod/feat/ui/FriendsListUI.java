@@ -2,12 +2,10 @@ package continued.hideaway.mod.feat.ui;
 
 import continued.hideaway.mod.HideawayPlus;
 import continued.hideaway.mod.feat.ext.AbstractContainerScreenAccessor;
-import continued.hideaway.mod.feat.lifecycle.Lifecycle;
-import continued.hideaway.mod.feat.lifecycle.Task;
 import continued.hideaway.mod.util.StaticValues;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.commands.arguments.ArgumentSignatures;
+import net.minecraft.core.UUIDUtil;
 import net.minecraft.network.chat.LastSeenMessages;
 import net.minecraft.network.protocol.game.ServerboundChatCommandPacket;
 import net.minecraft.world.inventory.ChestMenu;
@@ -22,13 +20,12 @@ import java.util.BitSet;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
-import static continued.hideaway.mod.util.StaticValues.friendsMenuClosed;
-
 public class FriendsListUI {
     private static ChestMenu oldMenu = null;
 
     public static void tick() {
-        if (!StaticValues.friendsList.contains(HideawayPlus.client().player.getName().getString())) StaticValues.friendsList.add(HideawayPlus.client().player.getName().getString());
+        if (!StaticValues.friendsUUID.contains(HideawayPlus.client().player.getStringUUID())) StaticValues.friendsUUID.add(HideawayPlus.client().player.getStringUUID());
+        if (!StaticValues.friendsUsernames.contains(HideawayPlus.client().player.getName().getString())) StaticValues.friendsUsernames.add(HideawayPlus.client().player.getName().getString());
         if (StaticValues.friendsCheck) return;
         if (HideawayPlus.client().screen instanceof AbstractContainerScreen) {
             AbstractContainerScreen<ChestMenu> abstractContainerScreen = (AbstractContainerScreen<ChestMenu>) HideawayPlus.client().screen;
@@ -46,8 +43,11 @@ public class FriendsListUI {
                         for (ItemStack itemStack : newAllItems) {
                             if (itemStack.getItem() == Items.PLAYER_HEAD) {
                                 if (itemStack.getTag().toString().contains("Left click to Accept")) continue;
+                                int[] uuidIntArray = itemStack.getTag().getCompound("SkullOwner").getIntArray("Id");
+                                String uuid = UUIDUtil.uuidFromIntArray(uuidIntArray).toString();
+                                if (!StaticValues.friendsUUID.contains(uuid)) StaticValues.friendsUUID.add(uuid);
                                 String name = itemStack.getTag().getCompound("SkullOwner").getString("Name");
-                                if (!StaticValues.friendsList.contains(name)) StaticValues.friendsList.add(name);
+                                if (!StaticValues.friendsUsernames.contains(name)) StaticValues.friendsUsernames.add(name);
                             }
                         }
                     })

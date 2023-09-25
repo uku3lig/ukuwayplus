@@ -14,7 +14,10 @@
     "key.hp.explore": "Explore",
 
     "tooltip.hp.friend": "Friend :)",
-    "tooltip.hp.developer": "Developer of Hideaway+",
+    "tooltip.hp.user": "Hideaway+ User",
+    "tooltip.hp.translator": "Hideaway+ Translator",
+    "tooltip.hp.teamMember": "Hideaway+ Team Member",
+    "tooltip.hp.developer": "Hideaway+ Developer",
 
     "jukebox.title": "Play a song",
     "jukebox.stop_all_songs": "Stop all music",

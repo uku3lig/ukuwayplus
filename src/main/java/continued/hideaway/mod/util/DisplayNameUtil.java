@@ -88,9 +88,9 @@ public class DisplayNameUtil {
     }
 
     public static String modPlayerID(String username) {
-        if (StaticValues.modUsers.containsValue(username)) {
-            for (String key : StaticValues.modUsers.keySet()) {
-                if (StaticValues.modUsers.get(key).equals(username)) {
+        if (StaticValues.users.containsValue(username)) {
+            for (String key : StaticValues.users.keySet()) {
+                if (StaticValues.users.get(key).equals(username)) {
                     return key;
                 }
             }

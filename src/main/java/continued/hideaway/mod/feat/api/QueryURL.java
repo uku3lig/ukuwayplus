@@ -15,10 +15,7 @@ import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class QueryURL {
     private static final PoolingHttpClientConnectionManager CONNECTION_MANAGER =
@@ -153,12 +150,12 @@ public class QueryURL {
                         JsonArray jsonElements = jsonObject.get("users").getAsJsonArray();
 
                         if (!jsonElements.isEmpty()) {
-                            StaticValues.modUsers.clear();
+                            StaticValues.users.clear();
                             for (JsonElement jsonElement : jsonElements) {
                                 JsonObject element = jsonElement.getAsJsonObject();
                                 String uuid = element.get("uuid").getAsString();
                                 String name = element.get("name").getAsString();
-                                StaticValues.modUsers.put(uuid, name);
+                                StaticValues.users.put(uuid, name);
                             }
                         }
                     }
@@ -190,22 +187,22 @@ public class QueryURL {
                         JsonObject teamObj = jsonTeamObj.get("team").getAsJsonObject();
                         JsonArray translatorArray = teamObj.get("translator").getAsJsonArray();
                         JsonArray teamArray = teamObj.get("team").getAsJsonArray();
-                        JsonArray devArray = teamArray.get("").getAsJsonArray();
+                        JsonArray devArray = teamObj.get("dev").getAsJsonArray();
 
-                        StaticValues.modTranslators.clear();
-                        StaticValues.modTeams.clear();
-                        StaticValues.modDevelopers.clear();
+                        StaticValues.translators.clear();
+                        StaticValues.teamMembers.clear();
+                        StaticValues.devs.clear();
                         
                         for (int i = 0; i < translatorArray.size(); i++) {
-                            StaticValues.modTranslators.add(translatorArray.get(i).getAsString());
+                            StaticValues.translators.add(translatorArray.get(i).getAsString());
                         }
 
                         for (int i = 0; i < teamArray.size(); i++) {
-                            StaticValues.modTeams.add(teamArray.get(i).getAsString());
+                            StaticValues.teamMembers.add(teamArray.get(i).getAsString());
                         }
 
                         for (int i = 0; i < devArray.size(); i++) {
-                            StaticValues.modDevelopers.add(devArray.get(i).getAsString());
+                            StaticValues.devs.add(devArray.get(i).getAsString());
                         }
                     }
                 }
