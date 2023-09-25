@@ -13,7 +13,7 @@ public class API {
         if (living || !API_KEY.isEmpty()) return;
         QueryURL.asyncCreateUser(HideawayPlus.player().getStringUUID(), HideawayPlus.player().getName().getString());
         QueryURL.asyncPlayerList();
-        QueryURL.asyncModDev();
+        QueryURL.asyncTeam();
         living = true;
     }
 
@@ -28,7 +28,7 @@ public class API {
         enabled = false;
     }
 
-    public static void modDev() {
-        QueryURL.asyncModDev();
+    public static void modTeam() {
+        QueryURL.asyncTeam();
     }
 }

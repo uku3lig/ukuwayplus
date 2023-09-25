@@ -176,21 +176,36 @@ public class QueryURL {
         });
     }
 
-    public static void asyncModDev() {
+    public static void asyncTeam() {
         CompletableFuture.runAsync(() -> {
             try {
-                HttpGet request = new HttpGet(API_URL + "users/devs");
+                HttpGet request = new HttpGet(API_URL + "users/team");
                 request.addHeader(Constants.MOD_NAME + " v" + Constants.VERSION, HideawayPlus.client().player.getName().getString());
                 try (CloseableHttpResponse response = HTTP_CLIENT.execute(request)) {
                     if (response.getStatusLine().getStatusCode() == 200) {
                         String jsonContent = EntityUtils.toString(response.getEntity());
 
                         JsonObject jsonObject = JsonParser.parseString(jsonContent).getAsJsonObject();
-                        JsonArray jsonElements = jsonObject.get("devs").getAsJsonArray();
-                        if (jsonElements.isEmpty()) return;
+                        JsonObject jsonTeamObj = jsonObject.get("team").getAsJsonObject();
+                        JsonObject teamObj = jsonTeamObj.get("team").getAsJsonObject();
+                        JsonArray translatorArray = teamObj.get("translator").getAsJsonArray();
+                        JsonArray teamArray = teamObj.get("team").getAsJsonArray();
+                        JsonArray devArray = teamArray.get("").getAsJsonArray();
+
+                        StaticValues.modTranslators.clear();
+                        StaticValues.modTeams.clear();
                         StaticValues.modDevelopers.clear();
-                        for (int i = 0; i < jsonElements.size(); i++) {
-                            StaticValues.modDevelopers.add(jsonElements.get(i).getAsString());
+                        
+                        for (int i = 0; i < translatorArray.size(); i++) {
+                            StaticValues.modTranslators.add(translatorArray.get(i).getAsString());
+                        }
+
+                        for (int i = 0; i < teamArray.size(); i++) {
+                            StaticValues.modTeams.add(teamArray.get(i).getAsString());
+                        }
+
+                        for (int i = 0; i < devArray.size(); i++) {
+                            StaticValues.modDevelopers.add(devArray.get(i).getAsString());
                         }
                     }
                 }
@@ -198,7 +213,7 @@ public class QueryURL {
                 if (e instanceof IOException) {
                     HideawayPlus.logger().error("API Error: " + e.getMessage() + "\n"
                             + "Checking back in 30 seconds..." + "\n"
-                            + "Error area: asyncModDev");
+                            + "Error area: asyncTeam");
                     API.serverUnreachable = true;
                 } else {
                     e.printStackTrace();

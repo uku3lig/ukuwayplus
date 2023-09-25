@@ -111,7 +111,7 @@ public class HideawayPlus implements ClientModInitializer {
                         API.tick();
                     }
                 }, 300))
-                .add(Task.of(API::modDev, 100))
+                .add(Task.of(API::modTeam, 100))
                 .add(Task.of(Wardrobe::tick, 0));
     }
 
