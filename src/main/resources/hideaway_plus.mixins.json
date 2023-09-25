@@ -22,12 +22,11 @@
     "ItemRendererMixin",
     "LogoRendererMixin",
     "MinecraftClientMixin",
+    "PlayerInfoMixin",
     "PlayerInventoryMixin",
     "PlayerMixin",
     "SoundEventMixin",
     "TickMixin",
-    "GameProfileMixin",
-
 
     "ext.GridLayoutAccessor",
     "ext.SoundEventAccessor"

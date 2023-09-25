@@ -15,4 +15,6 @@ public class StaticValues {
 
     public static Map<String, String> modUsers = new HashMap<>();
     public static List<String> modDevelopers = new ArrayList<>();
+
+    public static ArrayList<String> wardrobeEntity = new ArrayList<>();
 }
