@@ -21,12 +21,19 @@ public class Wardrobe {
         int distance = 3;
         AABB boundingBox = new AABB(HideawayPlus.player().position().x() + distance, HideawayPlus.player().position().y() + distance, HideawayPlus.player().position().z() + distance, HideawayPlus.player().position().x() - distance, HideawayPlus.player().position().y() - distance, HideawayPlus.player().position().z() - distance);
         List<Player> playerList = HideawayPlus.player().level().getNearbyPlayers(TargetingConditions.forNonCombat(), HideawayPlus.player(), boundingBox);
+        List<ArmorStand> armourStandList = HideawayPlus.player().level().getEntities(ArmorStand.class, boundingBox);
 
         StaticValues.wardrobeEntity.clear();
         for (Player player : playerList) {
             if (player == HideawayPlus.player()) continue;
             if (StaticValues.wardrobeEntity.contains(player.getUUID().toString())) continue;
             StaticValues.wardrobeEntity.add(player.getUUID().toString());
+        }
+
+        StaticValues.wardrobeArmourStand.clear();
+        for (ArmorStand armourStand : armourStandList) {
+            if (StaticValues.wardrobeArmourStand.contains(armourStand.getUUID.toString())) continue;
+            StaticValues.wardrobeArmourStand.add(armourStand.getUUID().toString());
         }
     }
 }
