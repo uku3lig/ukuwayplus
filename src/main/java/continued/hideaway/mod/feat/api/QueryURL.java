@@ -73,6 +73,7 @@ public class QueryURL {
     }
 
     public static void asyncCreateUser(String playerUUID, String userName) {
+        API.checkingUser = true;
         CompletableFuture.runAsync(() -> {
             try {
                 HttpGet request = new HttpGet(API_URL + "create/" + playerUUID + "/" + userName);
@@ -91,11 +92,13 @@ public class QueryURL {
                         if (jsonObject.has("error")) {
                             switch (jsonObject.get("message").getAsString()) {
                                 case "User already exists", "Invalid UUID or code" -> {
+                                    API.living = false;
                                     HideawayPlus.logger().error("API Error: " + jsonObject.get("message").getAsString());
                                 }
                             }
                         }
                     }
+                    API.checkingUser = false;
                 }
             } catch (IOException | ParseException | JsonSyntaxException e) {
                 if (e instanceof IOException) {
@@ -103,9 +106,12 @@ public class QueryURL {
                     + "Checking back in 30 seconds..." + "\n"
                     + "Error area: asyncCreateUser");
                     API.serverUnreachable = true;
+                    API.living = false;
                 } else {
+                    API.living = false;
                     e.printStackTrace();
                 }
+                API.checkingUser = false;
             }
         });
     }

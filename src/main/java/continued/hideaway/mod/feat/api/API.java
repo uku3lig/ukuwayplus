@@ -6,15 +6,16 @@ public class API {
     public static boolean serverUnreachable = false;
     public static boolean enabled = false;
     public static boolean living = false;
+    public static boolean checkingUser = false;
     public static String API_KEY = "";
 
     public static void tick() {
         if (!enabled || serverUnreachable) return;
         if (living || !API_KEY.isEmpty()) return;
+        if (checkingUser) return;
         QueryURL.asyncCreateUser(HideawayPlus.player().getStringUUID(), HideawayPlus.player().getName().getString());
         QueryURL.asyncPlayerList();
         QueryURL.asyncTeam();
-        living = true;
     }
 
     public static void live() {

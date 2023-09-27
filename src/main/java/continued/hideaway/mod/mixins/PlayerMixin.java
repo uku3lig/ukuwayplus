@@ -39,7 +39,7 @@ public abstract class PlayerMixin {
             player.getEntityData().set(DATA_PLAYER_MODE_CUSTOMISATION, b);
         }
 
-        if (HideawayPlus.config().hideCosmetics() && !StaticValues.wardrobeEntity.contains(player.getStringUUID())) {
+        if (!StaticValues.wardrobeEntity.contains(player.getStringUUID())) {
             boolean hasCosmetic = player.getItemBySlot(EquipmentSlot.HEAD).getItem() == Items.LEATHER_HORSE_ARMOR;
             if (hasCosmetic) oldHeadStack = player.getItemBySlot(EquipmentSlot.HEAD);
             if (hasCosmetic && HideawayPlus.connected() && HideawayPlus.config().hideCosmetics())

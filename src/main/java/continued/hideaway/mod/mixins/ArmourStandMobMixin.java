@@ -26,7 +26,7 @@ public abstract class ArmourStandMobMixin {
         boolean hasCosmetic = armorStand.getItemBySlot(EquipmentSlot.HEAD).getItem() == Items.LEATHER_HORSE_ARMOR;
         if (hasCosmetic) oldHeadStack = armorStand.getItemBySlot(EquipmentSlot.HEAD);
 
-        if (HideawayPlus.config().hideCosmetics() && !StaticValues.wardrobeArmourStand.contains(armorStand.getStringUUID())) {
+        if (!StaticValues.wardrobeArmourStand.contains(armorStand.getStringUUID())) {
           if (hasCosmetic && HideawayPlus.connected() && HideawayPlus.config().hideCosmetics()) this.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
           if (!hasCosmetic && HideawayPlus.connected() && !HideawayPlus.config().hideCosmetics() && oldHeadStack != null) this.setItemSlot(EquipmentSlot.HEAD, oldHeadStack);
         }
