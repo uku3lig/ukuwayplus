@@ -1,8 +1,6 @@
 ![Hideaway+ Logo](assets/header.png)
 
 # Features
-<hr>
-
 - Automatically dump inventory items into shops to sell!
 - Highlights items in your inventory with their rarity color!
 - **Icons** for your friends and other Hideaway+ players in usernames!
@@ -22,9 +20,5 @@
 </details>
 
 # Downloads
-<hr>
-
-<div style="display:flex;justify-content:space-around;padding:1rem">
 <a href="https://modrinth/mods/hideaway"><img src="assets/modrinth_logo.png" alt="Modrinth Logo" style="width:200px;filter:drop-shadow(0 0 1.7rem white);"/></a>
 <a href="https://www.curseforge.com/minecraft/mc-mods/hideaway"><img src="assets/curseforge_logo.png" alt="Curseforge Logo" style="width:200px;filter:drop-shadow(0 0 1.7rem white);"/></a>
-</div>
