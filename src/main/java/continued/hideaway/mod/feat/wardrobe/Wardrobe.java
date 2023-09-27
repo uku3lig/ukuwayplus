@@ -33,7 +33,7 @@ public class Wardrobe {
 
         StaticValues.wardrobeArmourStand.clear();
         for (ArmorStand armourStand : armourStandList) {
-            if (StaticValues.wardrobeArmourStand.contains(armourStand.getStringUUID())) continue;
+            if (StaticValues.wardrobeArmourStand.contains(armourStand.getUUID().toString())) continue;
             StaticValues.wardrobeArmourStand.add(armourStand.getUUID().toString());
         }
     }
