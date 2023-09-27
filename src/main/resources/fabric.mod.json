@@ -10,7 +10,10 @@
     "OliviaTheVampire",
     "Dragonostic"
   ],
-  "contact": {},
+  "contact": {
+    "homepage": "https://github.com/Voxxin/HideawayContinued",
+    "sources": "https://discord.gg/UktczTSdB4"
+  },
   "license": "MIT",
   "icon": "assets/hideaway_plus/icon.png",
   "environment": "*",
@@ -25,7 +28,6 @@
   ],
   "depends": {
     "fabricloader": ">=0.14.22",
-    "fabric": "*",
     "minecraft": "1.20.1"
   }
 }
