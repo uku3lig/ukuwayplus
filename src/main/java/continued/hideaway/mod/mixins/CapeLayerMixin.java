@@ -1,6 +1,7 @@
 package continued.hideaway.mod.mixins;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import continued.hideaway.mod.util.StaticValues;
 import net.minecraft.client.player.AbstractClientPlayer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -22,6 +23,8 @@ public class CapeLayerMixin {
             if (playerChestplate != ItemStack.EMPTY) {
                 info.cancel();
             }
+        } else if (HideawayPlus.connected() && HideawayPlus.config().hideCosmetics() && StaticValues.wardrobeEntity.contains(livingEntity.getStringUUID())) {
+            if (!StaticValues.wardrobeArmourStand.isEmpty()) info.cancel();
         }
     }
 }

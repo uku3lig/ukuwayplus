@@ -55,9 +55,6 @@ public class HideawayPlus implements ClientModInitializer {
 
         Constants.MOD_MENU_PRESENT = FabricLoader.getInstance().isModLoaded("modmenu");
 
-        System.out.println(Constants.MOD_MENU_PRESENT + " is mod menu present?");
-
-
         // Managers and services that need to be retained after
         // initialization, and/or be accessed by other services, should
         // be initialized here.

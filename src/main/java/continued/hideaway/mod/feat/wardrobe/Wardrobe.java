@@ -4,6 +4,7 @@ import continued.hideaway.mod.HideawayPlus;
 import continued.hideaway.mod.feat.location.Location;
 import continued.hideaway.mod.util.StaticValues;
 import net.minecraft.world.entity.ai.targeting.TargetingConditions;
+import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.AABB;
 
@@ -21,7 +22,7 @@ public class Wardrobe {
         int distance = 3;
         AABB boundingBox = new AABB(HideawayPlus.player().position().x() + distance, HideawayPlus.player().position().y() + distance, HideawayPlus.player().position().z() + distance, HideawayPlus.player().position().x() - distance, HideawayPlus.player().position().y() - distance, HideawayPlus.player().position().z() - distance);
         List<Player> playerList = HideawayPlus.player().level().getNearbyPlayers(TargetingConditions.forNonCombat(), HideawayPlus.player(), boundingBox);
-        List<ArmorStand> armourStandList = HideawayPlus.player().level().getEntities(ArmorStand.class, boundingBox);
+        List<ArmorStand> armourStandList = HideawayPlus.player().level().getEntitiesOfClass(ArmorStand.class, boundingBox);
 
         StaticValues.wardrobeEntity.clear();
         for (Player player : playerList) {
@@ -32,7 +33,7 @@ public class Wardrobe {
 
         StaticValues.wardrobeArmourStand.clear();
         for (ArmorStand armourStand : armourStandList) {
-            if (StaticValues.wardrobeArmourStand.contains(armourStand.getUUID.toString())) continue;
+            if (StaticValues.wardrobeArmourStand.contains(armourStand.getStringUUID())) continue;
             StaticValues.wardrobeArmourStand.add(armourStand.getUUID().toString());
         }
     }

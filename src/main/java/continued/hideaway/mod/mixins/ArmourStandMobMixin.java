@@ -1,6 +1,7 @@
 package continued.hideaway.mod.mixins;
 
 import continued.hideaway.mod.HideawayPlus;
+import continued.hideaway.mod.util.StaticValues;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.decoration.ArmorStand;
 import net.minecraft.world.item.ItemStack;
@@ -25,7 +26,7 @@ public abstract class ArmourStandMobMixin {
         boolean hasCosmetic = armorStand.getItemBySlot(EquipmentSlot.HEAD).getItem() == Items.LEATHER_HORSE_ARMOR;
         if (hasCosmetic) oldHeadStack = armorStand.getItemBySlot(EquipmentSlot.HEAD);
 
-        if (!StaticValues.wardrobeArmourStand().contains(this.grtUUID().toString())) {
+        if (HideawayPlus.config().hideCosmetics() && !StaticValues.wardrobeArmourStand.contains(armorStand.getStringUUID())) {
           if (hasCosmetic && HideawayPlus.connected() && HideawayPlus.config().hideCosmetics()) this.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
           if (!hasCosmetic && HideawayPlus.connected() && !HideawayPlus.config().hideCosmetics() && oldHeadStack != null) this.setItemSlot(EquipmentSlot.HEAD, oldHeadStack);
         }
