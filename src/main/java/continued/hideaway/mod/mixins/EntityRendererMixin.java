@@ -33,7 +33,7 @@ public abstract class EntityRendererMixin <T extends Entity>{
             String playerID = DisplayNameUtil.modPlayerID(playerName);
 
             MutableComponent newName = MutableComponent.create(ComponentContents.EMPTY);
-            newName.append(playerName);
+            newName.append(entity.getDisplayName().getString());
 
             if (StaticValues.friendsUsernames.contains(playerName))
                 Chars.addBadge(newName, Chars.friendBadge());
@@ -46,6 +46,8 @@ public abstract class EntityRendererMixin <T extends Entity>{
                 Chars.addBadge(newName, Chars.translatorBadge());
             else if (StaticValues.users.containsKey(playerID))
                 Chars.addBadge(newName, Chars.userBadge());
+
+            if (newName.getString().equals(playerName)) newName = (MutableComponent) entity.getDisplayName();
 
             this.renderNameTag(entity, newName, poseStack, buffer, packedLight);
         }
