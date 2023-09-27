@@ -18,8 +18,9 @@ public class ChatComponentMixin {
     private Component addMessageIcons(Component message) {
         MutableComponent newMessage = MutableComponent.create(ComponentContents.EMPTY);
         String playerID = DisplayNameUtil.modPlayerID(DisplayNameUtil.nameFromChatMessage(message.getString()));
+        String playerName = DisplayNameUtil.nameFromChatMessage(message.getString());
 
-        if (StaticValues.friendsUUID.contains(playerID))
+        if (StaticValues.friendsUsernames.contains(playerName))
             Chars.addBadgeWithTooltip(newMessage, Chars.friendBadge(), "tooltip.hp.friend", ChatFormatting.GOLD);
 
         if (StaticValues.devs.contains(playerID))

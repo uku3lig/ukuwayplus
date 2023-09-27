@@ -12,7 +12,6 @@ public class StaticValues {
     public static List<String> friendsUUID = new ArrayList<>();
     public static List<String> friendsUsernames = new ArrayList<>();
     public static boolean friendsCheck = false;
-    public static boolean friendsMenuClosed = true;
 
     public static Map<String, String> users = new HashMap<>();
     public static List<String> devs = new ArrayList<>();

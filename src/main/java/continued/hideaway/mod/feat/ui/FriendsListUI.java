@@ -24,6 +24,7 @@ public class FriendsListUI {
     private static ChestMenu oldMenu = null;
 
     public static void tick() {
+        if (HideawayPlus.client().screen != null && HideawayPlus.client().screen instanceof AbstractContainerScreen && ((AbstractContainerScreen<ChestMenu>) HideawayPlus.client().screen).getMenu().getItems().stream().filter(itemStack -> itemStack.getItem() == Items.PLAYER_HEAD).count() > StaticValues.friendsUsernames.size() - 1) StaticValues.friendsCheck = false;
         if (!StaticValues.friendsUUID.contains(HideawayPlus.client().player.getStringUUID())) StaticValues.friendsUUID.add(HideawayPlus.client().player.getStringUUID());
         if (!StaticValues.friendsUsernames.contains(HideawayPlus.client().player.getName().getString())) StaticValues.friendsUsernames.add(HideawayPlus.client().player.getName().getString());
         if (StaticValues.friendsCheck) return;
@@ -39,6 +40,7 @@ public class FriendsListUI {
             HideawayPlus.lifecycle().addAsync(
                     "friendsCheck",
                     CompletableFuture.runAsync(() -> {
+                        System.out.println("Friends list size: " + StaticValues.friendsUsernames.size());
                         List<ItemStack> newAllItems = new ArrayList<>(allItems);
                         for (ItemStack itemStack : newAllItems) {
                             if (itemStack.getItem() == Items.PLAYER_HEAD) {

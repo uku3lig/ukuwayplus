@@ -5,6 +5,7 @@ import continued.hideaway.mod.HideawayPlus;
 import continued.hideaway.mod.util.Chars;
 import continued.hideaway.mod.util.DisplayNameUtil;
 import continued.hideaway.mod.util.StaticValues;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.network.chat.Component;
@@ -28,16 +29,23 @@ public abstract class EntityRendererMixin <T extends Entity>{
     @Inject(at = @At("HEAD"), method = "render", cancellable = true)
     private void render(T entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource buffer, int packedLight, CallbackInfo ci) {
         if (this.shouldShowName(entity) && HideawayPlus.connected() && entity instanceof Player) {
-            String result = DisplayNameUtil.ignFromDisplayName(entity.getDisplayName().getString());
-            String playerID = DisplayNameUtil.modPlayerID(result);
+            String playerName = DisplayNameUtil.ignFromDisplayName(entity.getDisplayName().getString());
+            String playerID = DisplayNameUtil.modPlayerID(playerName);
 
             MutableComponent newName = MutableComponent.create(ComponentContents.EMPTY);
-            newName.append(entity.getDisplayName().getString());
+            newName.append(playerName);
 
-            if (StaticValues.users.containsValue(result) && !StaticValues.devs.contains(playerID)) newName.append(" ").append(Chars.userBadge());
-            if (StaticValues.devs.contains(playerID)) newName.append(" ").append(Chars.devBadge());
-            if (StaticValues.friendsUUID.contains(result)) newName.append(" ").append(Chars.friendBadge());
-            if (!StaticValues.users.containsValue(result) && !StaticValues.friendsUUID.contains(result)) newName = entity.getDisplayName().copy();
+            if (StaticValues.friendsUsernames.contains(playerName))
+                Chars.addBadge(newName, Chars.friendBadge());
+
+            if (StaticValues.devs.contains(playerID))
+                Chars.addBadge(newName, Chars.devBadge());
+            else if (StaticValues.teamMembers.contains(playerID))
+                Chars.addBadge(newName, Chars.teamBadge());
+            else if (StaticValues.translators.contains(playerID))
+                Chars.addBadge(newName, Chars.translatorBadge());
+            else if (StaticValues.users.containsKey(playerID))
+                Chars.addBadge(newName, Chars.userBadge());
 
             this.renderNameTag(entity, newName, poseStack, buffer, packedLight);
         }

@@ -22,7 +22,9 @@ public class HideawayPlusConfigModel {
     //public boolean autoEnableEditor = true;
 
     // Sound
-    public boolean noAmbientSounds = false;
 
-    public boolean noActivitySongs = false;
+    // These are backwards
+    public boolean noAmbientSounds = true;
+
+    public boolean noActivitySongs = true;
 }

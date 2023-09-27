@@ -83,9 +83,16 @@ public class DiscordManager {
 
             JsonArray buttonsArray = new JsonArray();
 
+            JsonObject discordLinkButton = new JsonObject();
+            discordLinkButton.addProperty("label", "Discord");
+            discordLinkButton.addProperty("url", "https://discord.gg/UktczTSdB4");
+
             JsonObject githubLinkButton = new JsonObject();
             githubLinkButton.addProperty("label", "GitHub");
             githubLinkButton.addProperty("url", "https://github.com/Voxxin/HideawayContinued");
+
+
+            buttonsArray.add(discordLinkButton);
             buttonsArray.add(githubLinkButton);
 
             builder.setState(loc.description)
