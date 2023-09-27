@@ -98,7 +98,6 @@ public class QueryURL {
                             }
                         }
                     }
-                    API.checkingUser = false;
                 }
             } catch (IOException | ParseException | JsonSyntaxException e) {
                 if (e instanceof IOException) {
@@ -111,8 +110,8 @@ public class QueryURL {
                     API.living = false;
                     e.printStackTrace();
                 }
-                API.checkingUser = false;
             }
+            API.checkingUser = false;
         });
     }
 
