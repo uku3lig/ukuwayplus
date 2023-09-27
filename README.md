@@ -1,4 +1,4 @@
-![Hideaway+ Logo](assets/header.png)
+![Hideaway+ Logo](https://i.imgur.com/JiSO1qN.png)
 
 # Features
 - Automatically dump inventory items into shops to sell!
