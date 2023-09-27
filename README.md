@@ -20,5 +20,5 @@
 </details>
 
 # Downloads
-<a href="https://modrinth/mods/hideaway"><img src="assets/modrinth_logo.png" alt="Modrinth Logo" style="width:200px;filter:drop-shadow(0 0 1.7rem white);"/></a>
+<a href="https://modrinth.com/mods/hideaway"><img src="assets/modrinth_logo.png" alt="Modrinth Logo" style="width:200px;filter:drop-shadow(0 0 1.7rem white);"/></a>
 <a href="https://www.curseforge.com/minecraft/mc-mods/hideaway"><img src="assets/curseforge_logo.png" alt="Curseforge Logo" style="width:200px;filter:drop-shadow(0 0 1.7rem white);"/></a>
