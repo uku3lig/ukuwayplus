@@ -1,33 +1,28 @@
 package continued.hideaway.mod.mixins;
 
-import continued.hideaway.mod.HideawayPlus;
 import continued.hideaway.mod.feat.ext.AbstractContainerScreenAccessor;
+
+import continued.hideaway.mod.HideawayPlus;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
-import net.minecraft.client.gui.screens.inventory.ContainerScreen;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.util.FastColor;
-import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.inventory.ChestMenu;
-import net.minecraft.world.inventory.ClickType;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.Slot;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(ContainerScreen.class)
-public abstract class AbstractContainerScreenMixin extends AbstractContainerScreen<ChestMenu> implements AbstractContainerScreenAccessor {
+@Mixin(AbstractContainerScreen.class)
+public abstract class AbstractContainerScreenMixin {
 
-    public AbstractContainerScreenMixin(ChestMenu menu, Inventory playerInventory, Component title) {
-        super(menu, playerInventory, title);
-    }
-
-    @Override
-    public void hp$slotChange(Slot slot, int slotId, int mouseButton, ClickType type) {
-        slotClicked(slot, slotId, mouseButton, type);
-    }
+    @Final @Shadow protected AbstractContainerMenu menu;
+    @Shadow protected int leftPos;
+    @Shadow protected int topPos;
 
     @Inject(method = "render", at = @At("TAIL"))
     public void renderSlotRarity(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick, CallbackInfo ci) {
