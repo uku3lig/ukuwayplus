@@ -1,12 +1,12 @@
 package continued.hideaway.mod.feat.shop;
 
 import continued.hideaway.mod.HideawayPlus;
+import continued.hideaway.mod.feat.ext.AbstractContainerScreenAccessor;
 import continued.hideaway.mod.feat.keyboard.KeyboardManager;
 import continued.hideaway.mod.feat.ui.FriendsListUI;
 import continued.hideaway.mod.util.StaticValues;
-import continued.hideaway.mod.feat.ext.AbstractContainerScreenAccessor;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.screens.inventory.ContainerScreen;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.inventory.ClickType;
@@ -24,6 +24,8 @@ public class Shop {
     private static boolean fill;
 
     public void tick() {
+        if (HideawayPlus.client().screen == null || !(HideawayPlus.client().screen instanceof ContainerScreen containerScreen)) return;
+
         if (getShopName() == null) return;
         String shopName = getShopName();
 
@@ -35,8 +37,7 @@ public class Shop {
             fill = false;
             List<Slot> emptyChestSlots = new ArrayList<>();
             List<Slot> playerEmptySlots = new ArrayList<>();
-            AbstractContainerScreen<ChestMenu> menu = (AbstractContainerScreen<ChestMenu>) HideawayPlus.client().screen;
-            ChestMenu chestMenu = menu.getMenu();
+            ChestMenu chestMenu = containerScreen.getMenu();
 
             for (Slot slot : chestMenu.slots) {
                 if (slot.getItem().getItem() != Items.AIR) {
@@ -51,7 +52,7 @@ public class Shop {
             for (int i = StaticValues.shopIterationNum; i < playerEmptySlots.size() && !emptyChestSlots.isEmpty() && !StaticValues.shopScreenWasFilled; i++) {
                 Slot playerSlot = playerEmptySlots.get(i);
 
-                ((AbstractContainerScreenAccessor)menu).hp$slotChange(playerSlot, emptyChestSlots.get(0).index, 0, ClickType.QUICK_MOVE);
+                ((AbstractContainerScreenAccessor)containerScreen).hp$slotChange(playerSlot, emptyChestSlots.get(0).index, 0, ClickType.QUICK_MOVE);
 
                 Iterator<Slot> chestSlotIterator = emptyChestSlots.iterator();
                 while (chestSlotIterator.hasNext()) {
@@ -70,7 +71,7 @@ public class Shop {
     }
 
     private String getShopName() {
-        ChestMenu screen = ((AbstractContainerScreen<ChestMenu>) HideawayPlus.client().screen).getMenu();
+        ChestMenu screen = ((ContainerScreen) HideawayPlus.client().screen).getMenu();
         String screenName = HideawayPlus.client().screen.getTitle().getString();
         if (screenName.contains("\uE00C") || screenName.contains("\uE010")) { FriendsListUI.tick(); return null; }
 

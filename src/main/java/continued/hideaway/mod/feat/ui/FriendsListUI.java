@@ -3,7 +3,7 @@ package continued.hideaway.mod.feat.ui;
 import continued.hideaway.mod.HideawayPlus;
 import continued.hideaway.mod.feat.ext.AbstractContainerScreenAccessor;
 import continued.hideaway.mod.util.StaticValues;
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.client.gui.screens.inventory.ContainerScreen;
 import net.minecraft.commands.arguments.ArgumentSignatures;
 import net.minecraft.core.UUIDUtil;
 import net.minecraft.network.chat.LastSeenMessages;
@@ -24,12 +24,11 @@ public class FriendsListUI {
     private static ChestMenu oldMenu = null;
 
     public static void tick() {
-        if (HideawayPlus.client().screen != null && HideawayPlus.client().screen instanceof AbstractContainerScreen && ((AbstractContainerScreen<ChestMenu>) HideawayPlus.client().screen).getMenu().getItems().stream().filter(itemStack -> itemStack.getItem() == Items.PLAYER_HEAD).count() > StaticValues.friendsUsernames.size() - 1) StaticValues.friendsCheck = false;
+        if (HideawayPlus.client().screen != null && HideawayPlus.client().screen instanceof ContainerScreen && ((ContainerScreen) HideawayPlus.client().screen).getMenu().getItems().stream().filter(itemStack -> itemStack.getItem() == Items.PLAYER_HEAD).count() > StaticValues.friendsUsernames.size() - 1) StaticValues.friendsCheck = false;
         if (!StaticValues.friendsUUID.contains(HideawayPlus.client().player.getStringUUID())) StaticValues.friendsUUID.add(HideawayPlus.client().player.getStringUUID());
         if (!StaticValues.friendsUsernames.contains(HideawayPlus.client().player.getName().getString())) StaticValues.friendsUsernames.add(HideawayPlus.client().player.getName().getString());
         if (StaticValues.friendsCheck) return;
-        if (HideawayPlus.client().screen instanceof AbstractContainerScreen) {
-            AbstractContainerScreen<ChestMenu> abstractContainerScreen = (AbstractContainerScreen<ChestMenu>) HideawayPlus.client().screen;
+        if (HideawayPlus.client().screen instanceof ContainerScreen abstractContainerScreen) {
             ChestMenu menu = abstractContainerScreen.getMenu();
             if (oldMenu != null && oldMenu == menu) return;
             oldMenu = menu;
