@@ -78,9 +78,13 @@ public class HideawayPlus implements ClientModInitializer {
                 .add(Task.of(() -> {if (!HideawayPlus.connected() && API.enabled) {API.end();}}, 0))
                 .add(Task.of(Location::check, 20))
                 .add(Task.of(() -> {
-                    if (DiscordManager.active) DISCORD_MANAGER.update();
-                    if (DiscordManager.active && !HideawayPlus.config().discordRPC()) DISCORD_MANAGER.stop();
-                    if (!DiscordManager.active && HideawayPlus.config().discordRPC()) DISCORD_MANAGER.start();
+                    try {
+                        if (DiscordManager.active) DISCORD_MANAGER.update();
+                        if (DiscordManager.active && !HideawayPlus.config().discordRPC()) DISCORD_MANAGER.stop();
+                        if (!DiscordManager.active && HideawayPlus.config().discordRPC()) DISCORD_MANAGER.start();
+                    } catch (Error err) {
+                        HideawayPlus.logger().error(err);
+                    }
 
                 }, 10))
                 .add(Task.of(() -> {
