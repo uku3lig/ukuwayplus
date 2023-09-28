@@ -22,6 +22,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class FriendsListUI {
     private static ChestMenu oldMenu = null;
+    private static int ticket = 0;
+    private boolean calledProper = false;
 
     public static void tick() {
         if (HideawayPlus.client().screen != null && HideawayPlus.client().screen instanceof ContainerScreen && ((ContainerScreen) HideawayPlus.client().screen).getMenu().getItems().stream().filter(itemStack -> itemStack.getItem() == Items.PLAYER_HEAD).count() > StaticValues.friendsUsernames.size() - 1) StaticValues.friendsCheck = false;
@@ -30,6 +32,7 @@ public class FriendsListUI {
         if (StaticValues.friendsCheck) return;
         if (HideawayPlus.client().screen instanceof ContainerScreen abstractContainerScreen) {
             ChestMenu menu = abstractContainerScreen.getMenu();
+            calledProper = true;
             if (oldMenu != null && oldMenu == menu) return;
             oldMenu = menu;
 
@@ -62,7 +65,7 @@ public class FriendsListUI {
                 ((AbstractContainerScreenAccessor) abstractContainerScreen).hp$slotChange(paperSlot, 0, 0, ClickType.PICKUP);
             }
         } else {
-
+            if (ticker >= 25 && !calledProper) {
             LastSeenMessages.Update messages = new LastSeenMessages.Update(0, new BitSet());
 
             Instant now = Instant.now();
@@ -74,6 +77,11 @@ public class FriendsListUI {
                             ArgumentSignatures.EMPTY,
                             messages)
             );
+        } else {
+        ticker++;
+        calledProper = false;
+        }
+
         }
     }
 }
