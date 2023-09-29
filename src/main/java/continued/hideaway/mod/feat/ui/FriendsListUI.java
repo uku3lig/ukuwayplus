@@ -22,8 +22,8 @@ import java.util.concurrent.CompletableFuture;
 
 public class FriendsListUI {
     private static ChestMenu oldMenu = null;
-    private static int ticket = 0;
-    private boolean calledProper = false;
+    private static int ticker = 0;
+    private static boolean calledProper = false;
 
     public static void tick() {
         if (HideawayPlus.client().screen != null && HideawayPlus.client().screen instanceof ContainerScreen && ((ContainerScreen) HideawayPlus.client().screen).getMenu().getItems().stream().filter(itemStack -> itemStack.getItem() == Items.PLAYER_HEAD).count() > StaticValues.friendsUsernames.size() - 1) StaticValues.friendsCheck = false;
