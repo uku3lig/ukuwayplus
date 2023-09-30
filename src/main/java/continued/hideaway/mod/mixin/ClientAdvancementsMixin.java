@@ -1,9 +1,7 @@
-package continued.hideaway.mod.mixins;
+package continued.hideaway.mod.mixin;
 
 import continued.hideaway.mod.util.StaticValues;
-import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementList;
-import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.client.multiplayer.ClientAdvancements;
 import net.minecraft.network.protocol.game.ClientboundUpdateAdvancementsPacket;
 import org.spongepowered.asm.mixin.Final;

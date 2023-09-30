@@ -1,4 +1,4 @@
-package continued.hideaway.mod.mixins;
+package continued.hideaway.mod.mixin;
 
 import continued.hideaway.mod.HideawayPlus;
 import net.minecraft.client.Minecraft;

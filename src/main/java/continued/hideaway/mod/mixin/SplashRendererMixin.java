@@ -1,4 +1,4 @@
-package continued.hideaway.mod.mixins;
+package continued.hideaway.mod.mixin;
 
 import net.minecraft.client.gui.components.SplashRenderer;
 import org.spongepowered.asm.mixin.Mixin;

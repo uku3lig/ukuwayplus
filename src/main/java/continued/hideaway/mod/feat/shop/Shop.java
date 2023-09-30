@@ -1,7 +1,6 @@
 package continued.hideaway.mod.feat.shop;
 
 import continued.hideaway.mod.HideawayPlus;
-import continued.hideaway.mod.feat.ext.AbstractContainerScreenAccessor;
 import continued.hideaway.mod.feat.keyboard.KeyboardManager;
 import continued.hideaway.mod.feat.ui.FriendsListUI;
 import continued.hideaway.mod.util.StaticValues;
@@ -57,7 +56,7 @@ public class Shop {
             for (int i = StaticValues.shopIterationNum; i < playerEmptySlots.size() && !emptyChestSlots.isEmpty() && !StaticValues.shopScreenWasFilled; i++) {
                 Slot playerSlot = playerEmptySlots.get(i);
 
-                ((AbstractContainerScreenAccessor)containerScreen).hp$slotChange(playerSlot, emptyChestSlots.get(0).index, 0, ClickType.QUICK_MOVE);
+                containerScreen.slotClicked(playerSlot, emptyChestSlots.get(0).index, 0, ClickType.QUICK_MOVE);
 
                 Iterator<Slot> chestSlotIterator = emptyChestSlots.iterator();
                 while (chestSlotIterator.hasNext()) {

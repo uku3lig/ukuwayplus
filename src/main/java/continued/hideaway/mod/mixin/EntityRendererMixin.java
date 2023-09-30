@@ -1,11 +1,10 @@
-package continued.hideaway.mod.mixins;
+package continued.hideaway.mod.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import continued.hideaway.mod.HideawayPlus;
 import continued.hideaway.mod.util.Chars;
 import continued.hideaway.mod.util.DisplayNameUtil;
 import continued.hideaway.mod.util.StaticValues;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.network.chat.Component;

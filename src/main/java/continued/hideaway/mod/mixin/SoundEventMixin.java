@@ -1,7 +1,6 @@
-package continued.hideaway.mod.mixins;
+package continued.hideaway.mod.mixin;
 
 import continued.hideaway.mod.HideawayPlus;
-import continued.hideaway.mod.mixins.ext.SoundEventAccessor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,11 +20,11 @@ public class SoundEventMixin {
         boolean isActivity = location.getPath().split("\\.")[0].contains("activities");
 
         if (isAmbient && !HideawayPlus.config().noAmbientSounds()) {
-            cir.setReturnValue(SoundEventAccessor.createSoundEvent(new ResourceLocation(""), 0, true));
+            cir.setReturnValue(SoundEvent.createVariableRangeEvent(new ResourceLocation("")));
         }
 
         if (isActivity && !HideawayPlus.config().noActivitySongs()) {
-            cir.setReturnValue(SoundEventAccessor.createSoundEvent(new ResourceLocation(""), 0, true));
+            cir.setReturnValue(SoundEvent.createVariableRangeEvent(new ResourceLocation("")));
         }
     }
 }

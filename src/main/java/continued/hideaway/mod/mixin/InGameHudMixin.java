@@ -1,7 +1,6 @@
-package continued.hideaway.mod.mixins;
+package continued.hideaway.mod.mixin;
 
 import continued.hideaway.mod.HideawayPlus;
-import continued.hideaway.mod.feat.ext.InGameHudAccessor;
 import continued.hideaway.mod.util.Chars;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -19,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(Gui.class)
-public abstract class InGameHudMixin implements InGameHudAccessor {
+public abstract class InGameHudMixin {
 
     @Shadow private int screenWidth;
 
@@ -64,30 +63,5 @@ public abstract class InGameHudMixin implements InGameHudAccessor {
             guiGraphics.drawString(this.getFont(), string, textSize + 1, textPos + 1, 0, true);
             guiGraphics.drawString(this.getFont(), string, textSize + 1, textPos, 8453920, true);
         }
-    }
-
-    @Override
-    public Component hp$getOverlayMessage() {
-        return this.overlayMessageString;
-    }
-
-    @Override
-    public Component hp$getTitleMessage() {
-        return this.title;
-    }
-
-    @Override
-    public Component hp$getSubtitleMessage() {
-        return this.subtitle;
-    }
-
-    @Override
-    public float hp$getExperiencePoints() {
-        return this.minecraft.player.experienceProgress;
-    }
-
-    @Override
-    public int hp$getExperienceLevel() {
-        return this.minecraft.player.experienceLevel;
     }
 }

@@ -1,4 +1,4 @@
-package continued.hideaway.mod.mixins;
+package continued.hideaway.mod.mixin;
 
 import com.mojang.authlib.GameProfile;
 import continued.hideaway.mod.HideawayPlus;

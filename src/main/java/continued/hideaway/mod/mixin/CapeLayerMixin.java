@@ -1,4 +1,4 @@
-package continued.hideaway.mod.mixins;
+package continued.hideaway.mod.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import continued.hideaway.mod.util.StaticValues;

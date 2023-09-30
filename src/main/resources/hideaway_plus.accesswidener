@@ -1,3 +1,7 @@
-accessWidener	v1	named
+accessWidener v2 named
 
-extendable class net/minecraft/world/item/ItemStack
+extendable class net/minecraft/world/item/ItemStack # THIS SCARES ME WHAT DID THEY COOK HELP
+
+accessible method net/minecraft/client/gui/screens/inventory/AbstractContainerScreen slotClicked (Lnet/minecraft/world/inventory/Slot;IILnet/minecraft/world/inventory/ClickType;)V
+
+accessible field net/minecraft/client/gui/components/BossHealthOverlay events Ljava/util/Map;

@@ -1,20 +1,15 @@
-package continued.hideaway.mod.mixins;
+package continued.hideaway.mod.mixin;
 
 import continued.hideaway.mod.HideawayPlus;
 import continued.hideaway.mod.feat.ui.ConfigUI;
-import continued.hideaway.mod.mixins.ext.GridLayoutAccessor;
 import continued.hideaway.mod.util.Chars;
 import continued.hideaway.mod.util.Constants;
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.layouts.GridLayout;
 import net.minecraft.client.gui.layouts.LayoutElement;
 import net.minecraft.client.gui.screens.PauseScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.Style;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -22,9 +17,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.Slice;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
-
-import java.util.List;
-import java.util.function.Supplier;
 
 @Mixin(PauseScreen.class)
 public abstract class GameMenuScreenMixin extends Screen {
@@ -56,9 +48,8 @@ public abstract class GameMenuScreenMixin extends Screen {
         y = returnToGameRightButton.getY();
 
         if (gridLayout != null && !Constants.MOD_MENU_PRESENT) {
-            final List<LayoutElement> buttons = ((GridLayoutAccessor) gridLayout).getChildren();
             if (HideawayPlus.connected()) {
-                buttons.add(Button.builder(Chars.settingsIcon(), button -> {
+                this.addRenderableWidget(Button.builder(Chars.settingsIcon(), button -> {
                             this.minecraft.setScreen(new ConfigUI());
                         })
                         .bounds(x, y, 20, 20)

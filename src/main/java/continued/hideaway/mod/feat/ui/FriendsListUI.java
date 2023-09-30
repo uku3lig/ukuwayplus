@@ -1,7 +1,6 @@
 package continued.hideaway.mod.feat.ui;
 
 import continued.hideaway.mod.HideawayPlus;
-import continued.hideaway.mod.feat.ext.AbstractContainerScreenAccessor;
 import continued.hideaway.mod.util.StaticValues;
 import net.minecraft.client.gui.screens.inventory.ContainerScreen;
 import net.minecraft.commands.arguments.ArgumentSignatures;
@@ -67,7 +66,7 @@ public class FriendsListUI {
                 HideawayPlus.client().setScreen(null);
             } else {
                 Slot paperSlot = menu.slots.stream().filter(slot -> slot.getItem().getItem() == Items.PAPER && slot.getItem().getTag().getAsString().contains("→")).findFirst().orElse(null);
-                ((AbstractContainerScreenAccessor) abstractContainerScreen).hp$slotChange(paperSlot, 0, 0, ClickType.PICKUP);
+                abstractContainerScreen.slotClicked(paperSlot, 0, 0, ClickType.PICKUP);
             }
         } else {
             if (ticker >= 25 && !calledProper) {
