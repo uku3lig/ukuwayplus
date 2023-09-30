@@ -9,7 +9,6 @@
   "client": [
     "ContainerScreenMixin",
     "AbstractContainerScreenMixin",
-    "AdvancementScreenMixin",
     "ArmourStandMobMixin",
     "BossHealthOverlayMixin",
     "CapeLayerMixin",
