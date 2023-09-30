@@ -46,7 +46,6 @@ dependencies {
     annotationProcessor modImplementation("io.wispforest:owo-lib:${libs.versions.owolib.get()}")
     include("io.wispforest:owo-sentinel:${libs.versions.owolib.get()}")
 
-    implementation include('org.json:json:20220320')
     implementation include("io.github.CDAGaming:DiscordIPC:0.8.1")
 
     modRuntimeOnly("me.djtheredstoner:DevAuth-fabric:1.1.2")
