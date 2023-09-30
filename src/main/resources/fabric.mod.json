@@ -1,22 +1,22 @@
 {
   "schemaVersion": 1,
-  "id": "hideaway_plus",
+  "id": "ukuway_plus",
   "version": "${version}",
-  "name": "Hideaway+",
-  "description": "Quality-of-life mod made to make the Hideaway experience better.",
+  "name": "ukuway+",
+  "description": "epic fork of not so epic mod hideaway continued",
   "authors": [
-    "skyelander",
-    "ella",
-    "OliviaTheVampire",
-    "Dragonostic"
+    "uku",
+    "skyelander (original author)",
+    "ella (original author)",
+    "OliviaTheVampire (original author)",
+    "Dragonostic (original author)"
   ],
   "contact": {
-    "homepage": "https://github.com/Voxxin/HideawayContinued",
-    "sources": "https://discord.gg/UktczTSdB4"
+    "sources": "https://github.com/uku3lig/HideawayContinued"
   },
   "license": "MIT",
-  "icon": "assets/hideaway_plus/icon.png",
-  "environment": "*",
+  "icon": "assets/hideaway_plus/textures/icon.png",
+  "environment": "client",
   "entrypoints": {
     "client": [
       "continued.hideaway.mod.HideawayPlus"
@@ -27,7 +27,7 @@
     "hideaway_plus.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.22",
+    "fabricloader": ">=0.13",
     "minecraft": "1.20.1"
   },
   "breaks": {
