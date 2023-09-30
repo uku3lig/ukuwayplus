@@ -22,15 +22,13 @@
     "jukebox.title": "Play a song",
     "jukebox.stop_all_songs": "Stop all music",
 
-    "text.config.hp-config.title": "Hideaway+ Configuration",
-
-    "text.config.hp-config.option.pipNav": "Use PiP Navigation",
-    "text.config.hp-config.option.hideCosmetics": "Hide Cosmetics",
-    "text.config.hp-config.option.inventoryRarities": "Item Rarity Colors",
-    "text.config.hp-config.option.discordRPC": "Use Discord Rich Presence",
-    "text.config.hp-config.option.autoSell": "Automatically fill shop screen",
-    "text.config.hp-config.option.autoEnableEditor": "Automatically Enable Editor",
-    "text.config.hp-config.option.jukebox": "Use Jukebox",
-    "text.config.hp-config.option.noAmbientSounds": "Allow Ambient Sounds",
-    "text.config.hp-config.option.noActivitySongs": "Allow Activity Songs"
+    "ukuway.config.pipNav": "Use PiP Navigation",
+    "ukuway.config.hideCosmetics": "Hide Cosmetics",
+    "ukuway.config.inventoryRarities": "Item Rarity Colors",
+    "ukuway.config.discordRPC": "Use Discord Rich Presence",
+    "ukuway.config.autoSell": "Automatically fill shop screen",
+    "ukuway.config.autoEnableEditor": "Automatically Enable Editor",
+    "ukuway.config.jukebox": "Use Jukebox",
+    "ukuway.config.noAmbientSounds": "Allow Ambient Sounds",
+    "ukuway.config.noActivitySongs": "Allow Activity Songs"
 }

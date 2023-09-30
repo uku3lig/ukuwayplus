@@ -1,9 +1,10 @@
 package continued.hideaway.mod.mixin;
 
 import continued.hideaway.mod.HideawayPlus;
-import continued.hideaway.mod.feat.ui.ConfigUI;
+import continued.hideaway.mod.feat.config.UkuwayConfigScreen;
 import continued.hideaway.mod.util.Chars;
 import continued.hideaway.mod.util.Constants;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.layouts.GridLayout;
 import net.minecraft.client.gui.layouts.LayoutElement;
@@ -42,19 +43,14 @@ public abstract class GameMenuScreenMixin extends Screen {
 
     @Inject(method = "createPauseMenu", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/layouts/GridLayout;visitWidgets(Ljava/util/function/Consumer;)V"), locals = LocalCapture.CAPTURE_FAILEXCEPTION)
     private void createPauseMenuButton(CallbackInfo ci, GridLayout gridLayout, GridLayout.RowHelper rowHelper, Component component) {
-        int x, y;
+        int x = returnToGameRightButton.getX() + returnToGameRightButton.getWidth() + 4;
+        int y = returnToGameRightButton.getY();
 
-        x = returnToGameRightButton.getX() + returnToGameRightButton.getWidth() + 4;
-        y = returnToGameRightButton.getY();
-
-        if (gridLayout != null && !Constants.MOD_MENU_PRESENT) {
-            if (HideawayPlus.connected()) {
-                this.addRenderableWidget(Button.builder(Chars.settingsIcon(), button -> {
-                            this.minecraft.setScreen(new ConfigUI());
-                        })
+        if (gridLayout != null && !Constants.MOD_MENU_PRESENT && HideawayPlus.connected()) {
+                this.addRenderableWidget(Button.builder(Chars.settingsIcon(), button -> Minecraft.getInstance().setScreen(new UkuwayConfigScreen((PauseScreen) (Object) this)))
                         .bounds(x, y, 20, 20)
                         .build());
-            }
+
         }
     }
 }

@@ -1,6 +1,7 @@
 package continued.hideaway.mod.mixin;
 
 import continued.hideaway.mod.HideawayPlus;
+import continued.hideaway.mod.feat.config.UkuwayConfig;
 import continued.hideaway.mod.util.StaticValues;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -36,9 +37,9 @@ public abstract class PlayerMixin {
         if (!StaticValues.wardrobeEntity.contains(player.getStringUUID())) {
             boolean hasCosmetic = player.getItemBySlot(EquipmentSlot.HEAD).getItem() == Items.LEATHER_HORSE_ARMOR;
             if (hasCosmetic) oldHeadStack = player.getItemBySlot(EquipmentSlot.HEAD);
-            if (hasCosmetic && HideawayPlus.connected() && HideawayPlus.config().hideCosmetics())
+            if (hasCosmetic && HideawayPlus.connected() && UkuwayConfig.get().isHideCosmetics())
                 this.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
-            if (!hasCosmetic && HideawayPlus.connected() && !HideawayPlus.config().hideCosmetics() && oldHeadStack != null)
+            if (!hasCosmetic && HideawayPlus.connected() && !UkuwayConfig.get().isHideCosmetics() && oldHeadStack != null)
                 this.setItemSlot(EquipmentSlot.HEAD, oldHeadStack);
         }
 

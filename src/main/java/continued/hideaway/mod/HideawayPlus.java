@@ -1,6 +1,6 @@
 package continued.hideaway.mod;
 
-import continued.hideaway.mod.feat.config.HideawayPlusConfig;
+import continued.hideaway.mod.feat.config.UkuwayConfig;
 import continued.hideaway.mod.feat.discord.DiscordManager;
 import continued.hideaway.mod.feat.jukebox.Jukebox;
 import continued.hideaway.mod.feat.keyboard.KeyboardManager;
@@ -12,6 +12,7 @@ import continued.hideaway.mod.feat.ui.FriendsListUI;
 import continued.hideaway.mod.feat.wardrobe.Wardrobe;
 import continued.hideaway.mod.util.Constants;
 import continued.hideaway.mod.util.StaticValues;
+import lombok.Getter;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -19,6 +20,7 @@ import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.inventory.ContainerScreen;
 import net.minecraft.client.player.LocalPlayer;
+import net.uku3lig.ukulib.config.ConfigManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -32,13 +34,15 @@ public class HideawayPlus implements ClientModInitializer {
     private static final Logger LOGGER = LogManager.getLogger(Constants.MOD_NAME);
     private static final ArrayList<String> debugUsers = new ArrayList<>();
 
-    public static DiscordManager DISCORD_MANAGER;
-    public static Jukebox JUKEBOX;
-    public static Shop SHOP;
+    @Getter
+    private static final ConfigManager<UkuwayConfig> manager = ConfigManager.create(UkuwayConfig.class, "ukuway-plus");
 
-    private static final HideawayPlusConfig CONFIG = HideawayPlusConfig.createAndLoad();
+    private static final Lifecycle LIFECYCLE = new Lifecycle();
+    public static final DiscordManager DISCORD_MANAGER = new DiscordManager();
+    public static final Jukebox JUKEBOX = new Jukebox();
+    public static final Shop SHOP = new Shop();
+
     private static Location LOCATION = Location.UNKNOWN;
-    private static Lifecycle LIFECYCLE;
 
     @Override
     public void onInitializeClient() {
@@ -52,20 +56,17 @@ public class HideawayPlus implements ClientModInitializer {
         // Managers and services that need to be retained after
         // initialization, and/or be accessed by other services, should
         // be initialized here.
-        LIFECYCLE = new Lifecycle();
 
         // Managers and services that do not need to be retained after
         // initialization should be initialized here.
-        new KeyboardManager();
+        new KeyboardManager(); // FIXME DUUUUUUUUUUUUUUUDEEEEEEEEEDKZQJ IDJZQIODJZIOQDJIOQZDIOZQJDOIJDJZ
 
         try {
-            if (config().discordRPC()) DISCORD_MANAGER = new DiscordManager().start();
+            if (manager.getConfig().isDiscordRPC()) DISCORD_MANAGER.start();
         } catch (Error err) {
             HideawayPlus.logger().info(err);
             return;
         }
-        JUKEBOX = new Jukebox();
-        SHOP = new Shop();
 
         // Lifecycle tasks should be initialized here.
         lifecycle()
@@ -73,8 +74,8 @@ public class HideawayPlus implements ClientModInitializer {
                 .add(Task.of(() -> {
                     try {
                         if (DiscordManager.active) DISCORD_MANAGER.update();
-                        if (DiscordManager.active && !HideawayPlus.config().discordRPC()) DISCORD_MANAGER.stop();
-                        if (!DiscordManager.active && HideawayPlus.config().discordRPC()) DISCORD_MANAGER.start();
+                        if (DiscordManager.active && !manager.getConfig().isDiscordRPC()) DISCORD_MANAGER.stop();
+                        if (!DiscordManager.active && manager.getConfig().isDiscordRPC()) DISCORD_MANAGER.start();
                     } catch (Error err) {
                         HideawayPlus.logger().error(err);
                     }
@@ -105,22 +106,47 @@ public class HideawayPlus implements ClientModInitializer {
 
     public static String version() {
         return String.valueOf(
-            FabricLoader.getInstance().getModContainer(Constants.MOD_ID).get().getMetadata().getVersion()
+                FabricLoader.getInstance().getModContainer(Constants.MOD_ID).get().getMetadata().getVersion()
         );
     }
 
-    public static Logger logger() { return LOGGER; }
-    public static boolean debug() { return debugUsers.contains(Minecraft.getInstance().getUser().getUuid()); }
-    public static Minecraft client() { return Minecraft.getInstance(); }
-    public static LocalPlayer player() { return client().player; }
+    public static Logger logger() {
+        return LOGGER;
+    }
 
-    public static HideawayPlusConfig config() { return CONFIG; }
-    public static DiscordManager discord() { return DISCORD_MANAGER; }
-    public static Jukebox jukebox() { return JUKEBOX; }
-    public static Shop shop() { return SHOP; }
+    public static boolean debug() {
+        return debugUsers.contains(Minecraft.getInstance().getUser().getUuid());
+    }
 
-    public static Lifecycle lifecycle() { return LIFECYCLE; }
-    public static Location location() { return LOCATION; }
+    public static Minecraft client() {
+        return Minecraft.getInstance();
+    }
 
-    public static void setLocation(Location l) { LOCATION = l; }
+    public static LocalPlayer player() {
+        return client().player;
+    }
+
+    public static DiscordManager discord() {
+        return DISCORD_MANAGER;
+    }
+
+    public static Jukebox jukebox() {
+        return JUKEBOX;
+    }
+
+    public static Shop shop() {
+        return SHOP;
+    }
+
+    public static Lifecycle lifecycle() {
+        return LIFECYCLE;
+    }
+
+    public static Location location() {
+        return LOCATION;
+    }
+
+    public static void setLocation(Location l) {
+        LOCATION = l;
+    }
 }

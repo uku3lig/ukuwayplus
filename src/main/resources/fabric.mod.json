@@ -20,6 +20,9 @@
   "entrypoints": {
     "client": [
       "continued.hideaway.mod.HideawayPlus"
+    ],
+    "ukulib": [
+      "continued.hideaway.mod.feat.config.UkulibHook"
     ]
   },
   "accessWidener": "hideaway_plus.accesswidener",

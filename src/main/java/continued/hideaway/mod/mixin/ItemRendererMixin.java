@@ -1,6 +1,7 @@
 package continued.hideaway.mod.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import continued.hideaway.mod.feat.config.UkuwayConfig;
 import continued.hideaway.mod.util.Constants;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -28,7 +29,7 @@ public class ItemRendererMixin {
     @Inject(method = "render", at = @At("HEAD"), cancellable = true)
     private void render(ItemStack itemStack, ItemDisplayContext displayContext, boolean leftHand, PoseStack poseStack, MultiBufferSource buffer, int combinedLight, int combinedOverlay, BakedModel model, CallbackInfo ci) {
         if ((minecraft.player != null && displayContext != ItemDisplayContext.GUI && HideawayPlus.connected())) {
-            if (HideawayPlus.config().hideCosmetics() || minecraft.options.getCameraType().isFirstPerson()) {
+            if (UkuwayConfig.get().isHideCosmetics() || minecraft.options.getCameraType().isFirstPerson()) {
                 CompoundTag playerChestNbt = minecraft.player.getItemBySlot(EquipmentSlot.CHEST).getTagElement(Constants.PUBLIC_BUKKIT_VALUES);
                 CompoundTag playerHeadNbt = minecraft.player.getItemBySlot(EquipmentSlot.HEAD).getTagElement(Constants.PUBLIC_BUKKIT_VALUES);
 

@@ -1,6 +1,7 @@
 package continued.hideaway.mod.mixin;
 
 import continued.hideaway.mod.HideawayPlus;
+import continued.hideaway.mod.feat.config.UkuwayConfig;
 import continued.hideaway.mod.util.StaticValues;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.decoration.ArmorStand;
@@ -27,8 +28,8 @@ public abstract class ArmourStandMobMixin {
         if (hasCosmetic) oldHeadStack = armorStand.getItemBySlot(EquipmentSlot.HEAD);
 
         if (!StaticValues.wardrobeArmourStand.contains(armorStand.getStringUUID())) {
-          if (hasCosmetic && HideawayPlus.connected() && HideawayPlus.config().hideCosmetics()) this.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
-          if (!hasCosmetic && HideawayPlus.connected() && !HideawayPlus.config().hideCosmetics() && oldHeadStack != null) this.setItemSlot(EquipmentSlot.HEAD, oldHeadStack);
+          if (hasCosmetic && HideawayPlus.connected() && UkuwayConfig.get().isHideCosmetics()) this.setItemSlot(EquipmentSlot.HEAD, ItemStack.EMPTY);
+          if (!hasCosmetic && HideawayPlus.connected() && !UkuwayConfig.get().isHideCosmetics() && oldHeadStack != null) this.setItemSlot(EquipmentSlot.HEAD, oldHeadStack);
         }
     }
 

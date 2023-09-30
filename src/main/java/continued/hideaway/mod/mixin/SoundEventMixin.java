@@ -1,6 +1,7 @@
 package continued.hideaway.mod.mixin;
 
 import continued.hideaway.mod.HideawayPlus;
+import continued.hideaway.mod.feat.config.UkuwayConfig;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,11 +20,11 @@ public class SoundEventMixin {
         boolean isAmbient = location.getPath().split("\\.")[0].contains("ambient");
         boolean isActivity = location.getPath().split("\\.")[0].contains("activities");
 
-        if (isAmbient && !HideawayPlus.config().noAmbientSounds()) {
+        if (isAmbient && !UkuwayConfig.get().isNoAmbientSounds()) {
             cir.setReturnValue(SoundEvent.createVariableRangeEvent(new ResourceLocation("")));
         }
 
-        if (isActivity && !HideawayPlus.config().noActivitySongs()) {
+        if (isActivity && !UkuwayConfig.get().isNoActivitySongs()) {
             cir.setReturnValue(SoundEvent.createVariableRangeEvent(new ResourceLocation("")));
         }
     }

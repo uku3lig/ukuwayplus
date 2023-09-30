@@ -1,6 +1,7 @@
 package continued.hideaway.mod.mixin;
 
 import continued.hideaway.mod.HideawayPlus;
+import continued.hideaway.mod.feat.config.UkuwayConfig;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.TextColor;
@@ -23,7 +24,7 @@ public abstract class AbstractContainerScreenMixin {
 
     @Inject(method = "render", at = @At("TAIL"))
     public void renderSlotRarity(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick, CallbackInfo ci) {
-        if (HideawayPlus.connected() && HideawayPlus.config().inventoryRarities()) {
+        if (HideawayPlus.connected() && UkuwayConfig.get().isInventoryRarities()) {
             for (int k = 0; k < (this.menu).slots.size(); ++k) {
                 Slot slot = (this.menu).slots.get(k);
                 TextColor itemColor = slot.getItem().getHoverName().getStyle().getColor();

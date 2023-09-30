@@ -2,8 +2,9 @@ package continued.hideaway.mod.feat.keyboard;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import continued.hideaway.mod.HideawayPlus;
+import continued.hideaway.mod.feat.config.UkuwayConfig;
 import continued.hideaway.mod.feat.ui.InventorySlotsUI;
-import continued.hideaway.mod.feat.ui.JukeboxUI;
+import continued.hideaway.mod.feat.ui.JukeboxScreen;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.KeyMapping;
@@ -29,7 +30,7 @@ public class KeyboardManager {
     // public static final KeyMapping debug = new KeyBinding("categories.hplus.debug", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F10,"categories.hplus");
     public KeyboardManager() {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while (jukebox.consumeClick()) client.setScreen(new JukeboxUI());
+            while (jukebox.consumeClick()) client.setScreen(new JukeboxScreen(null));
             while (luggage.consumeClick()) InventorySlotsUI.clickSlot(1, client);
             while (wardrobe.consumeClick()) InventorySlotsUI.clickSlot(2, client);
             while (profile.consumeClick()) InventorySlotsUI.clickSlot(3, client);
@@ -48,7 +49,7 @@ public class KeyboardManager {
                 ));
             }
             while (autoSell.consumeClick()) {
-                if (!HideawayPlus.config().autoSell() && HideawayPlus.client().screen != null) {
+                if (!UkuwayConfig.get().isAutoSell() && HideawayPlus.client().screen != null) {
                     HideawayPlus.shop().tick();
                 }
             }
