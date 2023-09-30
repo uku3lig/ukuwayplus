@@ -22,7 +22,6 @@
     "LogoRendererMixin",
     "MinecraftClientMixin",
     "PlayerInfoMixin",
-    "PlayerInventoryMixin",
     "PlayerMixin",
     "SoundEventMixin",
     "SplashRendererMixin",

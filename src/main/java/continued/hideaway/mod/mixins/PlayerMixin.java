@@ -2,13 +2,8 @@ package continued.hideaway.mod.mixins;
 
 import continued.hideaway.mod.HideawayPlus;
 import continued.hideaway.mod.util.StaticValues;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.Style;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -19,7 +14,6 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin {
@@ -48,15 +42,5 @@ public abstract class PlayerMixin {
                 this.setItemSlot(EquipmentSlot.HEAD, oldHeadStack);
         }
 
-    }
-
-    @Inject(at = @At("RETURN"), method = "drop(Lnet/minecraft/world/item/ItemStack;Z)Lnet/minecraft/world/entity/item/ItemEntity;")
-    public void dropItem(ItemStack stack, boolean retainOwnership, CallbackInfoReturnable<ItemEntity> cir) {
-        HideawayPlus.toastStack().add(
-            Component.empty().append(
-                Component.literal("- " + stack.getCount() + "x ").append(stack.getHoverName())
-                    .setStyle(Style.EMPTY.withColor(ChatFormatting.RED))
-            )
-        );
     }
 }
