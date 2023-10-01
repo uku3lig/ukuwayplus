@@ -19,10 +19,10 @@
   "environment": "client",
   "entrypoints": {
     "client": [
-      "continued.hideaway.mod.HideawayPlus"
+      "net.uku3lig.ukuway.HideawayPlus"
     ],
     "ukulib": [
-      "continued.hideaway.mod.feat.config.UkulibHook"
+      "net.uku3lig.ukuway.config.UkulibHook"
     ]
   },
   "accessWidener": "hideaway_plus.accesswidener",
