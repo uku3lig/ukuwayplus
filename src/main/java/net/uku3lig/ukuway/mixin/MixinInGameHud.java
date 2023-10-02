@@ -1,6 +1,7 @@
 package net.uku3lig.ukuway.mixin;
 
-import net.uku3lig.ukuway.HideawayPlus;
+import net.uku3lig.ukuway.UkuwayPlus;
+import net.uku3lig.ukuway.jukebox.JukeboxTrack;
 import net.uku3lig.ukuway.util.Chars;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -30,10 +31,11 @@ public abstract class MixinInGameHud {
 
     @Inject(at = @At("HEAD"), method = "render")
     public void onRender(DrawContext drawContext, float tickDelta, CallbackInfo ci) {
-        if (HideawayPlus.jukebox() != null && HideawayPlus.jukebox().currentTrack != null) {
+        JukeboxTrack track = UkuwayPlus.getJukebox().getCurrentTrack();
+        if (track != null) {
             drawContext.drawTextWithShadow(
                     this.getTextRenderer(),
-                    Chars.disc().copy().append(Text.of("Now playing: " + HideawayPlus.jukebox().currentTrack.name)),
+                    Chars.disc().copy().append(Text.of("Now playing: " + track.getTrackName())),
                     10, 10, 0xffffff
             );
         }
@@ -44,7 +46,7 @@ public abstract class MixinInGameHud {
             locals = LocalCapture.CAPTURE_FAILHARD
     )
     public void experienceBarPercent(DrawContext drawContext, int x, CallbackInfo ci, int i, String string, int textSize, int textPos) {
-        if (HideawayPlus.connected()) {
+        if (UkuwayPlus.connected()) {
             if (overlayMessage == null || !overlayMessage.getString().contains("\uE2C3") || MinecraftClient.getInstance().player == null)
                 return;
 

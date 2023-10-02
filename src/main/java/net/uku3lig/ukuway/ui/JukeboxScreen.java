@@ -8,7 +8,7 @@ import net.minecraft.client.gui.widget.GridWidget;
 import net.minecraft.client.gui.widget.SimplePositioningWidget;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
-import net.uku3lig.ukuway.HideawayPlus;
+import net.uku3lig.ukuway.UkuwayPlus;
 import net.uku3lig.ukuway.jukebox.JukeboxTrack;
 
 public class JukeboxScreen extends Screen {
@@ -27,7 +27,7 @@ public class JukeboxScreen extends Screen {
         GridWidget.Adder rowHelper = grid.setSpacing(4).createAdder(2);
 
         for (JukeboxTrack track : JukeboxTrack.values()) {
-            rowHelper.add(ButtonWidget.builder(Text.of(track.name), b -> HideawayPlus.jukebox().play(track)).width(160).build());
+            rowHelper.add(ButtonWidget.builder(Text.of(track.getTrackName()), b -> UkuwayPlus.getJukebox().play(track)).width(160).build());
         }
 
         grid.refreshPositions();
@@ -38,7 +38,7 @@ public class JukeboxScreen extends Screen {
                 .dimensions(this.width / 2 - 162, height - 27, 160, 20)
                 .build());
 
-        this.addDrawableChild(ButtonWidget.builder(Text.of("Stop music"), button -> HideawayPlus.jukebox().stop())
+        this.addDrawableChild(ButtonWidget.builder(Text.of("Stop music"), button -> UkuwayPlus.getJukebox().stop())
                 .dimensions(this.width / 2 + 2, height - 27, 160, 20)
                 .build());
     }

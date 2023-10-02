@@ -34,6 +34,8 @@ dependencies {
     modApi "net.uku3lig:ukulib:${project.ukulib_version}"
 
     include implementation("io.github.CDAGaming:DiscordIPC:0.8.1")
+    include implementation("com.kohlschutter.junixsocket:junixsocket-common:2.8.1")
+    include implementation("com.kohlschutter.junixsocket:junixsocket-native-common:2.8.1")
 
     modRuntimeOnly "com.terraformersmc:modmenu:7.2.2"
     modRuntimeOnly "me.djtheredstoner:DevAuth-fabric:1.1.2"
@@ -44,9 +46,6 @@ processResources {
     filteringCharset "UTF-8"
 
     filesMatching("fabric.mod.json") {
-        expand "version": project.version
-    }
-    filesMatching("Constants.java") {
         expand "version": project.version
     }
 }

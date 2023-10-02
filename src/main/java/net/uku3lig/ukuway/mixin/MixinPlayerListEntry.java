@@ -1,11 +1,11 @@
 package net.uku3lig.ukuway.mixin;
 
 import com.mojang.authlib.GameProfile;
-import net.uku3lig.ukuway.util.StaticValues;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.util.Identifier;
+import net.uku3lig.ukuway.wardrobe.Wardrobe;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -45,12 +45,8 @@ public class MixinPlayerListEntry {
     @Unique
     private <T> void change(CallbackInfoReturnable<T> cir, Function<ClientPlayerEntity, T> mapper) {
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
-        if (player != null && !StaticValues.wardrobeEntity.isEmpty()) {
-            String hidePlayer = this.profile.getId().toString();
-
-            if (StaticValues.wardrobeEntity.contains(hidePlayer)) {
+        if (player != null && !Wardrobe.getWardrobeEntities().isEmpty() && Wardrobe.getWardrobeEntities().contains(this.profile.getId())) {
                 cir.setReturnValue(mapper.apply(player));
-            }
         }
     }
 }

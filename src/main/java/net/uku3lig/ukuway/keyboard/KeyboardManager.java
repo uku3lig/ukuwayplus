@@ -5,52 +5,66 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
-import net.uku3lig.ukuway.HideawayPlus;
+import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.slot.SlotActionType;
+import net.uku3lig.ukuway.UkuwayPlus;
 import net.uku3lig.ukuway.config.UkuwayConfig;
-import net.uku3lig.ukuway.ui.InventorySlotsUI;
 import net.uku3lig.ukuway.ui.JukeboxScreen;
 import org.lwjgl.glfw.GLFW;
 
-public class KeyboardManager {
-    public static final KeyBinding jukebox = new KeyBinding("key.hp.jukebox", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_J, "categories.hp");
-    public static final KeyBinding autoSell = new KeyBinding("key.hp.autoSell", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_S, "categories.hp");
-    public static final KeyBinding luggage = new KeyBinding("key.hp.luggage", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_B, "categories.hp");
-    public static final KeyBinding wardrobe = new KeyBinding("key.hp.wardrobe", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_G, "categories.hp");
-    public static final KeyBinding profile = new KeyBinding("key.hp.profile", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_Z, "categories.hp");
-    public static final KeyBinding friends = new KeyBinding("key.hp.friends", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_U, "categories.hp");
-    public static final KeyBinding journal = new KeyBinding("key.hp.journal", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_Y, "categories.hp");
-    public static final KeyBinding palmPlate = new KeyBinding("key.hp.palm_plate", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_V, "categories.hp");
-    public static final KeyBinding mail = new KeyBinding("key.hp.mail", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_C, "categories.hp");
+import java.util.List;
 
-    // public static final KeyBinding explore = new KeyBinding("key.hp.explore", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_H, "categories.hp");
-    // public static final KeyBinding debug = new KeyBinding("categories.hplus.debug", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_F10,"categories.hplus");
-    public KeyboardManager() {
-        ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while (jukebox.wasPressed()) client.setScreen(new JukeboxScreen(null));
-            while (luggage.wasPressed()) InventorySlotsUI.clickSlot(1, client);
-            while (wardrobe.wasPressed()) InventorySlotsUI.clickSlot(2, client);
-            while (profile.wasPressed()) InventorySlotsUI.clickSlot(3, client);
-            while (friends.wasPressed()) InventorySlotsUI.clickSlot(4, client);
-            while (journal.wasPressed()) InventorySlotsUI.clickSlot(43, client);
-            while (palmPlate.wasPressed()) InventorySlotsUI.clickSlot(44, client);
-            while (mail.wasPressed() && client.player != null) {
-                client.player.networkHandler.sendChatCommand("mail");
-            }
-            while (autoSell.wasPressed()) {
+public class KeyboardManager {
+    public static final KeyBinding autoSell = new KeyBinding("key.hp.autoSell", InputUtil.Type.KEYSYM, GLFW.GLFW_KEY_S, "categories.hp");
+
+    private static final List<KeyBindingWrapper> binds = List.of(
+            create("key.hp.jukebox", GLFW.GLFW_KEY_J, () -> MinecraftClient.getInstance().setScreen(new JukeboxScreen(null))),
+            new KeyBindingWrapper(autoSell, () -> {
                 if (!UkuwayConfig.get().isAutoSell() && MinecraftClient.getInstance().currentScreen != null) {
-                    HideawayPlus.shop().tick();
+                    UkuwayPlus.getShop().tick();
+                }
+            }),
+            create("key.hp.luggage", GLFW.GLFW_KEY_B, () -> clickSlot(1, MinecraftClient.getInstance())),
+            create("key.hp.wardrobe", GLFW.GLFW_KEY_G, () -> clickSlot(2, MinecraftClient.getInstance())),
+            create("key.hp.profile", GLFW.GLFW_KEY_Z, () -> clickSlot(3, MinecraftClient.getInstance())),
+            create("key.hp.friends", GLFW.GLFW_KEY_U, () -> clickSlot(4, MinecraftClient.getInstance())),
+            create("key.hp.journal", GLFW.GLFW_KEY_Y, () -> clickSlot(43, MinecraftClient.getInstance())),
+            create("key.hp.palm_plate", GLFW.GLFW_KEY_V, () -> clickSlot(44, MinecraftClient.getInstance())),
+            create("key.hp.mail", GLFW.GLFW_KEY_C, () -> {
+                if (MinecraftClient.getInstance().player != null) {
+                    MinecraftClient.getInstance().player.networkHandler.sendChatCommand("mail");
+                }
+            })
+    );
+
+    public static void register() {
+        for (KeyBindingWrapper bind : binds) {
+            KeyBindingHelper.registerKeyBinding(bind.keyBinding);
+        }
+
+        ClientTickEvents.END_CLIENT_TICK.register(client -> {
+            for (KeyBindingWrapper bind : binds) {
+                while (bind.keyBinding.wasPressed()) {
+                    bind.action.run();
                 }
             }
         });
+    }
+    
+    private static void clickSlot(Integer slotNumber, MinecraftClient client) {
+        if (client.interactionManager != null && client.player != null) {
+            ScreenHandler screenHandler = client.player.currentScreenHandler;
+            client.interactionManager.clickSlot(screenHandler.syncId, slotNumber, 0, SlotActionType.PICKUP, client.player);
+        }
+    }
 
-        KeyBindingHelper.registerKeyBinding(jukebox);
-        KeyBindingHelper.registerKeyBinding(autoSell);
-        KeyBindingHelper.registerKeyBinding(luggage);
-        KeyBindingHelper.registerKeyBinding(wardrobe);
-        KeyBindingHelper.registerKeyBinding(profile);
-        KeyBindingHelper.registerKeyBinding(friends);
-        KeyBindingHelper.registerKeyBinding(journal);
-        KeyBindingHelper.registerKeyBinding(palmPlate);
-        KeyBindingHelper.registerKeyBinding(mail);
+    public record KeyBindingWrapper(KeyBinding keyBinding, Runnable action) {
+    }
+
+    private static KeyBindingWrapper create(String translationKey, int code, Runnable action) {
+        return new KeyBindingWrapper(new KeyBinding(translationKey, InputUtil.Type.KEYSYM, code, "categories.hp"), action);
+    }
+
+    private KeyboardManager() {
     }
 }

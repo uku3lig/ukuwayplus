@@ -1,15 +1,12 @@
 {
   "schemaVersion": 1,
-  "id": "ukuway_plus",
+  "id": "ukuway-plus",
   "version": "${version}",
   "name": "ukuway+",
   "description": "epic fork of not so epic mod hideaway continued",
   "authors": [
     "uku",
-    "skyelander (original author)",
-    "ella (original author)",
-    "OliviaTheVampire (original author)",
-    "Dragonostic (original author)"
+    "the hideaway+ team"
   ],
   "contact": {
     "sources": "https://github.com/uku3lig/HideawayContinued"
@@ -19,7 +16,7 @@
   "environment": "client",
   "entrypoints": {
     "client": [
-      "net.uku3lig.ukuway.HideawayPlus"
+      "net.uku3lig.ukuway.UkuwayPlus"
     ],
     "ukulib": [
       "net.uku3lig.ukuway.config.UkulibHook"

@@ -1,109 +1,109 @@
 package net.uku3lig.ukuway.shop;
 
+import lombok.Setter;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.GenericContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.screen.slot.SlotActionType;
+import net.minecraft.util.Identifier;
+import net.uku3lig.ukuway.UkuwayPlus;
 import net.uku3lig.ukuway.config.UkuwayConfig;
 import net.uku3lig.ukuway.keyboard.KeyboardManager;
-import net.uku3lig.ukuway.ui.FriendsListUI;
-import net.uku3lig.ukuway.util.StaticValues;
+import net.uku3lig.ukuway.ui.FriendListManager;
+import org.jetbrains.annotations.NotNull;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class Shop {
+    private static final Identifier NOT_SAVE_KEY = new Identifier("pixelhideawaycore", "inventory-do-not-save");
 
-    private static boolean fill;
-    public String oldShopName = null;
+    @Setter @NotNull
+    private ShopType oldShopType = ShopType.UNKNOWN;
 
     public void tick() {
-        if (MinecraftClient.getInstance().currentScreen == null || !(MinecraftClient.getInstance().currentScreen instanceof GenericContainerScreen containerScreen))
-            return;
-
-        if (getShopName(containerScreen) == null) {
-            oldShopName = null;
+        if (MinecraftClient.getInstance().currentScreen == null || !(MinecraftClient.getInstance().currentScreen instanceof GenericContainerScreen containerScreen)) {
+            oldShopType = ShopType.UNKNOWN;
             return;
         }
 
-        String shopName = getShopName(containerScreen);
-
-        if (GLFW.glfwGetKey(GLFW.glfwGetCurrentContext(), KeyBindingHelper.getBoundKeyOf(KeyboardManager.autoSell).getCode()) == GLFW.GLFW_PRESS) {
-            fill = true;
+        if (getShopType(containerScreen) == ShopType.UNKNOWN) {
+            oldShopType = ShopType.UNKNOWN;
+            return;
         }
 
-        if (("fruit".equals(shopName) || "fish".equals(shopName)) && (UkuwayConfig.get().isAutoSell() || fill)) {
-            if (oldShopName != null && !oldShopName.equals(shopName)) StaticValues.shopIterationNum = 0;
-            oldShopName = shopName;
+        ShopType shopType = getShopType(containerScreen);
+        boolean fill = GLFW.glfwGetKey(GLFW.glfwGetCurrentContext(), KeyBindingHelper.getBoundKeyOf(KeyboardManager.autoSell).getCode()) == GLFW.GLFW_PRESS;
+
+        if (shopType != oldShopType && (shopType == ShopType.FRUIT || shopType == ShopType.FISH) && (UkuwayConfig.get().isAutoSell() || fill)) {
             List<Slot> emptyChestSlots = new ArrayList<>();
-            List<Slot> playerEmptySlots = new ArrayList<>();
-            GenericContainerScreenHandler chestMenu = containerScreen.getScreenHandler();
+            List<Slot> playerItemSlots = new ArrayList<>();
+            GenericContainerScreenHandler handler = containerScreen.getScreenHandler();
 
-            for (Slot slot : chestMenu.slots) {
-                if (slot.getStack().getItem() != Items.AIR) {
-                    if (slot.inventory instanceof PlayerInventory) {
-                        playerEmptySlots.add(slot);
+            for (Slot slot : handler.slots) {
+                if (slot.inventory instanceof PlayerInventory) {
+                    if (!slot.getStack().isEmpty() && !slot.getStack().getItem().equals(Items.FISHING_ROD)) {
+                        NbtCompound nbt = slot.getStack().getSubNbt(UkuwayPlus.PUBLIC_BUKKIT_VALUES);
+                        if (nbt == null || !nbt.contains(NOT_SAVE_KEY.toString())) {
+                            playerItemSlots.add(slot);
+                        }
                     }
-                } else if (!(slot.inventory instanceof PlayerInventory)) {
+                } else if (slot.getStack().isEmpty()) {
                     emptyChestSlots.add(slot);
                 }
             }
 
-            for (int i = StaticValues.shopIterationNum; i < playerEmptySlots.size() && !emptyChestSlots.isEmpty() && !StaticValues.shopScreenWasFilled; i++) {
-                Slot playerSlot = playerEmptySlots.get(i);
+            for (Slot playerSlot : playerItemSlots) {
+                if (emptyChestSlots.isEmpty()) break;
 
-                containerScreen.onMouseClick(playerSlot, emptyChestSlots.get(0).id, 0, SlotActionType.QUICK_MOVE);
+                Slot emptySlot = emptyChestSlots.get(0);
+                containerScreen.onMouseClick(playerSlot, emptySlot.id, 0, SlotActionType.QUICK_MOVE);
 
-                Iterator<Slot> chestSlotIterator = emptyChestSlots.iterator();
-                while (chestSlotIterator.hasNext()) {
-                    Slot chestSlot = chestSlotIterator.next();
-                    if (chestSlot.getStack().getItem() != Items.AIR) {
-                        chestSlotIterator.remove();
-                        break;
-                    }
-                }
-
-                if (emptyChestSlots.isEmpty()) StaticValues.shopIterationNum++;
-                if (i == playerEmptySlots.size() - 1) {
-                    StaticValues.shopScreenWasFilled = true;
-                    fill = false;
-                }
-                if (StaticValues.shopIterationNum >= playerEmptySlots.size()) {
-                    StaticValues.shopScreenWasFilled = true;
-                    fill = false;
+                if (emptySlot.getStack().getItem() != Items.AIR) {
+                    emptyChestSlots.remove(0);
                 }
             }
         }
+
+        oldShopType = shopType;
     }
 
-    private String getShopName(GenericContainerScreen containerScreen) {
+    @NotNull
+    private ShopType getShopType(GenericContainerScreen containerScreen) {
         GenericContainerScreenHandler handler = containerScreen.getScreenHandler();
         String screenName = containerScreen.getTitle().getString();
         if (screenName.contains("\uE00C") || screenName.contains("\uE010")) {
-            FriendsListUI.tick();
-            return null;
+            FriendListManager.tick(); // qhar????????
+            return ShopType.UNKNOWN;
         }
 
 
         for (ItemStack itemStack : handler.getStacks()) {
-            if (!itemStack.hasNbt()) continue;
+            if (itemStack.getNbt() == null) continue;
             String nbtData = itemStack.getNbt().asString();
 
             if (nbtData.contains("buy")) {
-                if (nbtData.contains("The Marmoset Monkey Brothers")) return "fruit";
-                if (nbtData.contains("Bill Beaks")) return "fish";
+                if (nbtData.contains("The Marmoset Monkey Brothers")) return ShopType.FRUIT;
+                if (nbtData.contains("Bill Beaks")) return ShopType.FISH;
             } else if (nbtData.contains("same rarity")) {
-                return "trader";
+                return ShopType.TRADER;
             }
         }
 
-        return null;
+        return ShopType.UNKNOWN;
+    }
+
+    public enum ShopType {
+        FRUIT,
+        FISH,
+        TRADER,
+        UNKNOWN
     }
 }

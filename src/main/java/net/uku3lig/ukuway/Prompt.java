@@ -7,7 +7,7 @@ import net.minecraft.text.HoverEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 
-@SuppressWarnings("unused")
+@SuppressWarnings("unused") // todo
 public class Prompt {
 
     public static void info(String message) {

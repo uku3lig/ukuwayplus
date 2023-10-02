@@ -1,6 +1,5 @@
 package net.uku3lig.ukuway.util;
 
-
 import net.minecraft.text.HoverEvent;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
@@ -23,24 +22,6 @@ public class Chars {
 
     public static Text userBadge() {
         return Text.literal("\uE001").setStyle(Style.EMPTY.withFont(
-                new Identifier("hideaway_plus:text")
-        )).formatted(Formatting.WHITE);
-    }
-
-    public static Text devBadge() {
-        return Text.literal("\uE003").setStyle(Style.EMPTY.withFont(
-                new Identifier("hideaway_plus:text")
-        )).formatted(Formatting.WHITE);
-    }
-
-    public static Text translatorBadge() {
-        return Text.literal("\uE004").setStyle(Style.EMPTY.withFont(
-                new Identifier("hideaway_plus:text")
-        )).formatted(Formatting.WHITE);
-    }
-
-    public static Text teamBadge() {
-        return Text.literal("\uE005").setStyle(Style.EMPTY.withFont(
                 new Identifier("hideaway_plus:text")
         )).formatted(Formatting.WHITE);
     }

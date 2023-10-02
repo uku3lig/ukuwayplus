@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import net.uku3lig.ukulib.config.IConfig;
-import net.uku3lig.ukuway.HideawayPlus;
+import net.uku3lig.ukuway.UkuwayPlus;
 
 @Getter
 @Setter
@@ -25,6 +25,6 @@ public class UkuwayConfig implements IConfig<UkuwayConfig> {
     }
 
     public static UkuwayConfig get() {
-        return HideawayPlus.getManager().getConfig();
+        return UkuwayPlus.getManager().getConfig();
     }
 }
