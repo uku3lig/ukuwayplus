@@ -6,7 +6,7 @@
   "description": "epic fork of not so epic mod hideaway continued",
   "authors": [
     "uku",
-    "the hideaway+ team"
+    "the hideaway+ team (maybe)"
   ],
   "contact": {
     "sources": "https://github.com/uku3lig/HideawayContinued"
@@ -28,7 +28,10 @@
   ],
   "depends": {
     "fabricloader": ">=0.13",
-    "minecraft": "1.20.1"
+    "minecraft": "1.20.1",
+    "ukulib": "^0.7.0",
+    "fabric-key-binding-api-v1": "*",
+    "fabric-lifecycle-events-v1": "*"
   },
   "breaks": {
     "optifabric": "*"
