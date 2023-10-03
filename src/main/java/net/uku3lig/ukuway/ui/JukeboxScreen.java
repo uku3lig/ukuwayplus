@@ -15,7 +15,7 @@ public class JukeboxScreen extends Screen {
     private final Screen parent;
 
     public JukeboxScreen(Screen parent) {
-        super(Text.of("Jukebox"));
+        super(Text.translatable("jukebox.title"));
         this.parent = parent;
     }
 
@@ -38,7 +38,7 @@ public class JukeboxScreen extends Screen {
                 .dimensions(this.width / 2 - 162, height - 27, 160, 20)
                 .build());
 
-        this.addDrawableChild(ButtonWidget.builder(Text.of("Stop music"), button -> UkuwayPlus.getJukebox().stop())
+        this.addDrawableChild(ButtonWidget.builder(Text.of("jukebox.stop_all_songs"), button -> UkuwayPlus.getJukebox().stop())
                 .dimensions(this.width / 2 + 2, height - 27, 160, 20)
                 .build());
     }

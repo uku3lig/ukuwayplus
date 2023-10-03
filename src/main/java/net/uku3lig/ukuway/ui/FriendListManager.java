@@ -30,7 +30,8 @@ public class FriendListManager {
     public static void tick() {
         if (MinecraftClient.getInstance().currentScreen instanceof GenericContainerScreen containerScreen) {
             checkFriends(containerScreen);
-        } else if (ticksElapsed >= 25 && !init && MinecraftClient.getInstance().player != null) {
+        } else if (ticksElapsed >= 200 && !init && MinecraftClient.getInstance().player != null) {
+            init = true;
             MinecraftClient.getInstance().player.networkHandler.sendChatCommand("friend");
         }
 

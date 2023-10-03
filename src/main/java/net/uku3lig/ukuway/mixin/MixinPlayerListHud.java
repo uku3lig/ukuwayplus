@@ -16,11 +16,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public class MixinPlayerListHud {
     @Inject(at = @At("RETURN"), method = "getPlayerName", cancellable = true)
     public void getDisplayName(PlayerListEntry entry, CallbackInfoReturnable<Text> cir) {
-        if (UkuwayPlus.connected()) {
+        if (UkuwayPlus.isConnected()) {
             MutableText newName = cir.getReturnValue().copy();
 
             if (FriendListManager.getFriends().contains(entry.getProfile().getId())) {
-                Chars.addBadge(newName, Chars.friendBadge());
+                newName = Chars.FRIEND_BADGE.with(newName);
             }
 
             cir.setReturnValue(newName);

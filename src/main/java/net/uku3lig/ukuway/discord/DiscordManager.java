@@ -45,9 +45,9 @@ public class DiscordManager {
             RichPresence.Builder builder = new RichPresence.Builder();
 
             builder.setState("in the teawieverse")
-                    .setDetails(UkuwayPlus.connected() ? "playing hideaway" : "clicking buttons")
+                    .setDetails(UkuwayPlus.isConnected() ? "playing hideaway" : "clicking buttons")
                     .setStartTimestamp(start.getEpochSecond())
-                    .setLargeImage(UkuwayPlus.connected() ? "hideaway" : "ukuway",
+                    .setLargeImage(UkuwayPlus.isConnected() ? "hideaway" : "ukuway",
                             UkuwayPlus.findVersion().map(v -> "ukuway+ " + v).orElse("this person broke minecraft"))
                     .setSmallImage("https://mc-heads.net/avatar/" + MinecraftClient.getInstance().getSession().getUuid(), "made with spite & anger");
 

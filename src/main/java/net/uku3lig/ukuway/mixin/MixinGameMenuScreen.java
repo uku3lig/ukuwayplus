@@ -1,7 +1,5 @@
 package net.uku3lig.ukuway.mixin;
 
-import net.uku3lig.ukuway.config.UkuwayConfigScreen;
-import net.uku3lig.ukuway.util.Chars;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.GameMenuScreen;
 import net.minecraft.client.gui.screen.Screen;
@@ -9,6 +7,8 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.GridWidget;
 import net.minecraft.client.gui.widget.Widget;
 import net.minecraft.text.Text;
+import net.uku3lig.ukuway.config.UkuwayConfigScreen;
+import net.uku3lig.ukuway.util.Chars;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -19,7 +19,6 @@ import java.util.concurrent.atomic.AtomicReference;
 
 @Mixin(GameMenuScreen.class)
 public abstract class MixinGameMenuScreen extends Screen {
-
     protected MixinGameMenuScreen(Text title) {
         super(title);
     }
@@ -33,7 +32,8 @@ public abstract class MixinGameMenuScreen extends Screen {
 
         Widget w = first.get();
 
-        this.addDrawableChild(ButtonWidget.builder(Chars.settingsIcon(), button -> MinecraftClient.getInstance().setScreen(new UkuwayConfigScreen(this)))
+        this.addDrawableChild(ButtonWidget.builder(Chars.SETTINGS_ICON.formatted(),
+                        button -> MinecraftClient.getInstance().setScreen(new UkuwayConfigScreen(this)))
                 .dimensions(w.getX() + w.getWidth() + 4, w.getY(), 20, 20)
                 .build());
     }

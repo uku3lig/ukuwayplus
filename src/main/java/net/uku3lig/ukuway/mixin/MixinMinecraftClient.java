@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class MixinMinecraftClient {
     @Inject(at = @At("HEAD"), method = "setScreen", cancellable = true)
     public void hideAdvancements(Screen screen, CallbackInfo ci) {
-        if (UkuwayPlus.connected() && screen instanceof AdvancementsScreen) {
+        if (UkuwayPlus.isConnected() && screen instanceof AdvancementsScreen) {
             ci.cancel();
         }
     }

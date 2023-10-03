@@ -7,19 +7,19 @@
     "defaultRequire": 1
   },
   "client": [
-    "MixinHandledScreen",
     "MixinArmorStandEntity",
     "MixinCapeFeatureRenderer",
     "MixinChatHud",
-    "MixinPlayerListHud",
     "MixinEntityRenderer",
     "MixinGameMenuScreen",
+    "MixinHandledScreen",
     "MixinInGameHud",
     "MixinItemRenderer",
     "MixinLogoDrawer",
     "MixinMinecraftClient",
-    "MixinPlayerListEntry",
     "MixinPlayerEntity",
+    "MixinPlayerListEntry",
+    "MixinPlayerListHud",
     "MixinSoundEvent"
   ]
 }

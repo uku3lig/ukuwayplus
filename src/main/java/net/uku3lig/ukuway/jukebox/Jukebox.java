@@ -5,7 +5,6 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.util.ClientPlayerTickable;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
-import net.uku3lig.ukuway.Prompt;
 import net.uku3lig.ukuway.UkuwayPlus;
 
 public class Jukebox implements ClientPlayerTickable {
@@ -46,13 +45,13 @@ public class Jukebox implements ClientPlayerTickable {
                 MinecraftClient.getInstance().player.playSound(SoundEvent.of(this.currentPart.id()), SoundCategory.RECORDS, 1, 1);
             }
         } catch (Exception e) {
-            Prompt.error("An issue occurred when looping music with the Jukebox. Please send your latest.log file to the developers of Hideaway+.");
+            UkuwayPlus.getLogger().error("An issue occurred when looping music with the Jukebox.", e);
         }
     }
 
     @Override
     public void tick() {
-        if (UkuwayPlus.connected() && this.currentTrack != null && this.currentPart != null) {
+        if (UkuwayPlus.isConnected() && this.currentTrack != null && this.currentPart != null) {
             if (this.ticksElapsed >= this.currentPart.length()) loop();
             else this.ticksElapsed++;
         }

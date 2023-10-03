@@ -23,9 +23,8 @@ public abstract class MixinHandledScreen {
 
     @Inject(method = "render", at = @At("TAIL"))
     public void renderSlotRarity(DrawContext drawContext, int mouseX, int mouseY, float partialTick, CallbackInfo ci) {
-        if (UkuwayPlus.connected() && UkuwayConfig.get().isInventoryRarities()) {
-            for (int k = 0; k < (this.handler).slots.size(); ++k) {
-                Slot slot = (this.handler).slots.get(k);
+        if (UkuwayPlus.isConnected() && UkuwayConfig.get().isInventoryRarities()) {
+            for (Slot slot : this.handler.slots) {
                 TextColor itemColor = slot.getStack().getName().getStyle().getColor();
                 if (itemColor != null) {
                     int colorAlpha = itemColor.getRgb() | (150 << 24);

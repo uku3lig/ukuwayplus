@@ -23,8 +23,8 @@ public class UkuwayConfigScreen extends AbstractConfigScreen<UkuwayConfig> {
                 }),
                 SimpleOption.ofBoolean("ukuway.config.inventoryRarities", config.isInventoryRarities(), config::setInventoryRarities),
                 SimpleOption.ofBoolean("ukuway.config.autoSell", config.isAutoSell(), config::setAutoSell),
-                SimpleOption.ofBoolean("ukuway.config.noAmbientSounds", config.isNoAmbientSounds(), config::setNoAmbientSounds),
-                SimpleOption.ofBoolean("ukuway.config.noActivitySongs", config.isNoActivitySongs(), config::setNoActivitySongs),
+                SimpleOption.ofBoolean("ukuway.config.ambientSounds", config.isAmbientSounds(), config::setAmbientSounds),
+                SimpleOption.ofBoolean("ukuway.config.activitySongs", config.isActivitySongs(), config::setActivitySongs),
         };
     }
 }

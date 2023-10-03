@@ -1,7 +1,6 @@
 {
     "categories.hp": "Hideaway+",
 
-    "key.hp.menu": "Open Hideaway+ Menu",
     "key.hp.jukebox": "Open Jukebox",
     "key.hp.autoSell": "Automatically fill shop screen",
     "key.hp.luggage": "Luggage",
@@ -14,21 +13,14 @@
     "key.hp.explore": "Explore",
 
     "tooltip.hp.friend": "Friend :)",
-    "tooltip.hp.user": "Hideaway+ User",
-    "tooltip.hp.translator": "Hideaway+ Translator",
-    "tooltip.hp.teamMember": "Hideaway+ Team Member",
-    "tooltip.hp.developer": "Hideaway+ Developer",
 
     "jukebox.title": "Play a song",
     "jukebox.stop_all_songs": "Stop all music",
 
-    "ukuway.config.pipNav": "Use PiP Navigation",
     "ukuway.config.hideCosmetics": "Hide Cosmetics",
     "ukuway.config.inventoryRarities": "Item Rarity Colors",
     "ukuway.config.discordRPC": "Use Discord Rich Presence",
-    "ukuway.config.autoSell": "Automatically fill shop screen",
-    "ukuway.config.autoEnableEditor": "Automatically Enable Editor",
-    "ukuway.config.jukebox": "Use Jukebox",
-    "ukuway.config.noAmbientSounds": "Allow Ambient Sounds",
-    "ukuway.config.noActivitySongs": "Allow Activity Songs"
+    "ukuway.config.autoSell": "Automatically sell items",
+    "ukuway.config.ambientSounds": "Ambient Sounds",
+    "ukuway.config.activitySongs": "Activity Songs"
 }

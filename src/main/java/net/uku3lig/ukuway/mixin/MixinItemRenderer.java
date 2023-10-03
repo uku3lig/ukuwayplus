@@ -26,32 +26,29 @@ public class MixinItemRenderer {
 
     @Inject(method = "renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/render/model/BakedModel;)V", at = @At("HEAD"), cancellable = true)
     private void render(ItemStack itemStack, ModelTransformationMode modelTransformationMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model, CallbackInfo ci) {
-        ClientPlayerEntity player = MinecraftClient.getInstance().player;
-        if (player != null && modelTransformationMode != ModelTransformationMode.GUI && UkuwayPlus.connected()
-                && (UkuwayConfig.get().isHideCosmetics() || MinecraftClient.getInstance().options.getPerspective().isFirstPerson())) {
-            NbtCompound playerChestNbt = player.getEquippedStack(EquipmentSlot.CHEST).getSubNbt(UkuwayPlus.PUBLIC_BUKKIT_VALUES);
-            NbtCompound playerHeadNbt = player.getEquippedStack(EquipmentSlot.HEAD).getSubNbt(UkuwayPlus.PUBLIC_BUKKIT_VALUES);
-
-            NbtCompound stackNbt = itemStack.getSubNbt(UkuwayPlus.PUBLIC_BUKKIT_VALUES);
-
-            if (stackNbt != null && playerChestNbt != null) {
-                String stackId = stackNbt.getString(RANDOM_KEY);
-                String itemId = playerChestNbt.getString(RANDOM_KEY);
-
-                if (stackId.equals(itemId)) {
-                    ci.cancel();
-                }
-            }
-
-            if (stackNbt != null && playerHeadNbt != null) {
-                String stackId = stackNbt.getString(RANDOM_KEY);
-                String itemId = playerHeadNbt.getString(RANDOM_KEY);
-
-                if (stackId.equals(itemId)) {
-                    ci.cancel();
-                }
-            }
-
+        if (UkuwayPlus.isConnected() && modelTransformationMode != ModelTransformationMode.GUI
+                && (UkuwayConfig.get().isHideCosmetics() || MinecraftClient.getInstance().options.getPerspective().isFirstPerson())
+                && (isWorn(itemStack, EquipmentSlot.HEAD) || isWorn(itemStack, EquipmentSlot.CHEST))) {
+            ci.cancel();
         }
+    }
+
+    /**
+     * Checks if the item is worn in the specified slot by the client player.
+     *
+     * @param stack the item to be rendered
+     * @param slot  the slot to check
+     * @return {@code true} if the item is worn
+     */
+    @Unique
+    private boolean isWorn(ItemStack stack, EquipmentSlot slot) {
+        ClientPlayerEntity player = MinecraftClient.getInstance().player;
+        if (player == null) return false;
+
+        NbtCompound stackNbt = stack.getSubNbt(UkuwayPlus.PUBLIC_BUKKIT_VALUES);
+        NbtCompound slotNbt = player.getEquippedStack(slot).getSubNbt(UkuwayPlus.PUBLIC_BUKKIT_VALUES);
+        if (stackNbt == null || slotNbt == null) return false;
+
+        return stackNbt.getString(RANDOM_KEY).equals(slotNbt.getString(RANDOM_KEY));
     }
 }

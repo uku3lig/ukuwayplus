@@ -16,8 +16,8 @@ public class UkuwayConfig implements IConfig<UkuwayConfig> {
     private boolean discordRPC = true;
     private boolean inventoryRarities = true;
     private boolean autoSell = false;
-    private boolean noAmbientSounds = false;
-    private boolean noActivitySongs = false;
+    private boolean ambientSounds = true;
+    private boolean activitySongs = true;
 
     @Override
     public UkuwayConfig defaultConfig() {
