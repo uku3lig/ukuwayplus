@@ -13,13 +13,14 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(InGameHud.class)
 public class MixinInGameHud {
-
     @Shadow
     private int scaledWidth;
+
+    @Shadow
+    private int scaledHeight;
 
     @Shadow
     @Nullable
@@ -38,15 +39,14 @@ public class MixinInGameHud {
     }
 
     @Inject(method = "renderExperienceBar",
-            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawText(Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;IIIZ)I", ordinal = 0),
-            locals = LocalCapture.CAPTURE_FAILHARD
+            at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawText(Lnet/minecraft/client/font/TextRenderer;Ljava/lang/String;IIIZ)I", ordinal = 0)
     )
-    public void experienceBarPercent(DrawContext drawContext, int x, CallbackInfo ci, int i, String string, int textSize, int textPos) {
+    public void experienceBarPercent(DrawContext context, int x, CallbackInfo ci) {
         if (UkuwayPlus.isConnected() && overlayMessage != null && overlayMessage.getString().contains("\uE2C3") && MinecraftClient.getInstance().player != null) {
             float progress = MinecraftClient.getInstance().player.experienceProgress * 100;
             String percentage = String.format("%.2f%%", progress);
 
-            drawContext.drawCenteredTextWithShadow(MinecraftClient.getInstance().textRenderer, percentage, this.scaledWidth / 2, textPos - 14, 0x80FF20);
+            context.drawCenteredTextWithShadow(MinecraftClient.getInstance().textRenderer, percentage, this.scaledWidth / 2, this.scaledHeight - 31 - 4 - 14, 0x80FF20);
         }
     }
 }
