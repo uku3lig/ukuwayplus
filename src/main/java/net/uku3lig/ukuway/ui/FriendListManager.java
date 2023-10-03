@@ -39,7 +39,7 @@ public class FriendListManager {
 
     private static void checkFriends(GenericContainerScreen containerScreen) {
         long count = containerScreen.getScreenHandler().getStacks().stream().map(ItemStack::getItem).filter(Items.PLAYER_HEAD::equals).count();
-        if (count == friends.size()) {
+        if (count == friends.size() || count <= 1)  {
             return; // friend list didn't change, no need to check
         }
 
