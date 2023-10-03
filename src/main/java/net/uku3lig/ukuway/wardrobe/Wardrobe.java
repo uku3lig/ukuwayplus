@@ -7,6 +7,7 @@ import net.minecraft.entity.ai.TargetPredicate;
 import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.Box;
+import net.minecraft.util.math.Vec3d;
 
 import java.util.HashSet;
 import java.util.List;
@@ -14,6 +15,8 @@ import java.util.Set;
 import java.util.UUID;
 
 public class Wardrobe {
+    private static final Vec3d LOCATION = new Vec3d(66.5f, 5f, -130.5f);
+
     @Getter
     private static final Set<UUID> wardrobeEntities = new HashSet<>();
     @Getter
@@ -24,7 +27,7 @@ public class Wardrobe {
         ClientPlayerEntity clientPlayer = MinecraftClient.getInstance().player;
         if (clientPlayer == null) return;
 
-        if (!clientPlayer.isSpectator()) {
+        if (!clientPlayer.isSpectator() && !clientPlayer.getPos().isInRange(LOCATION, 5)) {
             wardrobeEntities.clear();
             return;
         }

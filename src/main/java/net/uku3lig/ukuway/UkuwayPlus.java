@@ -51,8 +51,7 @@ public class UkuwayPlus implements ClientModInitializer {
                 shop.tick();
                 Wardrobe.tick();
 
-                if (!FriendListManager.isInit() || MinecraftClient.getInstance().currentScreen instanceof GenericContainerScreen
-                        || FriendListManager.getFriends().isEmpty()) {
+                if (!FriendListManager.isInit() || client.currentScreen instanceof GenericContainerScreen || FriendListManager.getFriends().isEmpty()) {
                     FriendListManager.tick();
                 }
             }
