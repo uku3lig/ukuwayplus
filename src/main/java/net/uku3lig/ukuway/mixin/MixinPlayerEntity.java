@@ -45,7 +45,7 @@ public abstract class MixinPlayerEntity extends LivingEntity {
             }
         } else {
             UkuwayPlus.setCosmeticVisibility(this, EquipmentSlot.HEAD, oldHeadStack, this::setOldHeadStack);
-            UkuwayPlus.setCosmeticVisibility(this, EquipmentSlot.CHEST, oldChestStack, this::setOldHeadStack);
+            UkuwayPlus.setCosmeticVisibility(this, EquipmentSlot.CHEST, oldChestStack, this::setOldChestStack);
         }
     }
 }
