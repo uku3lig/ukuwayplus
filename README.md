@@ -4,7 +4,7 @@
 <a href="https://modrinth.com/mod/ukuwayplus"><img alt="modrinth" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg"></a>
 <a href="https://github.com/uku3lig/HideawayContinued/releases"><img alt="github" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg"></a>
 <br>
-<img height="56" alt="teawie." src="https://uku.s-ul.eu/nyWE10mb">
+<a href="https://github.com/SympathyTea/Teawie-Archive"><img height="56" alt="teawie." src="https://uku.s-ul.eu/nyWE10mb"></a>
 </p>
 
 ## About
