@@ -1,24 +1,36 @@
-![Hideaway+ Logo](https://i.imgur.com/JiSO1qN.png)
+<p align="center">
+<img alt="ukuway+ logo" width="720" src="https://raw.githubusercontent.com/uku3lig/HideawayContinued/rewrite/src/main/resources/assets/minecraft/textures/gui/title/minecraft.png">
+<br>
+<a href="https://modrinth.com/mod/ukuwayplus"><img alt="modrinth" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg"></a>
+<a href="https://github.com/uku3lig/HideawayContinued/releases"><img alt="github" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg"></a>
+<br>
+<img height="56" alt="teawie." src="https://uku.s-ul.eu/nyWE10mb">
+</p>
 
-# Features
+## About
+**ukuway+** is a QoL mod for the Minecraft server [Hideaway](https://playhideaway.com/). It adds a variety of features 
+to make your experience on Hideaway more enjoyable!
+
+Initially a fork of [Voxxin's HideawayContinued](https://github.com/Voxxin/HideawayContinued), I ended up rewriting the 
+entire mod to make the code less buggy, cleaner and more maintainable. Feel free to open a PR if you think otherwise :)
+
+## Features
 - Automatically dump inventory items into shops to sell!
 - Highlights items in your inventory with their rarity color!
-- **Icons** for your friends and other Hideaway+ players in usernames!
-- **Discord Rich Presence** which displays your location on Hideaway as your status!
+- **Icons** for your friends in usernames!
+- **Discord Rich Presence** which shows how cool you are!
 - Fully customizeable **config & keybinds**!
+- Jukebox feature to play Hideaway original tracks
+- Shows the XP percentage above your hotbar
+- Adds keybinds for friends list, luggage, wardrobe, profile, mail, palm plate, & journal
+- Adds a setting to disable cosmetics
+- Adds a setting to disable ambient sounds & activity songs
+- teawie.
 
-<details>
-<summary>Other features and tweaks...</summary>
-- Jukebox feature to play Hideaway original tracks <br>
-- Shows the XP percentage above your hotbar <br>
-- Shows your skin in your wardrobe instead of a Steve variant <br>
-- Adds keybinds for friends list, luggage, wardrobe, profile, mail, palm plate, & journal <br>
-- Adds a setting to disable cosmetics <br>
-- Adds a setting to disable ambient sounds & activity songs <br>
-- Hides your backpack when in first person -- no more seeing it out of the corner of your eye! <br>
-- Hides capes on players who are wearing a backpack. <br>
-</details>
+### Fixes
+- Shows your skin in your wardrobe instead of a Steve variant
+- Hides your backpack when in first person -- no more seeing it out of the corner of your eye!
+- Hides capes on players who are wearing a backpack.
 
-# Downloads
-<a href="https://modrinth.com/mods/hideaway"><img src="assets/modrinth_logo.png" alt="Modrinth Logo" style="width:200px;filter:drop-shadow(0 0 1.7rem white);"/></a>
-<a href="https://www.curseforge.com/minecraft/mc-mods/hideaway"><img src="assets/curseforge_logo.png" alt="Curseforge Logo" style="width:200px;filter:drop-shadow(0 0 1.7rem white);"/></a>
+## Downloads
+_(you can click on the shiny badges at the top of the readme)_
