@@ -1,6 +1,8 @@
 plugins {
     id "fabric-loom" version "1.4-SNAPSHOT"
     id "io.freefair.lombok" version "8.3"
+
+    id "com.modrinth.minotaur" version "2.+"
 }
 
 version = "${project.mod_version}+mc${project.minecraft_version}"
@@ -66,5 +68,22 @@ java {
 jar {
     from("LICENSE") {
         rename { "${it}_${project.archives_base_name}" }
+    }
+}
+
+var release_type = "release"
+if (version.containsIgnoreCase("alpha")) release_type = "alpha"
+else if (version.containsIgnoreCase("beta")) release_type = "beta"
+
+modrinth {
+    token = System.getenv("MODRINTH_TOKEN")
+    projectId = "iSgroavL"
+    versionNumber = project.version
+    versionType = release_type
+    uploadFile = remapJar // With Loom, this MUST be set to `remapJar` instead of `jar`!
+    gameVersions = [project.minecraft_version] // Must be an array, even with only one version
+    loaders = ["fabric", "quilt"]
+    dependencies {
+        required.project "Y8uFrUil"
     }
 }
