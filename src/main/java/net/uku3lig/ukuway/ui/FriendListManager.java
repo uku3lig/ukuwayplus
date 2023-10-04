@@ -30,7 +30,7 @@ public class FriendListManager {
     public static void tick() {
         if (MinecraftClient.getInstance().currentScreen instanceof GenericContainerScreen containerScreen) {
             checkFriends(containerScreen);
-        } else if (ticksElapsed >= 200 && !init && MinecraftClient.getInstance().player != null) {
+        } else if (ticksElapsed >= 50 && !init && MinecraftClient.getInstance().player != null) {
             init = true;
             MinecraftClient.getInstance().player.networkHandler.sendChatCommand("friend");
         }
@@ -50,14 +50,14 @@ public class FriendListManager {
         if (oldHandler != null && oldHandler == handler) return;
         oldHandler = handler;
 
-        Optional<Slot> nextPageSlot = handler.slots.stream().filter(slot -> slot.getStack().getItem() == Items.PAPER
+        Optional<Slot> nextPageSlot = handler.slots.stream().filter(slot -> slot.getStack().isOf(Items.PAPER)
                         && slot.getStack().getNbt() != null && slot.getStack().getNbt().asString().contains("→"))
                 .findFirst();
 
         CompletableFuture.runAsync(() -> {
             for (ItemStack itemStack : handler.getStacks()) {
                 NbtCompound nbt = itemStack.getNbt();
-                if (nbt == null || itemStack.getItem() != Items.PLAYER_HEAD || nbt.toString().contains("Left click to Accept")) {
+                if (nbt == null || !itemStack.isOf(Items.PLAYER_HEAD) || nbt.toString().contains("Left click to Accept")) {
                     continue;
                 }
 

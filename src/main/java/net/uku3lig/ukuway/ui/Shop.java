@@ -49,7 +49,7 @@ public class Shop {
 
             for (Slot slot : handler.slots) {
                 if (slot.inventory instanceof PlayerInventory) {
-                    if (!slot.getStack().isEmpty() && !slot.getStack().getItem().equals(Items.FISHING_ROD)) {
+                    if (!slot.getStack().isEmpty() && !slot.getStack().isOf(Items.FISHING_ROD)) {
                         NbtCompound nbt = slot.getStack().getSubNbt(UkuwayPlus.PUBLIC_BUKKIT_VALUES);
                         if (nbt == null || !nbt.contains(NOT_SAVE_KEY.toString())) {
                             playerItemSlots.add(slot);
@@ -66,7 +66,7 @@ public class Shop {
                 Slot emptySlot = emptyChestSlots.get(0);
                 containerScreen.onMouseClick(playerSlot, emptySlot.id, 0, SlotActionType.QUICK_MOVE);
 
-                if (emptySlot.getStack().getItem() != Items.AIR) {
+                if (!emptySlot.getStack().isEmpty()) {
                     emptyChestSlots.remove(0);
                 }
             }
