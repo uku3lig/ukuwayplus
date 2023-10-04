@@ -27,7 +27,7 @@ public class MixinItemRenderer {
     @Inject(method = "renderItem(Lnet/minecraft/item/ItemStack;Lnet/minecraft/client/render/model/json/ModelTransformationMode;ZLnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/client/render/VertexConsumerProvider;IILnet/minecraft/client/render/model/BakedModel;)V", at = @At("HEAD"), cancellable = true)
     private void render(ItemStack itemStack, ModelTransformationMode modelTransformationMode, boolean leftHanded, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay, BakedModel model, CallbackInfo ci) {
         if (UkuwayPlus.isConnected() && modelTransformationMode != ModelTransformationMode.GUI
-                && (UkuwayConfig.get().isHideCosmetics() || MinecraftClient.getInstance().options.getPerspective().isFirstPerson())
+                && (UkuwayConfig.get().isHideCosmetics() || (MinecraftClient.getInstance().options.getPerspective().isFirstPerson() && MinecraftClient.getInstance().currentScreen == null))
                 && (isWorn(itemStack, EquipmentSlot.HEAD) || isWorn(itemStack, EquipmentSlot.CHEST))) {
             ci.cancel();
         }
