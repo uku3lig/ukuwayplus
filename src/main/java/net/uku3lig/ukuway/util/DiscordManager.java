@@ -1,4 +1,4 @@
-package net.uku3lig.ukuway.discord;
+package net.uku3lig.ukuway.util;
 
 import com.google.gson.JsonObject;
 import com.jagrosh.discordipc.IPCClient;

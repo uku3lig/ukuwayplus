@@ -1,4 +1,4 @@
-package net.uku3lig.ukuway.wardrobe;
+package net.uku3lig.ukuway.ui;
 
 import lombok.Getter;
 import net.minecraft.client.MinecraftClient;

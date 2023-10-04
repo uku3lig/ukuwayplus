@@ -1,4 +1,4 @@
-package net.uku3lig.ukuway.shop;
+package net.uku3lig.ukuway.ui;
 
 import lombok.Setter;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
@@ -14,7 +14,7 @@ import net.minecraft.screen.slot.SlotActionType;
 import net.minecraft.util.Identifier;
 import net.uku3lig.ukuway.UkuwayPlus;
 import net.uku3lig.ukuway.config.UkuwayConfig;
-import net.uku3lig.ukuway.keyboard.KeyboardManager;
+import net.uku3lig.ukuway.util.KeyboardManager;
 import net.uku3lig.ukuway.ui.FriendListManager;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.glfw.GLFW;

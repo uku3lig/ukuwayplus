@@ -14,12 +14,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.uku3lig.ukulib.config.ConfigManager;
 import net.uku3lig.ukuway.config.UkuwayConfig;
-import net.uku3lig.ukuway.discord.DiscordManager;
+import net.uku3lig.ukuway.util.DiscordManager;
 import net.uku3lig.ukuway.jukebox.Jukebox;
-import net.uku3lig.ukuway.keyboard.KeyboardManager;
-import net.uku3lig.ukuway.shop.Shop;
+import net.uku3lig.ukuway.util.KeyboardManager;
+import net.uku3lig.ukuway.ui.Shop;
 import net.uku3lig.ukuway.ui.FriendListManager;
-import net.uku3lig.ukuway.wardrobe.Wardrobe;
+import net.uku3lig.ukuway.ui.Wardrobe;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

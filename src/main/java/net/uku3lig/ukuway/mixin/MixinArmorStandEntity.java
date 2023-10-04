@@ -7,7 +7,7 @@ import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.uku3lig.ukuway.UkuwayPlus;
-import net.uku3lig.ukuway.wardrobe.Wardrobe;
+import net.uku3lig.ukuway.ui.Wardrobe;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;

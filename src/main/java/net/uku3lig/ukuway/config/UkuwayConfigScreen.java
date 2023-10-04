@@ -5,7 +5,7 @@ import net.minecraft.client.option.SimpleOption;
 import net.minecraft.text.Text;
 import net.uku3lig.ukulib.config.screen.AbstractConfigScreen;
 import net.uku3lig.ukuway.UkuwayPlus;
-import net.uku3lig.ukuway.discord.DiscordManager;
+import net.uku3lig.ukuway.util.DiscordManager;
 
 public class UkuwayConfigScreen extends AbstractConfigScreen<UkuwayConfig> {
     public UkuwayConfigScreen(Screen parent) {

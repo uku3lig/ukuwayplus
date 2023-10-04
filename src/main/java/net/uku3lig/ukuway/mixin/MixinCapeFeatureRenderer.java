@@ -8,7 +8,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.uku3lig.ukuway.UkuwayPlus;
-import net.uku3lig.ukuway.wardrobe.Wardrobe;
+import net.uku3lig.ukuway.ui.Wardrobe;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
