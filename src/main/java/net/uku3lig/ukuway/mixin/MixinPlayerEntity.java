@@ -4,6 +4,7 @@ import lombok.Setter;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.player.PlayerEntity;
@@ -32,15 +33,19 @@ public abstract class MixinPlayerEntity extends LivingEntity {
     @Unique @Setter
     private ItemStack oldHeadStack = null;
 
+    @Unique @Setter
+    private ItemStack oldChestStack = null;
+
     @Inject(at = @At("HEAD"), method = "tick")
     private void tick(CallbackInfo ci) {
-        if (Wardrobe.getWardrobeEntities().contains(this.getUuid())) {
+        if (Wardrobe.getWardrobePlayers().contains(this.getUuid())) {
             ClientPlayerEntity clientPlayer = MinecraftClient.getInstance().player;
             if (clientPlayer != null) {
                 this.getDataTracker().set(PLAYER_MODEL_PARTS, clientPlayer.getDataTracker().get(PLAYER_MODEL_PARTS));
             }
         } else {
-            UkuwayPlus.setCosmeticVisibility(this, oldHeadStack, this::setOldHeadStack);
+            UkuwayPlus.setCosmeticVisibility(this, EquipmentSlot.HEAD, oldHeadStack, this::setOldHeadStack);
+            UkuwayPlus.setCosmeticVisibility(this, EquipmentSlot.CHEST, oldChestStack, this::setOldHeadStack);
         }
     }
 }

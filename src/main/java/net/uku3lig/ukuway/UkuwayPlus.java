@@ -14,12 +14,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.uku3lig.ukulib.config.ConfigManager;
 import net.uku3lig.ukuway.config.UkuwayConfig;
-import net.uku3lig.ukuway.util.DiscordManager;
 import net.uku3lig.ukuway.jukebox.Jukebox;
-import net.uku3lig.ukuway.util.KeyboardManager;
-import net.uku3lig.ukuway.ui.Shop;
 import net.uku3lig.ukuway.ui.FriendListManager;
+import net.uku3lig.ukuway.ui.Shop;
 import net.uku3lig.ukuway.ui.Wardrobe;
+import net.uku3lig.ukuway.util.DiscordManager;
+import net.uku3lig.ukuway.util.KeyboardManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -85,15 +85,15 @@ public class UkuwayPlus implements ClientModInitializer {
         return FabricLoader.getInstance().getModContainer("ukuway-plus").map(container -> container.getMetadata().getVersion().getFriendlyString());
     }
 
-    public static void setCosmeticVisibility(LivingEntity entity, ItemStack oldHeadStack, Consumer<ItemStack> setter) {
-        boolean hasCosmetic = entity.getEquippedStack(EquipmentSlot.HEAD).getItem() == Items.LEATHER_HORSE_ARMOR;
-            if (hasCosmetic) {
-                setter.accept(entity.getEquippedStack(EquipmentSlot.HEAD));
-                if (UkuwayConfig.get().isHideCosmetics()) {
-                    entity.equipStack(EquipmentSlot.HEAD, ItemStack.EMPTY);
-                }
-            } else if (!UkuwayConfig.get().isHideCosmetics() && oldHeadStack != null) {
-                entity.equipStack(EquipmentSlot.HEAD, oldHeadStack);
+    public static void setCosmeticVisibility(LivingEntity entity, EquipmentSlot slot, ItemStack oldHeadStack, Consumer<ItemStack> setter) {
+        boolean hasCosmetic = entity.getEquippedStack(slot).isOf(Items.LEATHER_HORSE_ARMOR);
+        if (hasCosmetic) {
+            setter.accept(entity.getEquippedStack(slot));
+            if (UkuwayConfig.get().isHideCosmetics()) {
+                entity.equipStack(slot, ItemStack.EMPTY);
             }
+        } else if (!UkuwayConfig.get().isHideCosmetics() && oldHeadStack != null) {
+            entity.equipStack(slot, oldHeadStack);
+        }
     }
 }

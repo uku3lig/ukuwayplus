@@ -4,7 +4,6 @@ import lombok.Getter;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.ai.TargetPredicate;
-import net.minecraft.entity.decoration.ArmorStandEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
@@ -15,12 +14,10 @@ import java.util.Set;
 import java.util.UUID;
 
 public class Wardrobe {
-    private static final Vec3d LOCATION = new Vec3d(66.5f, 5f, -130.5f);
+    public static final Vec3d LOCATION = new Vec3d(66.5f, 5f, -130.5f);
 
     @Getter
-    private static final Set<UUID> wardrobeEntities = new HashSet<>();
-    @Getter
-    private static final Set<UUID> wardrobeArmorStands = new HashSet<>();
+    private static final Set<UUID> wardrobePlayers = new HashSet<>();
 
 
     public static void tick() {
@@ -28,23 +25,19 @@ public class Wardrobe {
         if (clientPlayer == null) return;
 
         if (!clientPlayer.isSpectator() && !clientPlayer.getPos().isInRange(LOCATION, 5)) {
-            wardrobeEntities.clear();
+            wardrobePlayers.clear();
             return;
         }
 
         int boxWidth = 3 * 2;
         Box boundingBox = Box.of(clientPlayer.getPos(), boxWidth, boxWidth, boxWidth);
         List<PlayerEntity> playerList = clientPlayer.clientWorld.getPlayers(TargetPredicate.createNonAttackable(), clientPlayer, boundingBox);
-        List<ArmorStandEntity> armourStandList = clientPlayer.clientWorld.getNonSpectatingEntities(ArmorStandEntity.class, boundingBox);
 
-        wardrobeEntities.clear();
+        wardrobePlayers.clear();
         for (PlayerEntity player : playerList) {
             if (player == clientPlayer) continue;
-            wardrobeEntities.add(player.getUuid());
+            wardrobePlayers.add(player.getUuid());
         }
-
-        wardrobeArmorStands.clear();
-        wardrobeArmorStands.addAll(armourStandList.stream().map(ArmorStandEntity::getUuid).toList());
     }
 
     private Wardrobe() {

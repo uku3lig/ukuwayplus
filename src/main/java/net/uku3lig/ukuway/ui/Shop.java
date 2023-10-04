@@ -15,7 +15,6 @@ import net.minecraft.util.Identifier;
 import net.uku3lig.ukuway.UkuwayPlus;
 import net.uku3lig.ukuway.config.UkuwayConfig;
 import net.uku3lig.ukuway.util.KeyboardManager;
-import net.uku3lig.ukuway.ui.FriendListManager;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.glfw.GLFW;
 

@@ -45,7 +45,7 @@ public class MixinPlayerListEntry {
     @Unique
     private <T> void change(CallbackInfoReturnable<T> cir, Function<ClientPlayerEntity, T> mapper) {
         ClientPlayerEntity player = MinecraftClient.getInstance().player;
-        if (player != null && !Wardrobe.getWardrobeEntities().isEmpty() && Wardrobe.getWardrobeEntities().contains(this.profile.getId())) {
+        if (player != null && !Wardrobe.getWardrobePlayers().isEmpty() && Wardrobe.getWardrobePlayers().contains(this.profile.getId())) {
                 cir.setReturnValue(mapper.apply(player));
         }
     }

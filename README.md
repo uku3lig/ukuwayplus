@@ -13,7 +13,7 @@ to make your experience on Hideaway more enjoyable!
 
 Initially a fork of [Voxxin's HideawayContinued](https://github.com/Voxxin/HideawayContinued), I ended up rewriting the 
 entire mod to make the code less buggy, cleaner and more maintainable. Feel free to open a PR if you think otherwise :) <br>
-Currently on par with [`480bab469f04c1bb8564d7c343c8c49660ef8420`](https://github.com/Voxxin/HideawayContinued/commit/480bab469f04c1bb8564d7c343c8c49660ef8420)
+Currently on par with [`35a3b7e3ec47fa5206b3c088d5b5bfc6c6ab554f`](https://github.com/Voxxin/HideawayContinued/commit/35a3b7e3ec47fa5206b3c088d5b5bfc6c6ab554f)
 
 ## Features
 - Automatically dump inventory items into shops to sell!

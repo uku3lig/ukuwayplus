@@ -21,7 +21,7 @@ public class MixinCapeFeatureRenderer {
         if (!UkuwayPlus.isConnected() || UkuwayConfig.get().isHideCosmetics()) return;
 
         ItemStack playerChestplate = livingEntity.getEquippedStack(EquipmentSlot.CHEST);
-        if (playerChestplate != ItemStack.EMPTY || (Wardrobe.getWardrobeEntities().contains(livingEntity.getUuid()) && !Wardrobe.getWardrobeArmorStands().isEmpty())) {
+        if (!playerChestplate.isEmpty() || Wardrobe.getWardrobePlayers().contains(livingEntity.getUuid())) {
             ci.cancel();
         }
     }
