@@ -9,17 +9,16 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.screen.slot.SlotActionType;
-import net.minecraft.util.Uuids;
 
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
-import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 public class FriendListManager {
     @Getter
-    private static final Set<UUID> friends = new HashSet<>();
+    private static final Set<String> friends = new HashSet<>();
 
     private static GenericContainerScreenHandler oldHandler = null;
     private static long ticksElapsed = 0;
@@ -40,7 +39,7 @@ public class FriendListManager {
 
     private static void checkFriends(GenericContainerScreen containerScreen) {
         long count = containerScreen.getScreenHandler().getStacks().stream().map(ItemStack::getItem).filter(Items.PLAYER_HEAD::equals).count();
-        if (count == friends.size() || count <= 1)  {
+        if (count == friends.size() || count <= 1) {
             return; // friend list didn't change, no need to check
         }
 
@@ -62,10 +61,9 @@ public class FriendListManager {
                 }
 
                 NbtCompound skullOwner = nbt.getCompound("SkullOwner");
-                int[] uuidIntArray = skullOwner.getIntArray("Id");
-                friends.add(Uuids.toUuid(uuidIntArray));
+                String name = skullOwner.getString("Name").toLowerCase(Locale.ROOT);
+                if (!name.isBlank()) friends.add(name);
             }
-            System.out.println("friends list size: " + friends.size());
         });
 
         nextPageSlot.ifPresentOrElse(slot -> containerScreen.onMouseClick(slot, 0, 0, SlotActionType.PICKUP),

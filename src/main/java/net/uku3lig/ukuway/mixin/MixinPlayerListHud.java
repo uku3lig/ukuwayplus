@@ -12,6 +12,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import java.util.Locale;
+
 @Mixin(PlayerListHud.class)
 public class MixinPlayerListHud {
     @Inject(at = @At("RETURN"), method = "getPlayerName", cancellable = true)
@@ -19,7 +21,7 @@ public class MixinPlayerListHud {
         if (UkuwayPlus.isConnected()) {
             MutableText newName = cir.getReturnValue().copy();
 
-            if (FriendListManager.getFriends().contains(entry.getProfile().getId())) {
+            if (FriendListManager.getFriends().contains(entry.getProfile().getName().toLowerCase(Locale.ROOT))) {
                 newName = Chars.FRIEND_BADGE.with(newName);
             }
 

@@ -3,7 +3,6 @@ package net.uku3lig.ukuway.mixin;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.hud.ChatHud;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.entity.Entity;
 import net.minecraft.text.Text;
 import net.uku3lig.ukuway.ui.FriendListManager;
 import net.uku3lig.ukuway.util.Chars;
@@ -12,7 +11,8 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
 
-import java.util.*;
+import java.util.Locale;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,14 +21,11 @@ public class MixinChatHud {
     @Unique
     private static final Pattern CHAT_PATTERN = Pattern.compile("^\\S+ (.+):.+");
 
-    @Unique
-    private static final Map<String, UUID> uuidCache = new HashMap<>();
-
     @ModifyArg(method = "*", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/hud/ChatHud;addMessage(Lnet/minecraft/text/Text;Lnet/minecraft/network/message/MessageSignatureData;ILnet/minecraft/client/gui/hud/MessageIndicator;Z)V"), index = 0)
     private Text addMessageIcons(Text message) {
-        Optional<UUID> uuid = findPlayer(message);
+        Optional<String> username = findPlayer(message);
 
-        if (uuid.isPresent() && FriendListManager.getFriends().contains(uuid.get())) {
+        if (username.isPresent() && FriendListManager.getFriends().contains(username.get())) {
             return Chars.FRIEND_BADGE.with(message);
         }
 
@@ -36,7 +33,7 @@ public class MixinChatHud {
     }
 
     @Unique
-    private Optional<UUID> findPlayer(Text message) {
+    private Optional<String> findPlayer(Text message) {
         ClientWorld world = MinecraftClient.getInstance().world;
         if (world == null) return Optional.empty();
 
@@ -44,16 +41,7 @@ public class MixinChatHud {
         if (matcher.find()) {
             String username = matcher.group(1);
             if (username != null) {
-                username = username.toLowerCase(Locale.ROOT);
-                UUID uuid = uuidCache.computeIfAbsent(username,
-                        s -> world.getPlayers().stream()
-                                .filter(p -> p.getEntityName().equalsIgnoreCase(s))
-                                .findFirst()
-                                .map(Entity::getUuid)
-                                .orElse(null)
-                );
-
-                return Optional.ofNullable(uuid);
+                return Optional.of(username.toLowerCase(Locale.ROOT));
             }
         }
 
