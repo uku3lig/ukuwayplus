@@ -41,7 +41,7 @@ public class Shop {
         ShopType shopType = getShopType(containerScreen);
         boolean fill = GLFW.glfwGetKey(GLFW.glfwGetCurrentContext(), KeyBindingHelper.getBoundKeyOf(KeyboardManager.autoSell).getCode()) == GLFW.GLFW_PRESS;
 
-        if (shopType != oldShopType && (shopType == ShopType.FRUIT || shopType == ShopType.FISH) && (UkuwayConfig.get().isAutoSell() || fill)) {
+        if ((shopType == ShopType.FRUIT || shopType == ShopType.FISH) && ((UkuwayConfig.get().isAutoSell() && shopType != oldShopType) || fill)) {
             List<Slot> emptyChestSlots = new ArrayList<>();
             List<Slot> playerItemSlots = new ArrayList<>();
             GenericContainerScreenHandler handler = containerScreen.getScreenHandler();
