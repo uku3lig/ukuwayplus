@@ -18,8 +18,7 @@ public class UkuwayConfigScreen extends AbstractConfigScreen<UkuwayConfig> {
                 SimpleOption.ofBoolean("ukuway.config.hideCosmetics", config.isHideCosmetics(), config::setHideCosmetics),
                 SimpleOption.ofBoolean("ukuway.config.discordRPC", config.isDiscordRPC(), b -> {
                     config.setDiscordRPC(b);
-                    if (b) DiscordManager.start();
-                    else DiscordManager.stop();
+                    DiscordManager.setStatus(b);
                 }),
                 SimpleOption.ofBoolean("ukuway.config.inventoryRarities", config.isInventoryRarities(), config::setInventoryRarities),
                 SimpleOption.ofBoolean("ukuway.config.autoSell", config.isAutoSell(), config::setAutoSell),

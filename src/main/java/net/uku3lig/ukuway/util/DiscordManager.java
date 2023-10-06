@@ -58,8 +58,15 @@ public class DiscordManager {
     }
 
     public static void stop() {
-        client.close();
-        active = false;
+        if (active) {
+            client.close();
+            active = false;
+        }
+    }
+
+    public static void setStatus(boolean enabled) {
+        if (enabled) start();
+        else stop();
     }
 
     private static class ModIPCListener implements IPCListener {
