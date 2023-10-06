@@ -7,13 +7,12 @@ import net.minecraft.client.gui.screen.ingame.GenericContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.GenericContainerScreenHandler;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.screen.slot.SlotActionType;
-import net.minecraft.util.Identifier;
-import net.uku3lig.ukuway.UkuwayPlus;
 import net.uku3lig.ukuway.config.UkuwayConfig;
+import net.uku3lig.ukuway.util.HideawayItem;
+import net.uku3lig.ukuway.util.ItemType;
 import net.uku3lig.ukuway.util.KeyboardManager;
 import org.jetbrains.annotations.NotNull;
 import org.lwjgl.glfw.GLFW;
@@ -22,8 +21,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Shop {
-    private static final Identifier NOT_SAVE_KEY = new Identifier("pixelhideawaycore", "inventory-do-not-save");
-
     @Setter @NotNull
     private ShopType oldShopType = ShopType.UNKNOWN;
 
@@ -48,11 +45,9 @@ public class Shop {
 
             for (Slot slot : handler.slots) {
                 if (slot.inventory instanceof PlayerInventory) {
-                    if (!slot.getStack().isEmpty() && !slot.getStack().isOf(Items.FISHING_ROD)) {
-                        NbtCompound nbt = slot.getStack().getSubNbt(UkuwayPlus.PUBLIC_BUKKIT_VALUES);
-                        if (nbt == null || !nbt.contains(NOT_SAVE_KEY.toString())) {
-                            playerItemSlots.add(slot);
-                        }
+                    HideawayItem item = HideawayItem.fromStack(slot.getStack());
+                    if (item != null && item.type() == ItemType.ITEM && !item.notSave() && !slot.getStack().isOf(Items.FISHING_ROD)) {
+                        playerItemSlots.add(slot);
                     }
                 } else if (slot.getStack().isEmpty()) {
                     emptyChestSlots.add(slot);

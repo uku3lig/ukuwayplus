@@ -3,8 +3,8 @@ package net.uku3lig.ukuway.mixin;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.tooltip.TooltipBackgroundRenderer;
-import net.minecraft.text.TextColor;
 import net.uku3lig.ukuway.config.UkuwayConfig;
+import net.uku3lig.ukuway.util.HideawayItem;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
@@ -16,10 +16,10 @@ public abstract class MixinTooltipBackgroundRenderer {
     private static void modifyBorderColor(Args args) {
         if (MinecraftClient.getInstance().currentScreen instanceof HandledScreen<?> screen && screen.focusedSlot != null
                 && UkuwayConfig.get().isInventoryRarities()) {
-            TextColor color = screen.focusedSlot.getStack().getName().getStyle().getColor();
+            HideawayItem item = HideawayItem.fromStack(screen.focusedSlot.getStack());
 
-            if (color != null && color.getRgb() != 0xFFFFFF) {
-                int argb = color.getRgb() | (0xFF << 24);
+            if (item != null && item.rarity() != null) {
+                int argb = item.rarity().withAlpha();
 
                 args.set(6, argb);
                 args.set(7, argb);
