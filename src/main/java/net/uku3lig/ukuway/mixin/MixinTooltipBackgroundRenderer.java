@@ -19,7 +19,7 @@ public abstract class MixinTooltipBackgroundRenderer {
             TextColor color = screen.focusedSlot.getStack().getName().getStyle().getColor();
 
             if (color != null && color.getRgb() != 0xFFFFFF) {
-                int argb = color.getRgb() | (150 << 24);
+                int argb = color.getRgb() | (0xFF << 24);
 
                 args.set(6, argb);
                 args.set(7, argb);
