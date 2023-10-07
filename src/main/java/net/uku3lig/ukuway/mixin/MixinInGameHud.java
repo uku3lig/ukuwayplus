@@ -32,7 +32,7 @@ public class MixinInGameHud {
         if (track != null) {
             drawContext.drawTextWithShadow(
                     MinecraftClient.getInstance().textRenderer,
-                    Chars.DISC.with(Text.of("Now playing: " + track.getTrackName())),
+                    Chars.DISC.with(Text.of(" Now playing: ")).append(Text.literal(track.getTrackName()).styled(s -> s.withItalic(true))),
                     10, 10, 0xFFFFFF
             );
         }

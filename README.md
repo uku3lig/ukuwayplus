@@ -14,6 +14,8 @@ to make your experience on Hideaway more enjoyable!
 Initially a fork of [Voxxin's HideawayContinued](https://github.com/Voxxin/HideawayContinued), I ended up rewriting the 
 entire mod to make the code less buggy, cleaner and more maintainable. Feel free to open a PR if you think otherwise :)
 
+Assets by [SympathyTea](https://github.com/SympathyTea), [sakecode](https://github.com/sakecode) and [me](https://github.com/uku3lig).
+
 ## Features
 - Automatically dump inventory items into shops to sell!
 - Highlights items in your inventory with their rarity color!
