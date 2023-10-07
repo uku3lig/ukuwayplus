@@ -3,7 +3,6 @@ package net.uku3lig.ukuway.mixin;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.screen.slot.Slot;
-import net.minecraft.text.TextColor;
 import net.uku3lig.ukuway.UkuwayPlus;
 import net.uku3lig.ukuway.config.UkuwayConfig;
 import net.uku3lig.ukuway.util.HideawayItem;
@@ -18,7 +17,7 @@ public abstract class MixinHandledScreen {
     public void drawSlotRarity(DrawContext context, Slot slot, CallbackInfo ci) {
         if (UkuwayPlus.isConnected() && UkuwayConfig.get().isInventoryRarities()) {
             HideawayItem item = HideawayItem.fromStack(slot.getStack());
-            if (item != null && item.rarity() != null) {
+            if (item != null && item.rarity() != null && item.coloredName()) {
                 int argb = item.rarity().withAlpha();
 
                 context.fill(slot.x, slot.y + 2, slot.x + 1, slot.y + 14, argb);

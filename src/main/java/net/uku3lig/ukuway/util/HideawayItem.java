@@ -2,10 +2,12 @@ package net.uku3lig.ukuway.util;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.text.TextColor;
 
 import java.util.Arrays;
 
-public record HideawayItem(ItemStack parent, Rarity rarity, ItemType type, boolean signed, boolean recolor, boolean special, boolean notSave) {
+public record HideawayItem(ItemStack parent, Rarity rarity, ItemType type, boolean signed, boolean recolor,
+                           boolean special, boolean notSave, boolean coloredName) {
     public static HideawayItem fromStack(ItemStack stack) {
         if (stack == null || stack.isEmpty()) return null;
         NbtCompound nbt = stack.getNbt();
@@ -19,6 +21,9 @@ public record HideawayItem(ItemStack parent, Rarity rarity, ItemType type, boole
         boolean special = nbtString.contains(SpecialChars.SPECIAL.getCharacter());
         boolean notSave = nbtString.contains("inventory-do-not-save");
 
-        return new HideawayItem(stack, rarity, type, signed, recolor, special, notSave);
+        TextColor textColor = stack.getName().getStyle().getColor();
+        boolean coloredText = textColor != null && textColor.getRgb() != 0xFFFFFF;
+
+        return new HideawayItem(stack, rarity, type, signed, recolor, special, notSave, coloredText);
     }
 }
