@@ -1,5 +1,5 @@
 {
-    "categories.hp": "Hideaway+",
+    "categories.hp": "ukuwayplus+",
 
     "key.hp.jukebox": "Open Jukebox",
     "key.hp.autoSell": "Automatically fill shop screen",
@@ -12,7 +12,7 @@
     "key.hp.mail": "Mail",
     "key.hp.explore": "Explore",
 
-    "tooltip.hp.friend": "Friend :)",
+    "tooltip.hp.friend": "Friend",
 
     "jukebox.title": "Play a song",
     "jukebox.stop_all_songs": "Stop all music",

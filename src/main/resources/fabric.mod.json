@@ -3,16 +3,16 @@
   "id": "ukuway-plus",
   "version": "${version}",
   "name": "ukuway+",
-  "description": "epic fork of not so epic mod hideaway continued",
+  "description": "feature-packed qol mod for the hideaway server",
   "authors": [
     "uku",
-    "the hideaway+ team (maybe)"
+    "the hideaway+ team"
   ],
   "contact": {
-    "sources": "https://github.com/uku3lig/HideawayContinued"
+    "sources": "https://github.com/uku3lig/ukuwayplus"
   },
   "license": "MIT",
-  "icon": "assets/hideaway_plus/textures/icon.png",
+  "icon": "assets/ukuwayplus/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
@@ -22,9 +22,9 @@
       "net.uku3lig.ukuway.config.UkulibHook"
     ]
   },
-  "accessWidener": "hideaway_plus.accesswidener",
+  "accessWidener": "ukuwayplus.accesswidener",
   "mixins": [
-    "hideaway_plus.mixins.json"
+    "ukuwayplus.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.13",

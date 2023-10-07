@@ -1,8 +1,8 @@
 <p align="center">
-<img alt="ukuway+ logo" width="720" src="https://raw.githubusercontent.com/uku3lig/HideawayContinued/rewrite/src/main/resources/assets/minecraft/textures/gui/title/minecraft.png">
+<img alt="ukuway+ logo" width="720" src="https://raw.githubusercontent.com/uku3lig/ukuwayplus/1.20.1/src/main/resources/assets/minecraft/textures/gui/title/minecraft.png">
 <br>
 <a href="https://modrinth.com/mod/ukuwayplus"><img alt="modrinth" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/modrinth_vector.svg"></a>
-<a href="https://github.com/uku3lig/HideawayContinued/releases"><img alt="github" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg"></a>
+<a href="https://github.com/uku3lig/ukuwayplus/releases"><img alt="github" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/available/github_vector.svg"></a>
 <br>
 <a href="https://github.com/SympathyTea/Teawie-Archive"><img height="56" alt="teawie." src="https://uku.s-ul.eu/nyWE10mb"></a>
 </p>
@@ -12,8 +12,7 @@
 to make your experience on Hideaway more enjoyable!
 
 Initially a fork of [Voxxin's HideawayContinued](https://github.com/Voxxin/HideawayContinued), I ended up rewriting the 
-entire mod to make the code less buggy, cleaner and more maintainable. Feel free to open a PR if you think otherwise :) <br>
-Currently on par with [`35a3b7e3ec47fa5206b3c088d5b5bfc6c6ab554f`](https://github.com/Voxxin/HideawayContinued/commit/35a3b7e3ec47fa5206b3c088d5b5bfc6c6ab554f)
+entire mod to make the code less buggy, cleaner and more maintainable. Feel free to open a PR if you think otherwise :)
 
 ## Features
 - Automatically dump inventory items into shops to sell!

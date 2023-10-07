@@ -9,7 +9,7 @@ version = "${project.mod_version}+mc${project.minecraft_version}"
 group = project.maven_group
 
 loom {
-    accessWidenerPath = file("src/main/resources/hideaway_plus.accesswidener")
+    accessWidenerPath = file("src/main/resources/ukuwayplus.accesswidener")
 }
 
 repositories {

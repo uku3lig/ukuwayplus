@@ -13,13 +13,12 @@ import net.minecraft.util.Identifier;
 public enum Chars {
     DISC("\uE010", null),
     FRIEND_BADGE("\uE002", "tooltip.hp.friend"),
-    USER_BADGE("\uE001", null),
     SETTINGS_ICON("\uEF01", null);
 
     private final String character;
     private final String translationKey;
 
-    private static final Identifier FONT = new Identifier("hideaway_plus", "text");
+    private static final Identifier FONT = new Identifier("ukuwayplus", "text");
 
     public MutableText with(Text next) {
         MutableText text = Text.literal(character).styled(s -> s.withFont(FONT).withFormatting(Formatting.WHITE));

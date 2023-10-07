@@ -1,0 +1,25 @@
+{
+  "providers": [
+    {
+      "type": "bitmap",
+      "file": "ukuwayplus:friend.png",
+      "chars": [ "\uE002" ],
+      "height": 8,
+      "ascent": 7
+    },
+    {
+      "type": "bitmap",
+      "file": "ukuwayplus:disc.png",
+      "chars": [ "\uE010" ],
+      "height": 8,
+      "ascent": 7
+    },
+    {
+      "type": "bitmap",
+      "file": "ukuwayplus:pineapple.png",
+      "chars": [ "\uEF01" ],
+      "height": 10,
+      "ascent": 9
+    }
+  ]
+}
