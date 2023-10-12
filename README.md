@@ -1,3 +1,7 @@
+> **Note**
+> This repository has been archived due to the insane escalation of the situation around it. I find extremely sad that the situation has gotten this bad over a stupid fork, but I guess that's how it is.
+> The code will remain avaible publicly under the MIT license, so feel free to fork the mod and upload it to Modrinth or whatever, I don't care. Have fun.
+
 <p align="center">
 <img alt="ukuway+ logo" width="720" src="https://raw.githubusercontent.com/uku3lig/ukuwayplus/1.20.1/src/main/resources/assets/minecraft/textures/gui/title/minecraft.png">
 <br>
